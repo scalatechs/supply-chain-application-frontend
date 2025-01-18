@@ -16,10 +16,18 @@ import {
 } from "../components/ui/select"
 import { Tabs, TabsList, TabsTrigger } from "../components/ui/tabs"
 import { Link } from "react-router-dom"
+import ProductPopup from "@/components/product-popup"
+import { useState } from "react"
 
 function DashboardPage() {
+    const [showPopup, setShowPopup] = useState(false)
+
+    const handleBackdropClick = () => {
+        setShowPopup(false)
+    }
+
     return (
-        <div className="space-y-8">
+        <div className="space-y-8" onClick={handleBackdropClick}>
             <div className="flex md:flex-row flex-col md:items-center items-start md:gap-0 gap-4 justify-between">
                 <Tabs defaultValue="overviews">
                     <TabsList>
@@ -76,9 +84,14 @@ function DashboardPage() {
 
             <div className="grid gap-4 xl:grid-cols-2 grid-cols-1">
                 <SalesChart />
-                <StockAvailability />
+                <div onClick={(e) => {
+                    e.stopPropagation();
+                    setShowPopup(true);
+                }} className="cursor-pointer">
+                    <StockAvailability />
+                </div>
             </div>
-
+            <ProductPopup show={showPopup} />
             <OngoingOrders />
         </div>
     )
