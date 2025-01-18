@@ -1,50 +1,91 @@
-# React + TypeScript + Vite
+# Scala Dashboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A feature-rich and responsive dashboard application built using Vite and React.js. This application allows users to manage their inventory, sales, and orders. It is designed with performance and scalability in mind, making it a robust solution for task management.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Table of Contents
+- [Setup Instructions](#setup-instructions)
+- [Technology Choices and Rationale](#technology-choices-and-rationale)
+- [Known Limitations/Trade-offs](#known-limitationstrade-offs)
+- [Future Improvements](#future-improvements)
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Setup Instructions
 
-- Configure the top-level `parserOptions` property like this:
+To run this project locally, follow these steps:
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+1. **Clone the Repository:**
+   ```bash
+   git clone https://github.com/yourusername/project-name.git
+   cd project-name
+   ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+2. **Install Dependencies:**
+   Ensure you have Node.js installed, then run:
+   ```bash
+   npm install
+   ```
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+3. **Start the Development Server:**
+   ```bash
+   npm run dev
+   ```
+   Navigate to `http://localhost:5173` in your browser to view the application.
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+4. **Build for Production:**
+   To create an optimized build, run:
+   ```bash
+   npm run build
+   ```
+   The output will be in the `dist` folder.
+
+5. **Preview the Production Build:**
+   ```bash
+   npm run preview
+   ```
+
+---
+
+## Technology Choices and Rationale
+
+### **Vite:**
+- Chosen for its fast build times and efficient development environment.
+- Supports modern JavaScript and ensures optimized production builds.
+
+### **React.js:**
+- Provides a component-based structure, making it easier to manage state and UI updates.
+- Well-suited for building interactive user interfaces like a Kanban board.
+
+### **TailwindCSS:**
+- Ensures scoped and maintainable styling.
+- Provides rapid UI development with pre-defined classes.
+
+### **Shadcn UI:**
+- Provides a set of pre-built components for consistent styling.
+- Ensures consistent styling across the application.
+
+### **React Context API:**
+- Provides a way to share data betweetn components without having o pass props down manually.
+- Ensures that the data is shared between components efficiently.
+
+### **Lucide React Icons:**
+- Provides a set of pre-built icons for consistent styling.
+- Ensures that the icons are consistent across the application.
+
+---
+
+## Known Limitations/Trade-offs
+
+1. **State Management using Context API**
+2. **No Backend Integration**
+## Future Improvements
+
+1. **Backend Integration with database**
+2. **User Authentication**
+4. **Accessibility Enhancements**
+5. **Performance Optimization**
+6. **State Management using Redux**
+
+---
