@@ -16,7 +16,7 @@ const AddProduct = () => {
                     </Button>
                 </Link>
             </div>
-            <div className="w-full flex items-start justify-between gap-4">
+            <div className="w-full flex flex-col xl:flex-row items-start justify-between gap-4">
 
                 {/* Product Details  */}
                 <ProductDescription />

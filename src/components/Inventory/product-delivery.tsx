@@ -12,27 +12,27 @@ import { Button } from "../ui/button"
 
 const ProductDelivery = ({ image }: { image?: string }) => {
     return (
-        <div className="w-1/2 flex flex-col gap-6">
+        <div className="w-full xl:w-1/2 flex flex-col gap-6">
             <div className="w-full">
                 <h2 className="text-xl mb-2">Product Images</h2>
-                <div className="border rounded-lg p-4 w-full flex items-start justify-between gap-6">
+                <div className="border rounded-lg p-4 w-full flex flex-col md:flex-row items-start justify-between gap-6">
                     {image ? (
-                        <div className="w-1/3 rounded-lg relative h-56">
+                        <div className="md:w-1/3 w-full rounded-lg relative md:h-56 h-32">
                             <img src={image} className="w-full h-full object-cover brightness-50 rounded-lg" alt="" />
-                            <Button className="absolute top-20 left-20" variant={"outline"}>Replace</Button>
-                            <Button className="absolute top-32 left-20" variant={"outline"}>Remove</Button>
+                            <Button className="absolute md:top-20 top-5 md:left-20 left-24" variant={"outline"}>Replace</Button>
+                            <Button className="absolute md:top-32 top-16 md:left-20 left-24" variant={"outline"}>Remove</Button>
                         </div>
                     ) : (
-                        <div className="w-1/3 rounded-lg border border-blue-600 border-dashed flex flex-col items-center justify-center gap-2 h-56">
+                        <div className="md:w-1/3 w-full rounded-lg border border-blue-600 border-dashed flex flex-col items-center justify-center gap-2 md:h-56 h-32">
                             <ImagePlusIcon className="w-1/5 h-1/4 text-blue-600 scale-x-[-1]" />
                             <p className="text-center text-sm leading-4 "><span className="underline text-blue-600">Click to upload</span> or <br />drag and drop</p>
                         </div>
                     )}
-                    <div className="w-1/3 rounded-lg border border-blue-600 border-dashed flex flex-col items-center justify-center gap-2 h-56">
+                    <div className="md:w-1/3 w-full rounded-lg border border-blue-600 border-dashed flex flex-col items-center justify-center gap-2 md:h-56 h-32">
                         <ImagePlusIcon className="w-1/5 h-1/4 text-blue-600 scale-x-[-1]" />
                         <p className="text-center text-sm leading-4 "><span className="underline text-blue-600">Click to upload</span> or <br />drag and drop</p>
                     </div>
-                    <div className="w-1/3 rounded-lg border border-blue-600 border-dashed flex flex-col items-center justify-center gap-2 h-56">
+                    <div className="md:w-1/3 w-full rounded-lg border border-blue-600 border-dashed flex flex-col items-center justify-center gap-2 md:h-56 h-32">
                         <ImagePlusIcon className="w-1/5 h-1/4 text-blue-600 scale-x-[-1]" />
                         <p className="text-center text-sm leading-4 "><span className="underline text-blue-600">Click to upload</span> or <br />drag and drop</p>
                     </div>

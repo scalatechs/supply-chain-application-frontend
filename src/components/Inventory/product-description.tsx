@@ -11,7 +11,7 @@ import {
 
 const ProductDescription = ({ name, category, stock, id, description }: { name?: string, category?: string, stock?: number, id?: string, description?: string }) => {
     return (
-        <div className="w-1/2 flex flex-col gap-6">
+        <div className="w-full xl:w-1/2 flex flex-col gap-6">
             <div className="w-full">
                 <h2 className="text-xl mb-2">Description</h2>
                 <div className="border rounded-lg p-4 w-full flex flex-col items-start gap-6">
