@@ -11,6 +11,7 @@ import {
 import { Button } from "../ui/button"
 
 const ProductDelivery = ({ image }: { image?: string }) => {
+
     return (
         <div className="w-full xl:w-1/2 flex flex-col gap-6">
             <div className="w-full">
@@ -23,7 +24,14 @@ const ProductDelivery = ({ image }: { image?: string }) => {
                             <Button className="absolute md:top-32 top-16 md:left-20 left-24" variant={"outline"}>Remove</Button>
                         </div>
                     ) : (
-                        <div className="md:w-1/3 w-full rounded-lg border border-blue-600 border-dashed flex flex-col items-center justify-center gap-2 md:h-56 h-32">
+                        <div
+                            onClick={() => document.getElementById("fileInput")?.click()}
+                            className="md:w-1/3 w-full rounded-lg border border-blue-600 border-dashed flex flex-col items-center justify-center gap-2 md:h-56 h-32 cursor-pointer">
+                            <input
+                                id="fileInput"
+                                type="file"
+                                className="hidden" // Keep the input hidden
+                            />
                             <ImagePlusIcon className="w-1/5 h-1/4 text-blue-600 scale-x-[-1]" />
                             <p className="text-center text-sm leading-4 "><span className="underline text-blue-600">Click to upload</span> or <br />drag and drop</p>
                         </div>
@@ -151,6 +159,10 @@ const ProductDelivery = ({ image }: { image?: string }) => {
                         <button className="text-sm text-blue-600">+ Add Variant</button>
                     </div>
                 </div>
+            </div>
+
+            <div onClick={() => alert("Product added succesfully!")} className="w-full flex justify-end">
+                <button className=" px-3 py-2 bg-[#003dff] font-medium rounded-lg    text-base text-white">Save Product</button>
             </div>
         </div>
     )

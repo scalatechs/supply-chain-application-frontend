@@ -19,7 +19,7 @@ import { Link } from "react-router-dom"
 import ProductPopup from "@/components/product-popup"
 import { useState } from "react"
 
-function DashboardPage() {
+function Dashboard() {
     const [showPopup, setShowPopup] = useState(false)
 
     const handleBackdropClick = () => {
@@ -51,6 +51,7 @@ function DashboardPage() {
                 </div>
             </div>
 
+            {/* Cards  */}
             <div className="grid gap-4 xl:grid-cols-4 lg:grid-cols-3">
                 <StatsCard
                     title="Total Shipments"
@@ -83,7 +84,10 @@ function DashboardPage() {
             </div>
 
             <div className="grid gap-4 xl:grid-cols-2 grid-cols-1">
+                {/* Total Sales */}
                 <SalesChart />
+
+                {/* Stock Availability */}
                 <div onClick={(e) => {
                     e.stopPropagation();
                     setShowPopup(true);
@@ -91,10 +95,14 @@ function DashboardPage() {
                     <StockAvailability />
                 </div>
             </div>
+
+            {/* Inventory Product Popups */}
             <ProductPopup show={showPopup} />
+
+            {/* Ongoing Orders Table */}
             <OngoingOrders />
         </div>
     )
 }
 
-export default DashboardPage
+export default Dashboard

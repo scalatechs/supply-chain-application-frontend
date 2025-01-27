@@ -25,7 +25,7 @@ export function StockAvailability() {
                 </Button>
             </CardHeader>
             <CardContent>
-                <div className="space-y-4">
+                <div className="space-y-9">
                     <div>
                         <div className="flex items-center justify-between">
                             <span className="text-sm font-medium">In Stock</span>
@@ -49,7 +49,7 @@ export function StockAvailability() {
                     </div>
                     <div className="mt-6">
                         <h4 className="text-sm font-medium">Low Stock Items</h4>
-                        <div className="mt-2 space-y-2">
+                        <div className="mt-2 space-y-6">
                             {stockData.lowStockItems.map((item) => (
                                 <div key={item.name} className="flex items-center justify-between text-sm">
                                     <div className="flex items-center gap-2 w-3/5">

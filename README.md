@@ -75,17 +75,3 @@ To run this project locally, follow these steps:
 - Ensures that the icons are consistent across the application.
 
 ---
-
-## Known Limitations/Trade-offs
-
-1. **State Management using Context API**
-2. **No Backend Integration**
-## Future Improvements
-
-1. **Backend Integration with database**
-2. **User Authentication**
-4. **Accessibility Enhancements**
-5. **Performance Optimization**
-6. **State Management using Redux**
-
----

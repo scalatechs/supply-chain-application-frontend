@@ -72,9 +72,9 @@ const RestockProduct = () => {
                         </p>
                     </div>
                     <Link to={`/inventory`} className="flex items-center gap-2">
-                        <Button variant="default">
-                            Save Product
-                        </Button>
+                        <div onClick={() => alert("Product saved succesfully!")} className="w-full flex justify-end">
+                            <button className=" px-3 py-2 bg-[#003dff] font-medium rounded-lg    text-base text-white">Save Product</button>
+                        </div>
                     </Link>
                 </div>
                 <div className='w-full xl:w-1/2 flex flex-col items-start gap-6'>

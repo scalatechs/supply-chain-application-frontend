@@ -38,6 +38,8 @@ export function SalesChart() {
                     </Button>
                 </div>
             </CardHeader>
+
+            {/* Line Graphs */}
             <BarCharts />
         </Card>
     )

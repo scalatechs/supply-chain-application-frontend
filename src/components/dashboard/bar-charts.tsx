@@ -34,13 +34,13 @@ const chartConfig = {
 
 export default function Component() {
     return (
-        <Card className="border-none shadow-none -ml-12 bg-transparent">
+        <Card className="border-none shadow-none -ml-1 bg-transparent">
             <CardContent>
                 <ChartContainer config={chartConfig}>
                     <BarChart
                         accessibilityLayer
                         data={chartData}
-                        margin={{ top: 20, right: 30, left: 40, bottom: 20 }}
+                        margin={{ top: 0, right: 0, left: 0, bottom: 0 }}
                     >
                         <defs>
                             <linearGradient id="barGradient" x1="0" y1="0" x2="0" y2="1" className="transition-all">

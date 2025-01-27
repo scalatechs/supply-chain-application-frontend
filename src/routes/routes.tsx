@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes as ReactRoutes, Route, useLocation, Navigate } from 'react-router-dom'
 import { Sidebar } from "../components/layout/sidebar"
 import { Header } from "../components/layout/header"
-import DashboardPage from "../pages/Dashboardpage"
+import DashboardPage from "../pages/Dashboard"
 import Inventory from '../pages/Inventory'
 import AddProduct from '../components/Inventory/add-product'
 import RestockProduct from '../components/Inventory/restock-product'
