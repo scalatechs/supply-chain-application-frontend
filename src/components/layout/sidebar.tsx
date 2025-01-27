@@ -42,7 +42,7 @@ export function Sidebar({ className }: SidebarProps) {
     const { isOpen, toggleSidebar, closeSidebar } = useSidebar();
 
     const navigation = [
-        { name: "Dashboard", href: "/", icon: DashboardIcon },
+        { name: "Dashboard", href: "/dashboard", icon: DashboardIcon },
         { name: "Shipment", href: "/shipment", icon: ShipmentIcon },
         { name: "Inventory", href: "/inventory", icon: InventoryIcon },
         { name: "Orders", href: "/orders", icon: OrdersIcon },

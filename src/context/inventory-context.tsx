@@ -88,7 +88,11 @@ const InventoryProvider = ({ children }: { children: React.ReactNode }) => {
 
     ]);
 
-    return <InventoryContext.Provider value={{ inventory, setInventory }}>{children}</InventoryContext.Provider>
+    return (
+        <InventoryContext.Provider value={{ inventory, setInventory }}>
+            {children}
+        </InventoryContext.Provider>
+    )
 }
 
 export { InventoryContext, InventoryProvider }; 
