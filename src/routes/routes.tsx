@@ -11,7 +11,7 @@ import Signup from '@/pages/Signup'
 
 const AppLayout = () => {
     const location = useLocation();
-    const noSidebarRoutes = ['/', '/login', '/signup'];
+    const noSidebarRoutes = ['/', '/login', '/signup',];
     const showSidebar = !noSidebarRoutes.includes(location.pathname);
 
     return (
@@ -21,10 +21,13 @@ const AppLayout = () => {
                 {showSidebar && <Header />}
                 <main className={`${showSidebar ? "p-8" : ""} lg:pl-0 bg-gray-50`}>
                     <ReactRoutes>
-                        {/* Default Route */}
+
+                        {/* Auth Routes */}
                         <Route path='*' element={<Navigate to={'/login'} replace />} />
                         <Route path='/login' element={<Login />} />
                         <Route path='/signup' element={<Signup />} />
+
+                        {/* Dashboard Routes */}
                         <Route path="/dashboard" element={<DashboardPage />} />
                         <Route path="/inventory">
                             <Route path="" element={<Inventory />} />
