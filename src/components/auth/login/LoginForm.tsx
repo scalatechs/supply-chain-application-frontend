@@ -42,7 +42,7 @@ const LoginForm = () => {
                     <span className="font-medium">Remember Me</span>
                 </div>
 
-                <Link to={'/forget'} className="underline text-blue-700 hover:text-blue-500">
+                <Link to={'/forgot'} className="underline text-blue-700 hover:text-blue-500">
                     Forgot Password?
                 </Link>
             </div>

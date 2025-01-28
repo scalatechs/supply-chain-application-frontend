@@ -8,10 +8,11 @@ import RestockProduct from '../components/Inventory/restock-product'
 import EditProduct from '../components/Inventory/edit-product'
 import Login from '@/pages/Login'
 import Signup from '@/pages/Signup'
+import ForgotPassword from '../pages/FogotPassword'
 
 const AppLayout = () => {
     const location = useLocation();
-    const noSidebarRoutes = ['/', '/login', '/signup',];
+    const noSidebarRoutes = ['/', '/login', '/signup', '/forgot'];
     const showSidebar = !noSidebarRoutes.includes(location.pathname);
 
     return (
@@ -26,6 +27,7 @@ const AppLayout = () => {
                         <Route path='*' element={<Navigate to={'/login'} replace />} />
                         <Route path='/login' element={<Login />} />
                         <Route path='/signup' element={<Signup />} />
+                        <Route path='/forgot' element={<ForgotPassword />} />
 
                         {/* Dashboard Routes */}
                         <Route path="/dashboard" element={<DashboardPage />} />
