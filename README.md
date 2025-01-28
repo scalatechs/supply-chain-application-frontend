@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # supply-chain-application-frontend
 =======
 # Scala Dashboard
@@ -78,4 +77,3 @@ To run this project locally, follow these steps:
 - Ensures that the icons are consistent across the application.
 
 ---
->>>>>>> main
