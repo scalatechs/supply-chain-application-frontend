@@ -7,9 +7,6 @@ A feature-rich and responsive dashboard application built using Vite and React.j
 ## Table of Contents
 - [Setup Instructions](#setup-instructions)
 - [Technology Choices and Rationale](#technology-choices-and-rationale)
-- [Known Limitations/Trade-offs](#known-limitationstrade-offs)
-- [Future Improvements](#future-improvements)
-
 ---
 
 ## Setup Instructions
