@@ -8,19 +8,37 @@ import {
 } from "@/components/ui/table"
 import { Button } from "@/components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox"
-import { Calendar, Filter, MoreHorizontal, Search, Upload } from 'lucide-react'
+import { Calendar, Check, ChevronRight, Filter, MoreHorizontal, Search, Upload, X } from 'lucide-react'
 import { useContext } from "react"
 import { InventoryContext } from "@/context/inventory-context.tsx"
 import { Link } from "react-router-dom"
 import { ScrollArea } from "@/components/ui/scroll-area"
 
-export default function ShipmentOrders() {
+export default function ReturnOrders() {
     const { inventory } = useContext(InventoryContext);
 
     return (
         <div className="rounded-lg bg-white w-full">
+            {/* Responsive tabs */}
+            <ScrollArea className="w-full">
+                <div className="flex items-center border-b border-gray-300 min-w-max">
+                    <button className="text-blue-600 font-medium border-b-2 border-blue-600 px-4 py-2 whitespace-nowrap md:text-sm text-xs">
+                        All
+                    </button>
+                    <button className="text-gray-500 font-medium px-4 py-2 hover:text-gray-700 whitespace-nowrap md:text-sm text-xs">
+                        Pending Requests
+                    </button>
+                    <button className="text-gray-500 font-medium px-4 py-2 hover:text-gray-700 whitespace-nowrap md:text-sm text-xs">
+                        Approved Requests
+                    </button>
+                    <button className="text-gray-500 font-medium px-4 py-2 hover:text-gray-700 whitespace-nowrap md:text-sm text-xs">
+                        Rejected Requests
+                    </button>
+                </div>
+            </ScrollArea>
+
             {/* Responsive search and actions */}
-            <div className="flex flex-col md:flex-row items-start md:items-start justify-between gap-4 pb-4 pt-12">
+            <div className="flex flex-col md:flex-row items-start md:items-start justify-between gap-4 pb-4 pt-12 px-4">
                 <form className="flex items-center gap-2 border rounded-lg pl-2 w-full md:w-64">
                     <button type="submit">
                         <Search className="h-4 w-4 text-neutral-500" />
@@ -57,10 +75,10 @@ export default function ShipmentOrders() {
                         <TableHeader>
                             <TableRow className="font-semibold">
                                 <TableHead>Order Id</TableHead>
-                                <TableHead>Shipping Id</TableHead>
-                                <TableHead>Dispatched Date</TableHead>
-                                <TableHead>Shipping Method</TableHead>
-                                <TableHead>Fee</TableHead>
+                                <TableHead>Date</TableHead>
+                                <TableHead>Customer Id</TableHead>
+                                <TableHead>Sales Representative</TableHead>
+                                <TableHead>Reason</TableHead>
                                 <TableHead>Status</TableHead>
                                 <TableHead>Action</TableHead>
                             </TableRow>
@@ -71,18 +89,14 @@ export default function ShipmentOrders() {
                                     <TableCell className="flex items-center gap-2 h-16">
                                         <Checkbox /><span className="mt-1">{product.id}</span>
                                     </TableCell>
-                                    <TableCell className="text-lg text-neutral-700">
-                                        {product.id}
-                                    </TableCell>
                                     <TableCell>
-                                        <img src={product.image} alt="" className="w-12 h-12 rounded-lg inline-flex mr-4 object-contain" />
-                                        <span className="md:text-lg text-sm text-neutral-700 capitalize">{product.name}</span>
+                                        {new Date().toLocaleDateString()}
                                     </TableCell>
                                     <TableCell className="text-lg text-neutral-700">
-                                        {product.category}
+                                        # {product.id}
                                     </TableCell>
                                     <TableCell className="text-lg text-neutral-700">
-                                        Rs. {product.price}
+                                        Michael Jordan
                                     </TableCell>
                                     <TableCell className="text-lg text-neutral-700">
                                         <span
@@ -91,11 +105,17 @@ export default function ShipmentOrders() {
                                                 : "bg-yellow-100 text-yellow-700"
                                                 }`}
                                         >
-                                            {product.price > 100 ? "Shipping" : "In-delivery"}
+                                            {product.price > 100 ? "Approved" : "Pending"}
                                         </span>
                                     </TableCell>
+                                    <TableCell className="flex items-center gap-2">
+                                        <Check size={'35px'} className="p-2 bg-[#ecf7e6] text-green-700 rounded-md border border-green-700" />
+                                        <X size={'35px'} className="p-2 bg-[#ffe6e6] text-red-700 rounded-md border border-red-700" />
+                                    </TableCell>
                                     <TableCell>
-                                        <Link to={`/inventory/restock-product/${product.id}`} className="underline text-blue-500">View details</Link>
+                                        <Link to={`/inventory/restock-product/${product.id}`} className="underline text-blue-500">
+                                            <ChevronRight />
+                                        </Link>
                                     </TableCell>
                                 </TableRow>
                             ))}

@@ -46,7 +46,7 @@ export function Sidebar({ className }: SidebarProps) {
         { name: "Shipment", href: "/shipment", icon: ShipmentIcon },
         { name: "Inventory", href: "/inventory", icon: InventoryIcon },
         { name: "Orders", href: "/orders", icon: OrdersIcon },
-        { name: "Returns & Refunds", href: "/returns", icon: ArchiveRestore },
+        { name: "Returns & Refunds", href: "/return", icon: ArchiveRestore },
         { name: "Customers", href: "/customers", icon: Users },
         { name: "Sales Personnel", href: "/sales", icon: UserCircle },
         { name: "Notifications", href: "/notifications", icon: NotificationsIcon },

@@ -73,13 +73,13 @@ export function InventoryOrders() {
                 <ScrollArea className="w-full">
                     <Table>
                         <TableHeader>
-                            <TableRow>
-                                <TableHead className="font-semibold">FKU</TableHead>
-                                <TableHead className="font-semibold">Product</TableHead>
-                                <TableHead className="font-semibold">Category</TableHead>
-                                <TableHead className="font-semibold">Price</TableHead>
-                                <TableHead className="font-semibold">Stock</TableHead>
-                                <TableHead className="font-semibold">Action</TableHead>
+                            <TableRow className="font-semibold">
+                                <TableHead>FKU</TableHead>
+                                <TableHead>Product</TableHead>
+                                <TableHead>Category</TableHead>
+                                <TableHead>Price</TableHead>
+                                <TableHead>Stock</TableHead>
+                                <TableHead>Action</TableHead>
                             </TableRow>
                         </TableHeader>
                         <TableBody>

@@ -11,6 +11,7 @@ import Signup from '@/pages/Signup'
 import ForgotPassword from '../pages/FogotPassword'
 import Shipment from '@/pages/Shipment'
 import { useState } from 'react'
+import ReturnAndRefunds from '@/pages/ReturnAndRefunds'
 
 const AppLayout = () => {
     const location = useLocation();
@@ -40,6 +41,7 @@ const AppLayout = () => {
                             <Route path="edit-product/:id" element={<EditProduct />} />
                         </Route>
                         <Route path='/shipment' element={<Shipment active={active} setActive={setActive} />} />
+                        <Route path='/return' element={<ReturnAndRefunds />} />
                     </ReactRoutes>
                 </main>
             </div>
