@@ -12,6 +12,7 @@ const Shipment = ({ active, setActive }: { active: string, setActive: Dispatch<S
                 <Tabs defaultValue="overviews">
                     <TabsList>
                         <TabsTrigger
+                            onClick={() => setActive("overview")}
                             value="overviews">Overviews</TabsTrigger>
                         <TabsTrigger
                             onClick={() => setActive("tracking")}
