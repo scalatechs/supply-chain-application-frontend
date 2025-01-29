@@ -1,17 +1,26 @@
 import { Mail } from "lucide-react"
 import logo from "../../../assets/Nav-mainlogo.svg"
-import { useForgotContext } from "@/context/forgot-context";
+import { useForgotContext } from "../../../hooks/useForgotContext";
 import {
     InputOTP,
     InputOTPGroup,
     InputOTPSeparator,
     InputOTPSlot,
 } from "@/components/ui/input-otp"
+import { useState } from "react";
 
-const enterOtp = () => {
+const enterOtp = ({ otp, updateField }: { otp: string, updateField: (data: any) => void }) => {
+
     const { currentStep, setCurrentStep, setIsFormSubmitted } = useForgotContext()
+    const [otpValue, setOtpValue] = useState(otp || "");
+
+    const handleOtpChange = (value: string) => {
+        setOtpValue(value);
+    };
+
     const handleFormSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+        updateField({ otp: otpValue })
         setIsFormSubmitted(prevState => {
             const newState = {
                 ...prevState,
@@ -33,7 +42,8 @@ const enterOtp = () => {
             <div className="text-center">
                 <h1 className="text-4xl text-neutral-700 font-semibold">Password Reset</h1>
                 <p className="text-sm text-gray-400 text-center mt-1">
-                    Enter the otp sent to <span className="text-[#003dff] font-medium">johndoe21@gmail.com</span>
+                    Enter the otp sent to
+                    <span className="text-[#003dff] font-medium">johndoe21@gmail.com</span>
                 </p>
             </div>
 
@@ -41,7 +51,7 @@ const enterOtp = () => {
 
                 {/* OTP */}
                 <div className="w-full flex justify-center">
-                    <InputOTP maxLength={4}>
+                    <InputOTP maxLength={4} onChange={handleOtpChange}>
                         <InputOTPGroup>
                             <InputOTPSlot index={0} />
                         </InputOTPGroup>

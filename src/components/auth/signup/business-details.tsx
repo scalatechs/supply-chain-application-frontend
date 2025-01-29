@@ -1,12 +1,30 @@
-import { useSignupContext } from "@/context/signup-context";
+import { useSignupContext } from "../../../hooks/useSignupContext";
 import { ChevronLeft, ChevronRight, FilePlus2, FileText, X } from "lucide-react";
 import { useState } from "react";
 
-const businessDetails = () => {
+interface BusinessDetailsProps {
+    companyName: string;
+    registrationNumber: string;
+    location: string;
+    updateField: (data: Partial<{
+        companyName: string;
+        registrationNumber: string;
+        location: string;
+    }>) => void;
+}
+
+const businessDetails = ({
+    companyName,
+    registrationNumber,
+    location,
+    updateField
+}: BusinessDetailsProps) => {
+
     const { currentStep, setCurrentStep, setIsFormSubmitted } = useSignupContext()
 
     const [files, setFiles] = useState<File[]>([]);
 
+    //handles changes of files
     const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const selectedFiles: any = event.target.files;
         if (selectedFiles) {
@@ -14,13 +32,14 @@ const businessDetails = () => {
         }
     }
 
+    //hadles deleting files
     const handleFileDelete = (fileName: string) => {
         setFiles((prevFiles: any) => prevFiles.filter((file: any) =>
             file.name !== fileName
         ))
     }
 
-    const handleFormSubmit = async (e: React.FormEvent) => {
+    const handleFormSubmit = (e: React.FormEvent) => {
         e.preventDefault();
 
         // Get all the form elements
@@ -39,7 +58,7 @@ const businessDetails = () => {
 
         if (isFormValid) {
             // Update the submission state
-            await setIsFormSubmitted(prevState => {
+            setIsFormSubmitted(prevState => {
                 const newState = {
                     ...prevState,
                     [currentStep]: true
@@ -70,6 +89,8 @@ const businessDetails = () => {
                         Company Name
                     </label>
                     <input
+                        value={companyName}
+                        onChange={(e) => updateField({ companyName: e.target.value })}
                         type="text" name="companyName"
                         placeholder="Enter company name"
                         className="w-full mt-1 rounded-sm px-4 py-3 border border-neutral-400 outline-none" />
@@ -84,6 +105,8 @@ const businessDetails = () => {
                         Registration Number
                     </label>
                     <input
+                        value={registrationNumber}
+                        onChange={(e) => updateField({ registrationNumber: e.target.value })}
                         type="text" name="registrationNumber"
                         placeholder="Enter registration number"
                         className="w-full mt-1 rounded-sm px-4 py-3 border border-neutral-400 outline-none" />
@@ -98,6 +121,8 @@ const businessDetails = () => {
                         Location
                     </label>
                     <input
+                        value={location}
+                        onChange={(e) => updateField({ location: e.target.value })}
                         type="text" name="location"
                         placeholder="Enter location"
                         className="w-full mt-1 rounded-sm px-4 py-3 border border-neutral-400 outline-none" />

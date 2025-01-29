@@ -1,17 +1,14 @@
-import { createContext, ReactNode, useContext, useState } from "react";
+import { createContext, ReactNode, useState } from "react";
 
 interface SignupContextType {
     currentStep: number;
     setCurrentStep: React.Dispatch<React.SetStateAction<number>>;
     isFormSubmitted: { [key: number]: boolean };
     setIsFormSubmitted: React.Dispatch<React.SetStateAction<{ [key: number]: boolean }>>;
-    allFormData: object[]
-    setAllFormData: React.Dispatch<React.SetStateAction<object[]>>;
-    handleFormData: (data: any) => void
 }
 
 // Create context
-const SignupContext = createContext<SignupContextType | undefined>(undefined);
+export const SignupContext = createContext<SignupContextType | undefined>(undefined);
 
 // Create provider
 const SignupProvider = ({ children }: { children: ReactNode }) => {
@@ -23,14 +20,8 @@ const SignupProvider = ({ children }: { children: ReactNode }) => {
         4: false
     });
 
-    const [allFormData, setAllFormData] = useState<object[]>([]);
-
-    const handleFormData = (data: object) => {
-        setAllFormData((prevData) => [...prevData, data]); // Push the new form data into the array
-    }
-
     return (
-        <SignupContext.Provider value={{ currentStep, setCurrentStep, isFormSubmitted, setIsFormSubmitted, allFormData, setAllFormData, handleFormData }}>
+        <SignupContext.Provider value={{ currentStep, setCurrentStep, isFormSubmitted, setIsFormSubmitted }}>
             {children}
         </SignupContext.Provider>
     );
@@ -38,11 +29,4 @@ const SignupProvider = ({ children }: { children: ReactNode }) => {
 
 export default SignupProvider;
 
-// Custom hook to use SignupContext
-export const useSignupContext = () => {
-    const context = useContext(SignupContext);
-    if (!context) {
-        throw new Error("useSignupContext must be used within a SignupProvider");
-    }
-    return context;
-};
+

@@ -1,4 +1,4 @@
-import { useSignupContext } from "@/context/signup-context"
+import { useSignupContext } from "../../../hooks/useSignupContext";
 import logo from "../../../assets/white-logo.png"
 import { Check } from "lucide-react";
 

@@ -1,51 +1,73 @@
-import { useSignupContext } from "@/context/signup-context";
+import { useSignupContext } from "../../../hooks/useSignupContext";
 import { ChevronRight } from "lucide-react";
+import { FormEvent } from "react";
 
-const userInformation = () => {
-    const { currentStep, setCurrentStep, setIsFormSubmitted, handleFormData } = useSignupContext();
+interface UserInformationProps {
+    phoneNumber: string;
+    email: string;
+    username: string;
+    password: string;
+    confirmPassword: string;
+    updateField: (data: Partial<{
+        phoneNumber: string;
+        email: string;
+        username: string;
+        password: string;
+        confirmPassword: string;
+    }>) => void;
+}
 
-    const handleFormSubmit = (e: React.FormEvent) => {
+const UserInformation = ({
+    phoneNumber,
+    email,
+    username,
+    password,
+    confirmPassword,
+    updateField
+}: UserInformationProps) => {
+
+    const { currentStep, setCurrentStep, setIsFormSubmitted } = useSignupContext();
+
+    const handleFormSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
-        // Get all the form elements
-        const form = e.target as HTMLFormElement;
+        const form = e.currentTarget;
         const formData = new FormData(form);
 
-        // Check if any of the required fields are empty
-        const requiredFields = [
-            formData.get("phoneNumber"),
-            formData.get("email"),
-            formData.get("userName"),
-            formData.get("password"),
-            formData.get("confirmPassword")
-        ];
+        const requiredFields = {
+            phoneNumber: formData.get("phoneNumber"),
+            email: formData.get("email"),
+            username: formData.get("username"),
+            password: formData.get("password"),
+            confirmPassword: formData.get("confirmPassword")
+        };
 
-        // Check if any field is empty
-        const isFormValid = requiredFields.every(field => field && field !== "");
+        const isFormValid = Object.values(requiredFields).every(field => field && field !== "");
 
-        if (isFormValid) {
-            // Update the submission state
-            handleFormData(requiredFields)
-            setIsFormSubmitted(prevState => {
-                const newState = {
-                    ...prevState,
-                    [currentStep]: true
-                };
-                console.log('Updated form state:', newState);
-                return newState;
-            });
-
-            // Move to next step
-            setCurrentStep(currentStep + 1);
-        } else {
+        if (!isFormValid) {
             alert("Please fill out all required fields.");
+            return;
         }
+
+        if (requiredFields.password !== requiredFields.confirmPassword) {
+            alert("Passwords do not match!");
+            return;
+        }
+
+        setIsFormSubmitted(prevState => ({
+            ...prevState,
+            [currentStep]: true
+        }));
+
+        setCurrentStep(currentStep + 1);
     };
 
     return (
         <>
             <h1 className="text-5xl font-semibold">User Information</h1>
-            <p className="text-base text-gray-600 mt-4 mb-12">Please fill out the user information form. Make sure all the details and information are absolutely true.</p>
+            <p className="text-base text-gray-600 mt-4 mb-12">
+                Please fill out the user information form. Make sure all the details and information are absolutely true.
+            </p>
 
             <form onSubmit={handleFormSubmit} className="w-full flex flex-col items-start gap-6">
                 {/* Phone Number */}
@@ -83,6 +105,8 @@ const userInformation = () => {
                             <option value="100">+ 100</option>
                         </select>
                         <input
+                            value={phoneNumber}
+                            onChange={(e) => updateField({ phoneNumber: e.target.value })}
                             type="text"
                             name="phoneNumber"
                             placeholder="Phone Number"
@@ -97,25 +121,31 @@ const userInformation = () => {
                         Email Address
                     </label>
                     <input
+                        value={email}
+                        onChange={(e) => updateField({ email: e.target.value })}
                         required
                         type="email"
+                        id="email"
                         name="email"
                         placeholder="example@gmail.com"
-                        className="w-full mt-1 rounded-sm px-4 py-3 border border-neutral-400 outline-none"
+                        className="w-full mt-1 rounded-sm px-4 py-3 border border-neutral-400 outline-none focus:border-blue-500"
                     />
                 </div>
 
-                {/* User Name */}
+                {/* Username */}
                 <div className="w-full">
-                    <label htmlFor="userName" className="text-base font-medium">
-                        User Name
+                    <label htmlFor="username" className="text-base font-medium">
+                        Username
                     </label>
                     <input
+                        value={username}
+                        onChange={(e) => updateField({ username: e.target.value })}
                         required
                         type="text"
-                        name="userName"
-                        placeholder="John Doe"
-                        className="w-full mt-1 rounded-sm px-4 py-3 border border-neutral-400 outline-none"
+                        id="username"
+                        name="username"
+                        placeholder="johndoe"
+                        className="w-full mt-1 rounded-sm px-4 py-3 border border-neutral-400 outline-none focus:border-blue-500"
                     />
                 </div>
 
@@ -125,32 +155,38 @@ const userInformation = () => {
                         Password
                     </label>
                     <input
+                        value={password}
+                        onChange={(e) => updateField({ password: e.target.value })}
                         required
                         type="password"
+                        id="password"
                         name="password"
                         placeholder="Enter Password"
-                        className="w-full mt-1 rounded-sm px-4 py-3 border border-neutral-400 outline-none"
+                        className="w-full mt-1 rounded-sm px-4 py-3 border border-neutral-400 outline-none focus:border-blue-500"
                     />
                 </div>
 
                 {/* Confirm Password */}
                 <div className="w-full">
                     <label htmlFor="confirmPassword" className="text-base font-medium">
-                        Password
+                        Confirm Password
                     </label>
                     <input
+                        value={confirmPassword}
+                        onChange={(e) => updateField({ confirmPassword: e.target.value })}
                         required
                         type="password"
+                        id="confirmPassword"
                         name="confirmPassword"
                         placeholder="Re-Enter Password"
-                        className="w-full mt-1 rounded-sm px-4 py-3 border border-neutral-400 outline-none"
+                        className="w-full mt-1 rounded-sm px-4 py-3 border border-neutral-400 outline-none focus:border-blue-500"
                     />
                 </div>
 
                 <div className="w-full flex justify-end">
                     <button
                         type="submit"
-                        className="bg-[#003dff] text-white font-semibold px-5 py-2.5 rounded-lg flex items-center gap-2"
+                        className="bg-[#003dff] text-white font-semibold px-5 py-2.5 rounded-lg flex items-center gap-2 hover:bg-[#0035e0] transition-colors"
                     >
                         Next Step
                         <ChevronRight />
@@ -161,4 +197,4 @@ const userInformation = () => {
     );
 };
 
-export default userInformation;
+export default UserInformation;

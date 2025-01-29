@@ -4,14 +4,23 @@ import {
     InputOTPSeparator,
     InputOTPSlot,
 } from "@/components/ui/input-otp"
-import { useSignupContext } from "@/context/signup-context";
+import { useSignupContext } from "../../../hooks/useSignupContext";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom"
 
-const verification = () => {
+const verification = ({ otp, updateField }: { otp: string, updateField: (data: any) => void }) => {
+
     const navigate = useNavigate();
     const { currentStep, setIsFormSubmitted } = useSignupContext()
+    const [otpValue, setOtpValue] = useState(otp || "");
+
+    const handleOtpChange = (value: string) => {
+        setOtpValue(value)
+    }
+
     const handleFormSubmit = (e: React.FormEvent) => {
         e.preventDefault();
+        updateField({ otp: otpValue })
         setIsFormSubmitted(prevState => {
             const newState = {
                 ...prevState,
@@ -33,7 +42,7 @@ const verification = () => {
 
             {/* OTP */}
             <div className="w-full flex justify-center">
-                <InputOTP maxLength={4}>
+                <InputOTP maxLength={4} onChange={handleOtpChange}>
                     <InputOTPGroup>
                         <InputOTPSlot index={0} />
                     </InputOTPGroup>

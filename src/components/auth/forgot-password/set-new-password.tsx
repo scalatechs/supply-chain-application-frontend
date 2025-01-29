@@ -1,9 +1,10 @@
 import { LockIcon } from "lucide-react"
 import logo from "../../../assets/Nav-mainlogo.svg"
-import { useForgotContext } from "@/context/forgot-context";
+import { useForgotContext } from "../../../hooks/useForgotContext";
 
-const setNewPassword = () => {
-    const { currentStep, setCurrentStep, setIsFormSubmitted, setAllFormData } = useForgotContext()
+const setNewPassword = ({ password, confirmPassword, updateField }: { password: string, confirmPassword: string, updateField: (data: any) => void }) => {
+
+    const { currentStep, setCurrentStep, setIsFormSubmitted } = useForgotContext()
 
     const handleFormSubmit = (e: React.FormEvent) => {
         e.preventDefault();
@@ -11,21 +12,6 @@ const setNewPassword = () => {
         // Get all the form elements
         const form = e.target as HTMLFormElement;
         const formData = new FormData(form);
-
-        const formValues: Record<string, string> = {}; // To store the key-value pairs
-        formData.forEach((value, key) => {
-            console.log(`Attribute Name: ${key}, Value: ${value}`);
-            formValues[key] = value.toString();
-        });
-
-        setAllFormData((prevData) => {
-            const updatedData = {
-                ...prevData, // Retain previous steps' data
-                [currentStep]: formValues, // Add/update current step data
-            };
-            console.log('Updated allFormData:', updatedData);
-            return updatedData;
-        });
 
         // Check if any of the required fields are empty
         const requiredFields = [
@@ -43,7 +29,6 @@ const setNewPassword = () => {
                     ...prevState,
                     [currentStep]: true
                 };
-                console.log('Updated form state:', newState);
                 return newState;
             });
 
@@ -80,6 +65,8 @@ const setNewPassword = () => {
                     <div className="w-full flex items-center gap-2 mt-1 rounded-sm px-4 py-3.5 border border-neutral-400 outline-none" >
                         <LockIcon className="text-neutral-400" />
                         <input
+                            onChange={(e) => updateField({ password: e.target.value })}
+                            value={password}
                             type="password" name="password"
                             placeholder="Enter new password"
                             className="border-none outline-none w-full"
@@ -98,6 +85,8 @@ const setNewPassword = () => {
                     <div className="w-full flex items-center gap-2 mt-1 rounded-sm px-4 py-3.5 border border-neutral-400 outline-none" >
                         <LockIcon className="text-neutral-400" />
                         <input
+                            onChange={(e) => updateField({ confirmPassword: e.target.value })}
+                            value={confirmPassword}
                             type="password" name="confirmPassword"
                             placeholder="Confirm password"
                             className="border-none outline-none w-full"

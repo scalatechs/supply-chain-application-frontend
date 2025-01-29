@@ -1,4 +1,4 @@
-import { useForgotContext } from "@/context/forgot-context"
+import { useForgotContext } from "../../../hooks/useForgotContext";
 
 const progressBar = () => {
     const { currentStep } = useForgotContext();

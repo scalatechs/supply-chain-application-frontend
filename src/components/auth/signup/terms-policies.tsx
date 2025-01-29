@@ -1,16 +1,17 @@
 import { Checkbox } from "@/components/ui/checkbox"
 import { ChevronLeft, ChevronRight } from "lucide-react"
-import { useSignupContext } from "@/context/signup-context";
+import { useSignupContext } from "../../../hooks/useSignupContext";
 import { useState } from "react";
 
-const termsPolicies = () => {
+const termsPolicies = ({ termsPolicies, updateField }: { termsPolicies: boolean, updateField: (data: any) => void }) => {
     const { currentStep, setCurrentStep, setIsFormSubmitted } = useSignupContext()
-    const [isChecked, setIsChecked] = useState(false)
+    const [isChecked, setIsChecked] = useState(termsPolicies || false);
     const handleFormSubmit = (e: React.FormEvent) => {
         e.preventDefault();
 
         // Checks if checkbox is checked or not
         const isFormValid = (isChecked == true)
+        updateField({ termsPolicies: isChecked })
 
         if (isFormValid) {
             // Update the submission state

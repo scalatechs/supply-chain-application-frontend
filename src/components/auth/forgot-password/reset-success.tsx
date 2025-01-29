@@ -1,11 +1,12 @@
 import { Check } from "lucide-react";
 import logo from "../../../assets/Nav-mainlogo.svg"
-import { useForgotContext } from "@/context/forgot-context";
+import { useForgotContext } from "../../../hooks/useForgotContext";
 import { useNavigate } from "react-router-dom";
 
 const resetSuccess = () => {
     const { currentStep, setIsFormSubmitted } = useForgotContext()
     const navigate = useNavigate();
+
     const handleFormSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         setIsFormSubmitted(prevState => {

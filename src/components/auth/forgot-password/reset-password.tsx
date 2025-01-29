@@ -1,11 +1,10 @@
 import { Lock, Mail } from "lucide-react"
 import logo from "../../../assets/Nav-mainlogo.svg"
-import { useForgotContext } from "@/context/forgot-context";
+import { useForgotContext } from "../../../hooks/useForgotContext";
 
+const resetPassword = ({ email, updateField }: { email: string, updateField: (data: any) => void }) => {
 
-const resetPassword = () => {
-
-    const { currentStep, setCurrentStep, setIsFormSubmitted, setAllFormData } = useForgotContext()
+    const { currentStep, setCurrentStep, setIsFormSubmitted } = useForgotContext()
 
     const handleFormSubmit = (e: React.FormEvent) => {
         e.preventDefault();
@@ -13,20 +12,6 @@ const resetPassword = () => {
         // Get all the form elements
         const form = e.target as HTMLFormElement;
         const formData = new FormData(form);
-
-        const formValues: Record<string, string> = {}; // To store the key-value pairs
-        formData.forEach((value, key) => {
-            formValues[key] = value.toString();
-        });
-
-        setAllFormData((prevData) => {
-            const updatedData = {
-                ...prevData, // Retain previous steps' data
-                [currentStep]: formValues, // Add/update current step data
-            };
-            return updatedData;
-        });
-
 
         // Check if any of the required fields are empty
         const requiredFields = [
@@ -80,6 +65,8 @@ const resetPassword = () => {
                     <div className="w-full flex items-center gap-2 mt-1 rounded-sm px-4 py-3.5 border border-neutral-400 outline-none" >
                         <Mail className="text-neutral-400" />
                         <input
+                            value={email}
+                            onChange={(e) => updateField({ email: e.target.value })}
                             type="email" name="email"
                             placeholder="Enter email address"
                             className="border-none outline-none w-full"

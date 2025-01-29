@@ -1,6 +1,6 @@
 import logo from "../../../assets/white-logo.png"
 import { Check } from "lucide-react";
-import { useForgotContext } from "@/context/forgot-context";
+import { useForgotContext } from "../../../hooks/useForgotContext";
 
 const forgotSidebar = () => {
 
