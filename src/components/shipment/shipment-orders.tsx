@@ -75,11 +75,10 @@ export default function ShipmentOrders() {
                                         {product.id}
                                     </TableCell>
                                     <TableCell>
-                                        <img src={product.image} alt="" className="w-12 h-12 rounded-lg inline-flex mr-4 object-contain" />
-                                        <span className="md:text-lg text-sm text-neutral-700 capitalize">{product.name}</span>
+                                        {new Date().toLocaleDateString()}
                                     </TableCell>
                                     <TableCell className="text-lg text-neutral-700">
-                                        {product.category}
+                                        Road
                                     </TableCell>
                                     <TableCell className="text-lg text-neutral-700">
                                         Rs. {product.price}

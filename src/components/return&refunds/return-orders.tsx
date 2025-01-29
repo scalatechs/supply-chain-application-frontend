@@ -38,7 +38,7 @@ export default function ReturnOrders() {
             </ScrollArea>
 
             {/* Responsive search and actions */}
-            <div className="flex flex-col md:flex-row items-start md:items-start justify-between gap-4 pb-4 pt-12 px-4">
+            <div className="flex flex-col md:flex-row items-start md:items-start justify-between gap-4 pb-4 pt-4 px-4">
                 <form className="flex items-center gap-2 border rounded-lg pl-2 w-full md:w-64">
                     <button type="submit">
                         <Search className="h-4 w-4 text-neutral-500" />
@@ -98,6 +98,7 @@ export default function ReturnOrders() {
                                     <TableCell className="text-lg text-neutral-700">
                                         Michael Jordan
                                     </TableCell>
+                                    <TableCell>Damaged Goods</TableCell>
                                     <TableCell className="text-lg text-neutral-700">
                                         <span
                                             className={`inline-flex rounded-full px-2 py-1 text-xs font-medium ${product.price > 100

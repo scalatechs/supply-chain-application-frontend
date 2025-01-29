@@ -14,11 +14,12 @@ import { InventoryContext } from "@/context/inventory-context.tsx"
 import { Link } from "react-router-dom"
 import { ScrollArea } from "@/components/ui/scroll-area"
 
-export function InventoryOrders() {
+export default function Orders() {
     const { inventory } = useContext(InventoryContext);
 
     return (
         <div className="rounded-lg bg-white w-full">
+
             {/* Responsive tabs */}
             <ScrollArea className="w-full">
                 <div className="flex items-center border-b border-gray-300 min-w-max">
@@ -26,19 +27,25 @@ export function InventoryOrders() {
                         All
                     </button>
                     <button className="text-gray-500 font-medium px-4 py-2 hover:text-gray-700 whitespace-nowrap md:text-sm text-xs">
-                        High Stock
+                        Unfulfilled
                     </button>
                     <button className="text-gray-500 font-medium px-4 py-2 hover:text-gray-700 whitespace-nowrap md:text-sm text-xs">
-                        Low Stock
+                        Unpaid
                     </button>
                     <button className="text-gray-500 font-medium px-4 py-2 hover:text-gray-700 whitespace-nowrap md:text-sm text-xs">
-                        Out of Stock
+                        In Transit
+                    </button>
+                    <button className="text-gray-500 font-medium px-4 py-2 hover:text-gray-700 whitespace-nowrap md:text-sm text-xs">
+                        Completed
+                    </button>
+                    <button className="text-gray-500 font-medium px-4 py-2 hover:text-gray-700 whitespace-nowrap md:text-sm text-xs">
+                        Cancelled
                     </button>
                 </div>
             </ScrollArea>
 
             {/* Responsive search and actions */}
-            <div className="flex flex-col md:flex-row items-start md:items-start justify-between gap-4 pb-4 pt-4 px-4">
+            <div className="flex flex-col md:flex-row items-start md:items-start justify-between gap-4 pb-4 pt-4">
                 <form className="flex items-center gap-2 border rounded-lg pl-2 w-full md:w-64">
                     <button type="submit">
                         <Search className="h-4 w-4 text-neutral-500" />
@@ -74,12 +81,13 @@ export function InventoryOrders() {
                     <Table>
                         <TableHeader>
                             <TableRow className="font-semibold">
-                                <TableHead>FKU</TableHead>
-                                <TableHead>Product</TableHead>
-                                <TableHead>Category</TableHead>
-                                <TableHead>Price</TableHead>
-                                <TableHead>Stock</TableHead>
-                                <TableHead>Action</TableHead>
+                                <TableHead>Order Id</TableHead>
+                                <TableHead>Order Created</TableHead>
+                                <TableHead>Customer</TableHead>
+                                <TableHead>Destination</TableHead>
+                                <TableHead>Total</TableHead>
+                                <TableHead>Status</TableHead>
+                                <TableHead>Receipt</TableHead>
                             </TableRow>
                         </TableHeader>
                         <TableBody>
@@ -88,15 +96,30 @@ export function InventoryOrders() {
                                     <TableCell className="flex items-center gap-2 h-16">
                                         <Checkbox /><span className="mt-1">{product.id}</span>
                                     </TableCell>
-                                    <TableCell>
-                                        <img src={product.image} alt="" className="w-12 h-12 rounded-lg inline-flex mr-4 object-contain" />
-                                        <span className="md:text-lg text-sm text-neutral-700 capitalize">{product.name}</span>
+                                    <TableCell className="text-lg text-neutral-700">
+                                        {new Date().toLocaleDateString()}
                                     </TableCell>
-                                    <TableCell className="text-lg text-neutral-700">{product.category}</TableCell>
-                                    <TableCell className="text-lg text-neutral-700">{product.price}</TableCell>
-                                    <TableCell className="text-lg text-neutral-700">{product.stock}</TableCell>
                                     <TableCell>
-                                        <Link to={`/inventory/restock-product/${product.id}`} className="underline text-blue-500">View details</Link>
+                                        John Doe
+                                    </TableCell>
+                                    <TableCell className="text-lg text-neutral-700">
+                                        Kathmandu, Nepal
+                                    </TableCell>
+                                    <TableCell className="text-lg text-neutral-700">
+                                        Rs. {product.price}
+                                    </TableCell>
+                                    <TableCell className="text-lg text-neutral-700">
+                                        <span
+                                            className={`inline-flex rounded-full px-2 py-1 text-xs font-medium ${product.price > 100
+                                                ? "bg-green-100 text-green-700"
+                                                : "bg-yellow-100 text-yellow-700"
+                                                }`}
+                                        >
+                                            {product.price > 100 ? "Shipping" : "In-delivery"}
+                                        </span>
+                                    </TableCell>
+                                    <TableCell className="underline text-blue-500">
+                                        <Link to={`/orders/order/${product.id}`}>View details</Link>
                                     </TableCell>
                                 </TableRow>
                             ))}

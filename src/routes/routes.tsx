@@ -12,6 +12,8 @@ import ForgotPassword from '../pages/FogotPassword'
 import Shipment from '@/pages/Shipment'
 import { useState } from 'react'
 import ReturnAndRefunds from '@/pages/ReturnAndRefunds'
+import Orders from '@/pages/Orders'
+import Order from "../components/orders/order"
 
 const AppLayout = () => {
     const location = useLocation();
@@ -42,6 +44,10 @@ const AppLayout = () => {
                         </Route>
                         <Route path='/shipment' element={<Shipment active={active} setActive={setActive} />} />
                         <Route path='/return' element={<ReturnAndRefunds />} />
+                        <Route path='/orders'>
+                            <Route path='' element={<Orders />} />
+                            <Route path='order/:id' element={<Order />} />
+                        </Route>
                     </ReactRoutes>
                 </main>
             </div>
