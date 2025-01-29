@@ -1,5 +1,3 @@
-# supply-chain-application-frontend
-=======
 # Scala Dashboard
 
 A feature-rich and responsive dashboard application built using Vite and React.js. This application allows users to manage their inventory, sales, and orders. It is designed with performance and scalability in mind, making it a robust solution for task management.
