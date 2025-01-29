@@ -15,16 +15,18 @@ import {
     SelectValue,
 } from "../components/ui/select"
 import { Tabs, TabsList, TabsTrigger } from "../components/ui/tabs"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import ProductPopup from "@/components/product-popup"
-import { useState } from "react"
+import { Dispatch, SetStateAction, useState } from "react"
 
-function Dashboard() {
+function Dashboard({ setActive }: { setActive: Dispatch<SetStateAction<string>> }) {
     const [showPopup, setShowPopup] = useState(false)
 
     const handleBackdropClick = () => {
         setShowPopup(false)
     }
+
+    const navigate = useNavigate();
 
     return (
         <div className="space-y-8" onClick={handleBackdropClick}>
@@ -32,7 +34,13 @@ function Dashboard() {
                 <Tabs defaultValue="overviews">
                     <TabsList>
                         <TabsTrigger value="overviews">Overviews</TabsTrigger>
-                        <TabsTrigger value="tracking">Tracking</TabsTrigger>
+                        <TabsTrigger
+                            onClick={() => {
+                                navigate('/shipment')
+                                setActive("tracking")
+                            }
+                            }
+                            value="tracking">Tracking</TabsTrigger>
                     </TabsList>
                 </Tabs>
                 <div className="flex items-center gap-4">
@@ -101,7 +109,7 @@ function Dashboard() {
 
             {/* Ongoing Orders Table */}
             <OngoingOrders />
-        </div>
+        </div >
     )
 }
 

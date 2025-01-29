@@ -9,11 +9,14 @@ import EditProduct from '../components/Inventory/edit-product'
 import Login from '@/pages/Login'
 import Signup from '@/pages/Signup'
 import ForgotPassword from '../pages/FogotPassword'
+import Shipment from '@/pages/Shipment'
+import { useState } from 'react'
 
 const AppLayout = () => {
     const location = useLocation();
     const noSidebarRoutes = ['/', '/login', '/signup', '/forgot'];
     const showSidebar = !noSidebarRoutes.includes(location.pathname);
+    const [active, setActive] = useState("overview");
 
     return (
         <div className="flex min-h-screen">
@@ -22,7 +25,6 @@ const AppLayout = () => {
                 {showSidebar && <Header />}
                 <main className={`${showSidebar ? "p-8" : ""} lg:pl-0 bg-gray-50`}>
                     <ReactRoutes>
-
                         {/* Auth Routes */}
                         <Route path='*' element={<Navigate to={'/login'} replace />} />
                         <Route path='/login' element={<Login />} />
@@ -30,19 +32,21 @@ const AppLayout = () => {
                         <Route path='/forgot' element={<ForgotPassword />} />
 
                         {/* Dashboard Routes */}
-                        <Route path="/dashboard" element={<DashboardPage />} />
+                        <Route path="/dashboard" element={<DashboardPage setActive={setActive} />} />
                         <Route path="/inventory">
                             <Route path="" element={<Inventory />} />
                             <Route path="add-product" element={<AddProduct />} />
                             <Route path="restock-product/:id" element={<RestockProduct />} />
                             <Route path="edit-product/:id" element={<EditProduct />} />
                         </Route>
+                        <Route path='/shipment' element={<Shipment active={active} setActive={setActive} />} />
                     </ReactRoutes>
                 </main>
             </div>
         </div>
     );
 };
+
 
 const AppRoutes = () => {
     return (
