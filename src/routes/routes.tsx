@@ -18,6 +18,7 @@ import SalesPersonnel from '@/pages/SalesPersonnel'
 import UserProfile from "../components/salesPersonnel/userProfile"
 import AddEmployee from "../components/salesPersonnel/add-employee/add-employee"
 import Settings from '@/pages/Settings'
+import HelpAndSupport from '@/pages/HelpAndSupport'
 
 const AppLayout = () => {
     const location = useLocation();
@@ -58,6 +59,7 @@ const AppLayout = () => {
                             <Route path='add-employee' element={<AddEmployee />} />
                         </Route>
                         <Route path='/settings' element={<Settings />} />
+                        <Route path='/help' element={<HelpAndSupport />} />
                     </ReactRoutes>
                 </main>
             </div>

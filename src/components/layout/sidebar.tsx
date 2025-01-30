@@ -52,7 +52,7 @@ export function Sidebar({ className }: SidebarProps) {
         { name: "Notifications", href: "/notifications", icon: NotificationsIcon },
         { separator: true },
         { name: "Subscription", href: "/subscription", icon: CreditCard },
-        { name: "Help & Support", href: "/support", icon: CircleHelp },
+        { name: "Help & Support", href: "/help", icon: CircleHelp },
         { name: "Settings", href: "/settings", icon: Settings },
     ]
 
