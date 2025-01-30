@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import {
     InputOTP,
     InputOTPGroup,
@@ -74,6 +75,12 @@ const verification = ({ otp, updateField }: { otp: string, updateField: (data: a
                 </button>
             </div>
         </form>
+=======
+
+const verification = () => {
+    return (
+        <div>verification</div>
+>>>>>>> main
     )
 }
 

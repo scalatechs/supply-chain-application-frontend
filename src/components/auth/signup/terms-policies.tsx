@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { Checkbox } from "@/components/ui/checkbox"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 import { useSignupContext } from "../../../hooks/useSignupContext";
@@ -75,6 +76,12 @@ const termsPolicies = ({ termsPolicies, updateField }: { termsPolicies: boolean,
                 </button>
             </div >
         </form>
+=======
+
+const termsPolicies = () => {
+    return (
+        <div>terms-policies</div>
+>>>>>>> main
     )
 }
 

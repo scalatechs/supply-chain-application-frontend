@@ -36,6 +36,7 @@ const ProductDelivery = ({ image }: { image?: string }) => {
                             <p className="text-center text-sm leading-4 "><span className="underline text-blue-600">Click to upload</span> or <br />drag and drop</p>
                         </div>
                     )}
+<<<<<<< HEAD
                     <div
                         onClick={() => document.getElementById("fileInput")?.click()}
                         className="md:w-1/3 w-full rounded-lg border border-blue-600 border-dashed flex flex-col items-center justify-center gap-2 md:h-56 h-32 cursor-pointer">
@@ -55,6 +56,13 @@ const ProductDelivery = ({ image }: { image?: string }) => {
                             type="file"
                             className="hidden" // Keep the input hidden
                         />
+=======
+                    <div className="md:w-1/3 w-full rounded-lg border border-blue-600 border-dashed flex flex-col items-center justify-center gap-2 md:h-56 h-32">
+                        <ImagePlusIcon className="w-1/5 h-1/4 text-blue-600 scale-x-[-1]" />
+                        <p className="text-center text-sm leading-4 "><span className="underline text-blue-600">Click to upload</span> or <br />drag and drop</p>
+                    </div>
+                    <div className="md:w-1/3 w-full rounded-lg border border-blue-600 border-dashed flex flex-col items-center justify-center gap-2 md:h-56 h-32">
+>>>>>>> main
                         <ImagePlusIcon className="w-1/5 h-1/4 text-blue-600 scale-x-[-1]" />
                         <p className="text-center text-sm leading-4 "><span className="underline text-blue-600">Click to upload</span> or <br />drag and drop</p>
                     </div>

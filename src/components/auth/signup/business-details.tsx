@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { useSignupContext } from "../../../hooks/useSignupContext";
 import { ChevronLeft, ChevronRight, FilePlus2, FileText, X } from "lucide-react";
 import { useState } from "react";
@@ -205,6 +206,13 @@ const businessDetails = ({
                 </div >
             </form >
         </>
+=======
+const businessDetails = () => {
+    return (
+        <div>
+            business details
+        </div>
+>>>>>>> main
     )
 }
 

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { useSignupContext } from "../../../hooks/useSignupContext";
 import { ChevronRight } from "lucide-react";
 import { FormEvent } from "react";
@@ -198,3 +199,15 @@ const UserInformation = ({
 };
 
 export default UserInformation;
+=======
+
+const userInformation = () => {
+    return (
+        <div>
+            user information
+        </div>
+    )
+}
+
+export default userInformation;
+>>>>>>> main

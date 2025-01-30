@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { useSignupContext } from "../hooks/useSignupContext";
 import UserInformation from "../components/auth/signup/user-information"
 import SignupSidebar from "@/components/auth/signup/signup-sidebar"
@@ -67,6 +68,19 @@ const Signup = () => {
                                     currentStep == 4 ? <Verification {...data} updateField={updateField} /> : <UserInformation {...data} updateField={updateField} />
                     }
                 </div>
+=======
+import logo from "../assets/white-logo.png"
+
+const Signup = () => {
+    return (
+        <div className="w-full h-screen flex items-center">
+            <div className="w-1/3 h-full bg-[#003DFF] flex flex-col items-start gap-6 p-12">
+                <img src={logo} alt="" />
+            </div>
+
+            <div className="w-2/3">
+
+>>>>>>> main
             </div>
         </div>
     )

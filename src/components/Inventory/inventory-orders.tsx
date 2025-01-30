@@ -38,7 +38,11 @@ export function InventoryOrders() {
             </ScrollArea>
 
             {/* Responsive search and actions */}
+<<<<<<< HEAD
             <div className="flex flex-col md:flex-row items-start md:items-start justify-between gap-4 pb-4 pt-4 px-4">
+=======
+            <div className="flex flex-col md:flex-row items-start md:items-start justify-between gap-4 pb-4 pt-12 px-4">
+>>>>>>> main
                 <form className="flex items-center gap-2 border rounded-lg pl-2 w-full md:w-64">
                     <button type="submit">
                         <Search className="h-4 w-4 text-neutral-500" />
@@ -73,6 +77,7 @@ export function InventoryOrders() {
                 <ScrollArea className="w-full">
                     <Table>
                         <TableHeader>
+<<<<<<< HEAD
                             <TableRow className="font-semibold">
                                 <TableHead>FKU</TableHead>
                                 <TableHead>Product</TableHead>
@@ -80,6 +85,15 @@ export function InventoryOrders() {
                                 <TableHead>Price</TableHead>
                                 <TableHead>Stock</TableHead>
                                 <TableHead>Action</TableHead>
+=======
+                            <TableRow>
+                                <TableHead className="font-semibold">FKU</TableHead>
+                                <TableHead className="font-semibold">Product</TableHead>
+                                <TableHead className="font-semibold">Category</TableHead>
+                                <TableHead className="font-semibold">Price</TableHead>
+                                <TableHead className="font-semibold">Stock</TableHead>
+                                <TableHead className="font-semibold">Action</TableHead>
+>>>>>>> main
                             </TableRow>
                         </TableHeader>
                         <TableBody>

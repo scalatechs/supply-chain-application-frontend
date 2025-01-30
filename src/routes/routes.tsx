@@ -8,6 +8,7 @@ import RestockProduct from '../components/Inventory/restock-product'
 import EditProduct from '../components/Inventory/edit-product'
 import Login from '@/pages/Login'
 import Signup from '@/pages/Signup'
+<<<<<<< HEAD
 import ForgotPassword from '../pages/FogotPassword'
 import Shipment from '@/pages/Shipment'
 import { useState } from 'react'
@@ -25,6 +26,13 @@ const AppLayout = () => {
     const noSidebarRoutes = ['/', '/login', '/signup', '/forgot'];
     const showSidebar = !noSidebarRoutes.includes(location.pathname);
     const [active, setActive] = useState("overview");
+=======
+
+const AppLayout = () => {
+    const location = useLocation();
+    const noSidebarRoutes = ['/', '/login', '/signup'];
+    const showSidebar = !noSidebarRoutes.includes(location.pathname);
+>>>>>>> main
 
     return (
         <div className="flex min-h-screen">
@@ -33,6 +41,7 @@ const AppLayout = () => {
                 {showSidebar && <Header />}
                 <main className={`${showSidebar ? "p-8" : ""} lg:pl-0 bg-gray-50`}>
                     <ReactRoutes>
+<<<<<<< HEAD
                         {/* Auth Routes */}
                         <Route path='*' element={<Navigate to={'/login'} replace />} />
                         <Route path='/login' element={<Login />} />
@@ -41,12 +50,20 @@ const AppLayout = () => {
 
                         {/* Dashboard Routes */}
                         <Route path="/dashboard" element={<DashboardPage setActive={setActive} />} />
+=======
+                        {/* Default Route */}
+                        <Route path='*' element={<Navigate to={'/login'} replace />} />
+                        <Route path='/login' element={<Login />} />
+                        <Route path='/signup' element={<Signup />} />
+                        <Route path="/dashboard" element={<DashboardPage />} />
+>>>>>>> main
                         <Route path="/inventory">
                             <Route path="" element={<Inventory />} />
                             <Route path="add-product" element={<AddProduct />} />
                             <Route path="restock-product/:id" element={<RestockProduct />} />
                             <Route path="edit-product/:id" element={<EditProduct />} />
                         </Route>
+<<<<<<< HEAD
                         <Route path='/shipment' element={<Shipment active={active} setActive={setActive} />} />
                         <Route path='/return' element={<ReturnAndRefunds />} />
                         <Route path='/orders'>
@@ -60,6 +77,8 @@ const AppLayout = () => {
                         </Route>
                         <Route path='/settings' element={<Settings />} />
                         <Route path='/help' element={<HelpAndSupport />} />
+=======
+>>>>>>> main
                     </ReactRoutes>
                 </main>
             </div>
@@ -67,7 +86,10 @@ const AppLayout = () => {
     );
 };
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> main
 const AppRoutes = () => {
     return (
         <Router>
