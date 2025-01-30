@@ -17,6 +17,7 @@ import Order from "../components/orders/order"
 import SalesPersonnel from '@/pages/SalesPersonnel'
 import UserProfile from "../components/salesPersonnel/userProfile"
 import AddEmployee from "../components/salesPersonnel/add-employee/add-employee"
+import Settings from '@/pages/Settings'
 
 const AppLayout = () => {
     const location = useLocation();
@@ -56,6 +57,7 @@ const AppLayout = () => {
                             <Route path='user/:id' element={<UserProfile />} />
                             <Route path='add-employee' element={<AddEmployee />} />
                         </Route>
+                        <Route path='/settings' element={<Settings />} />
                     </ReactRoutes>
                 </main>
             </div>
