@@ -14,35 +14,13 @@ import { InventoryContext } from "@/context/inventory-context.tsx"
 import { Link } from "react-router-dom"
 import { ScrollArea } from "@/components/ui/scroll-area"
 
-export function InventoryOrders() {
+export default function ShipmentOrders() {
     const { inventory } = useContext(InventoryContext);
 
     return (
         <div className="rounded-lg bg-white w-full">
-            {/* Responsive tabs */}
-            <ScrollArea className="w-full">
-                <div className="flex items-center border-b border-gray-300 min-w-max">
-                    <button className="text-blue-600 font-medium border-b-2 border-blue-600 px-4 py-2 whitespace-nowrap md:text-sm text-xs">
-                        All
-                    </button>
-                    <button className="text-gray-500 font-medium px-4 py-2 hover:text-gray-700 whitespace-nowrap md:text-sm text-xs">
-                        High Stock
-                    </button>
-                    <button className="text-gray-500 font-medium px-4 py-2 hover:text-gray-700 whitespace-nowrap md:text-sm text-xs">
-                        Low Stock
-                    </button>
-                    <button className="text-gray-500 font-medium px-4 py-2 hover:text-gray-700 whitespace-nowrap md:text-sm text-xs">
-                        Out of Stock
-                    </button>
-                </div>
-            </ScrollArea>
-
             {/* Responsive search and actions */}
-<<<<<<< HEAD
-            <div className="flex flex-col md:flex-row items-start md:items-start justify-between gap-4 pb-4 pt-4 px-4">
-=======
-            <div className="flex flex-col md:flex-row items-start md:items-start justify-between gap-4 pb-4 pt-12 px-4">
->>>>>>> main
+            <div className="flex flex-col md:flex-row items-start md:items-start justify-between gap-4 pb-4 pt-12">
                 <form className="flex items-center gap-2 border rounded-lg pl-2 w-full md:w-64">
                     <button type="submit">
                         <Search className="h-4 w-4 text-neutral-500" />
@@ -77,23 +55,14 @@ export function InventoryOrders() {
                 <ScrollArea className="w-full">
                     <Table>
                         <TableHeader>
-<<<<<<< HEAD
                             <TableRow className="font-semibold">
-                                <TableHead>FKU</TableHead>
-                                <TableHead>Product</TableHead>
-                                <TableHead>Category</TableHead>
-                                <TableHead>Price</TableHead>
-                                <TableHead>Stock</TableHead>
+                                <TableHead>Order Id</TableHead>
+                                <TableHead>Shipping Id</TableHead>
+                                <TableHead>Dispatched Date</TableHead>
+                                <TableHead>Shipping Method</TableHead>
+                                <TableHead>Fee</TableHead>
+                                <TableHead>Status</TableHead>
                                 <TableHead>Action</TableHead>
-=======
-                            <TableRow>
-                                <TableHead className="font-semibold">FKU</TableHead>
-                                <TableHead className="font-semibold">Product</TableHead>
-                                <TableHead className="font-semibold">Category</TableHead>
-                                <TableHead className="font-semibold">Price</TableHead>
-                                <TableHead className="font-semibold">Stock</TableHead>
-                                <TableHead className="font-semibold">Action</TableHead>
->>>>>>> main
                             </TableRow>
                         </TableHeader>
                         <TableBody>
@@ -102,13 +71,28 @@ export function InventoryOrders() {
                                     <TableCell className="flex items-center gap-2 h-16">
                                         <Checkbox /><span className="mt-1">{product.id}</span>
                                     </TableCell>
-                                    <TableCell>
-                                        <img src={product.image} alt="" className="w-12 h-12 rounded-lg inline-flex mr-4 object-contain" />
-                                        <span className="md:text-lg text-sm text-neutral-700 capitalize">{product.name}</span>
+                                    <TableCell className="text-lg text-neutral-700">
+                                        {product.id}
                                     </TableCell>
-                                    <TableCell className="text-lg text-neutral-700">{product.category}</TableCell>
-                                    <TableCell className="text-lg text-neutral-700">{product.price}</TableCell>
-                                    <TableCell className="text-lg text-neutral-700">{product.stock}</TableCell>
+                                    <TableCell>
+                                        {new Date().toLocaleDateString()}
+                                    </TableCell>
+                                    <TableCell className="text-lg text-neutral-700">
+                                        Road
+                                    </TableCell>
+                                    <TableCell className="text-lg text-neutral-700">
+                                        Rs. {product.price}
+                                    </TableCell>
+                                    <TableCell className="text-lg text-neutral-700">
+                                        <span
+                                            className={`inline-flex rounded-full px-2 py-1 text-xs font-medium ${product.price > 100
+                                                ? "bg-green-100 text-green-700"
+                                                : "bg-yellow-100 text-yellow-700"
+                                                }`}
+                                        >
+                                            {product.price > 100 ? "Shipping" : "In-delivery"}
+                                        </span>
+                                    </TableCell>
                                     <TableCell>
                                         <Link to={`/inventory/restock-product/${product.id}`} className="underline text-blue-500">View details</Link>
                                     </TableCell>

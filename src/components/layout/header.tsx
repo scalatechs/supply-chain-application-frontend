@@ -16,7 +16,17 @@ export function Header() {
         <header className="flex h-16 items-center justify-between mt-2 px-4 bg-white">
             <div className='flex items-center gap-2 lg:pl-0 pl-4'>
                 <Menu className='lg:hidden' onClick={toggleSidebar} />
+<<<<<<< HEAD
+                <h1 className="text-3xl capitalize">
+                    {location.pathname.split("/")[1] == "return" ? "Return & Refunds" :
+                        location.pathname.split("/")[1] == "sales" ? "Salesperson Management" :
+                            (
+                                location.pathname.split("/")[1] || "Dashboard"
+                            )}
+                </h1>
+=======
                 <h1 className="text-3xl capitalize">{location.pathname.split("/")[1] || "Dashboard"}</h1>
+>>>>>>> main
             </div>
             <div className="md:flex hidden items-center gap-6">
                 <Search className="h-5 w-5 cursor-pointer hover:text-blue-800" />

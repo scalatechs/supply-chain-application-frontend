@@ -15,24 +15,47 @@ import {
     SelectValue,
 } from "../components/ui/select"
 import { Tabs, TabsList, TabsTrigger } from "../components/ui/tabs"
+<<<<<<< HEAD
+import { Link, useNavigate } from "react-router-dom"
+import ProductPopup from "@/components/product-popup"
+import { Dispatch, SetStateAction, useState } from "react"
+
+function Dashboard({ setActive }: { setActive: Dispatch<SetStateAction<string>> }) {
+=======
 import { Link } from "react-router-dom"
 import ProductPopup from "@/components/product-popup"
 import { useState } from "react"
 
 function Dashboard() {
+>>>>>>> main
     const [showPopup, setShowPopup] = useState(false)
 
     const handleBackdropClick = () => {
         setShowPopup(false)
     }
 
+<<<<<<< HEAD
+    const navigate = useNavigate();
+
+=======
+>>>>>>> main
     return (
         <div className="space-y-8" onClick={handleBackdropClick}>
             <div className="flex md:flex-row flex-col md:items-center items-start md:gap-0 gap-4 justify-between">
                 <Tabs defaultValue="overviews">
                     <TabsList>
                         <TabsTrigger value="overviews">Overviews</TabsTrigger>
+<<<<<<< HEAD
+                        <TabsTrigger
+                            onClick={() => {
+                                navigate('/shipment')
+                                setActive("tracking")
+                            }
+                            }
+                            value="tracking">Tracking</TabsTrigger>
+=======
                         <TabsTrigger value="tracking">Tracking</TabsTrigger>
+>>>>>>> main
                     </TabsList>
                 </Tabs>
                 <div className="flex items-center gap-4">
@@ -101,7 +124,11 @@ function Dashboard() {
 
             {/* Ongoing Orders Table */}
             <OngoingOrders />
+<<<<<<< HEAD
+        </div >
+=======
         </div>
+>>>>>>> main
     )
 }
 
