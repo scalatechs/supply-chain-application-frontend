@@ -7,12 +7,11 @@ A feature-rich and responsive dashboard application built using Vite and React.j
 ## Table of Contents
 - [Setup Instructions](#setup-instructions)
 - [Technology Choices and Rationale](#technology-choices-and-rationale)
-<<<<<<< HEAD
+
 =======
 - [Known Limitations/Trade-offs](#known-limitationstrade-offs)
 - [Future Improvements](#future-improvements)
-
->>>>>>> main
+=======
 ---
 
 ## Setup Instructions
@@ -77,8 +76,9 @@ To run this project locally, follow these steps:
 - Provides a set of pre-built icons for consistent styling.
 - Ensures that the icons are consistent across the application.
 
-<<<<<<< HEAD
+
 ---
 =======
 ---
->>>>>>> main
+=======
+---
