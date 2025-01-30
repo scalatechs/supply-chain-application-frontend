@@ -18,22 +18,6 @@ interface ConfirmationProps {
     viewInventory: boolean;
     currentIndex: number;
     setCurrentIndex: React.Dispatch<React.SetStateAction<number>>;
-    setIsFormSubmitted: React.Dispatch<React.SetStateAction<{ [key: number]: boolean }>>;
-    updateField: (data: Partial<{
-        firstName: string;
-        lastName: string;
-        email: string;
-        phoneNumber: string;
-        address: string;
-        password: string;
-        confirmPassword: string;
-        assignRole: string;
-        assignRegion: string;
-        takeOrders: boolean;
-        collectPayments: boolean;
-        trackShipmentPerformance: boolean;
-        viewInventory: boolean;
-    }>) => void;
 }
 
 const confirmation = ({
