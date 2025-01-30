@@ -17,9 +17,11 @@ export function Header() {
             <div className='flex items-center gap-2 lg:pl-0 pl-4'>
                 <Menu className='lg:hidden' onClick={toggleSidebar} />
                 <h1 className="text-3xl capitalize">
-                    {location.pathname.split("/")[1] == "return" ? "Return & Refunds" : (
-                        location.pathname.split("/")[1] || "Dashboard"
-                    )}
+                    {location.pathname.split("/")[1] == "return" ? "Return & Refunds" :
+                        location.pathname.split("/")[1] == "sales" ? "Salesperson Management" :
+                            (
+                                location.pathname.split("/")[1] || "Dashboard"
+                            )}
                 </h1>
             </div>
             <div className="md:flex hidden items-center gap-6">
