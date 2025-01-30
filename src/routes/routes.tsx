@@ -18,7 +18,7 @@ import SalesPersonnel from '@/pages/SalesPersonnel'
 import UserProfile from "../components/salesPersonnel/userProfile"
 import AddEmployee from "../components/salesPersonnel/add-employee/add-employee"
 import Settings from '@/pages/Settings'
-import HelpAndSupport from '@/pages/HelpAndSupport'
+import HelpAndSupport from '../pages/HelpAndSupport'
 
 const AppLayout = () => {
     const location = useLocation();
