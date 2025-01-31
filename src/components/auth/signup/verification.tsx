@@ -11,7 +11,7 @@ import { useNavigate } from "react-router-dom"
 const verification = ({ otp, updateField }: { otp: string, updateField: (data: any) => void }) => {
 
     const navigate = useNavigate();
-    const { currentStep, setIsFormSubmitted } = useSignupContext()
+    const { currentStep, setCurrentStep, setIsFormSubmitted } = useSignupContext()
     const [otpValue, setOtpValue] = useState(otp || "");
 
     const handleOtpChange = (value: string) => {
@@ -26,9 +26,9 @@ const verification = ({ otp, updateField }: { otp: string, updateField: (data: a
                 ...prevState,
                 [currentStep]: true
             }
-            console.log('Updated form state:', newState);
             return newState;
         })
+        setCurrentStep(1);
         navigate('/dashboard')
     }
 

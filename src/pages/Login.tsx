@@ -1,7 +1,5 @@
 import bgImage from "../assets/login image.png"
 import LoginForm from "@/components/auth/login/LoginForm"
-import googleIcon from "../assets/google.png"
-import facebookIcon from "../assets/facebook.png"
 import { Link } from "react-router-dom"
 
 const Login = () => {
@@ -18,16 +16,6 @@ const Login = () => {
                         <div className="h-[1px] bg-blue-200 w-[40%]"></div>
                         <span className="text-base">Or</span>
                         <div className="h-[1px] bg-blue-200 w-[40%]"></div>
-                    </div>
-
-                    <div className="w-full rounded-lg border flex justify-center items-center gap-4 py-2.5 bg-neutral-50 hover:bg-neutral-100">
-                        <img src={googleIcon} className="h-7 w-7" alt="" />
-                        <span>Sign in with Google</span>
-                    </div>
-
-                    <div className="w-full rounded-lg border flex justify-center items-center gap-4 py-2.5 bg-neutral-50 hover:bg-neutral-100">
-                        <img src={facebookIcon} className="h-7 w-7" alt="" />
-                        <span>Sign in with Facebook</span>
                     </div>
 
                     <h3 className="text-base text-center">Don't have an account?&nbsp;

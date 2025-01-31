@@ -5,13 +5,15 @@ import { FormEvent } from "react";
 interface UserInformationProps {
     phoneNumber: string;
     email: string;
-    username: string;
+    firstName: string;
+    lastName: string;
     password: string;
     confirmPassword: string;
     updateField: (data: Partial<{
         phoneNumber: string;
         email: string;
-        username: string;
+        firstName: string;
+        lastName: string;
         password: string;
         confirmPassword: string;
     }>) => void;
@@ -20,7 +22,8 @@ interface UserInformationProps {
 const UserInformation = ({
     phoneNumber,
     email,
-    username,
+    firstName,
+    lastName,
     password,
     confirmPassword,
     updateField
@@ -37,7 +40,8 @@ const UserInformation = ({
         const requiredFields = {
             phoneNumber: formData.get("phoneNumber"),
             email: formData.get("email"),
-            username: formData.get("username"),
+            firstName: formData.get("firstName"),
+            lastName: formData.get("lastName"),
             password: formData.get("password"),
             confirmPassword: formData.get("confirmPassword")
         };
@@ -73,22 +77,26 @@ const UserInformation = ({
                 {/* Phone Number */}
                 <div className="w-full flex items-end gap-2">
                     <div className="w-1/2">
-                        <label htmlFor="phoneNumber" className="text-base font-medium">
-                            Phone Number
+                        <label htmlFor="name" className="text-base font-medium">
+                            Name
                         </label>
                         <input
+                            value={firstName}
+                            onChange={(e) => updateField({ firstName: e.target.value })}
                             required
                             type="text"
-                            name="phoneNumber"
-                            placeholder="Phone Number"
+                            name="firstName"
+                            placeholder="First Name"
                             className="w-full mt-1 rounded-sm px-4 py-3 border border-neutral-400 outline-none"
                         />
                     </div>
                     <input
+                        value={lastName}
+                        onChange={(e) => updateField({ lastName: e.target.value })}
                         required
                         type="text"
-                        name="phoneNumber"
-                        placeholder="Phone Number"
+                        name="lastName"
+                        placeholder="Last Name"
                         className="w-1/2 mt-1 rounded-sm px-4 py-3 border border-neutral-400 outline-none"
                     />
                 </div>
@@ -128,23 +136,6 @@ const UserInformation = ({
                         id="email"
                         name="email"
                         placeholder="example@gmail.com"
-                        className="w-full mt-1 rounded-sm px-4 py-3 border border-neutral-400 outline-none focus:border-blue-500"
-                    />
-                </div>
-
-                {/* Username */}
-                <div className="w-full">
-                    <label htmlFor="username" className="text-base font-medium">
-                        Username
-                    </label>
-                    <input
-                        value={username}
-                        onChange={(e) => updateField({ username: e.target.value })}
-                        required
-                        type="text"
-                        id="username"
-                        name="username"
-                        placeholder="johndoe"
                         className="w-full mt-1 rounded-sm px-4 py-3 border border-neutral-400 outline-none focus:border-blue-500"
                     />
                 </div>

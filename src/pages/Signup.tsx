@@ -16,7 +16,8 @@ const Signup = () => {
 
     type FormData = {
         email: string;
-        username: string;
+        firstName: string;
+        lastName: string;
         phoneNumber: string;
         otp: string;
         password: string;
@@ -29,7 +30,8 @@ const Signup = () => {
 
     const INITIAL_DATA: FormData = {
         email: "",
-        username: "",
+        firstName: "",
+        lastName: "",
         phoneNumber: "",
         otp: "",
         password: "",
