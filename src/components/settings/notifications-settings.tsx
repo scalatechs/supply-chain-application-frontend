@@ -15,7 +15,7 @@ const notificationsSettings = () => {
                         Get notifications for order confirmation from your sales team.
                     </p>
                 </div>
-                <Switch checked={true} />
+                <Switch defaultChecked />
             </div>
 
             {/* Order Delayed*/}
@@ -37,7 +37,7 @@ const notificationsSettings = () => {
                         Get notifications for ordered delivered from your sales team.
                     </p>
                 </div>
-                <Switch checked={true} />
+                <Switch defaultChecked />
             </div>
 
             {/* Email Notifications */}
@@ -48,7 +48,7 @@ const notificationsSettings = () => {
                         Get notifications for email notifications from your sales team.
                     </p>
                 </div>
-                <Switch checked={true} />
+                <Switch defaultChecked />
             </div>
         </div>
     )

@@ -92,7 +92,7 @@ const RolesResponsibilities = ({
 
             <div className="w-full flex items-end gap-1 mt-2">
 
-                {/* Address */}
+                {/* Assign Region */}
                 <div className="w-[72%]">
                     <label
                         htmlFor="assignRegion"

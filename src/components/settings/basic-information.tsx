@@ -81,7 +81,7 @@ const basicInformation = () => {
             <div className="w-full flex items-end gap-1 mt-2">
 
                 {/* Address */}
-                <div className="w-[78%]">
+                <div className="w-[72%]">
                     <label
                         htmlFor="address"
                         className="text-sm font-medium w-full flex justify-start">
@@ -96,7 +96,7 @@ const basicInformation = () => {
                     </div>
                 </div>
 
-                <button className="w-[calc(100%-78%)] px-3 py-[0.9rem] text-[#003dff] border border-[#003dff] rounded-md font-medium text-sm">
+                <button className="w-[calc(100%-72%)] px-3 py-[0.9rem] text-[#003dff] border border-[#003dff] rounded-md font-medium text-sm">
                     Change Address
                 </button>
             </div>

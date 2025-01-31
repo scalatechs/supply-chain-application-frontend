@@ -132,23 +132,23 @@ const confirmation = ({
                     <div className="w-full flex items-end gap-1 mt-2">
 
                         {/* Address */}
-                        <div className="w-[78%]">
-                            <label
-                                htmlFor="address"
-                                className="text-sm font-medium w-full flex justify-start">
+                        <div className="w-[72%]">
+                            <label htmlFor="address" className="text-sm font-medium w-full flex justify-start">
                                 Address
                             </label>
-                            <div className="w-full flex items-center gap-2 mt-1 rounded-sm p-3 border border-neutral-400 outline-none" >
-                                <input
-                                    value={address}
-                                    type="text" name="address"
-                                    placeholder="John Doe, 456 Elm Street, Suite 3, Los Angeles"
-                                    className="border-none outline-none"
-                                />
-                            </div>
+                            <input
+                                id="address"
+                                name="address"
+                                value={address}
+                                type="text"
+                                placeholder="John Doe, 456 Elm Street, Suite 3, Los Angeles"
+                                className="w-full mt-1 rounded-sm px-3 py-3 border border-neutral-400 outline-none"
+                                required
+                            />
                         </div>
-
-                        <button className="w-[calc(100%-78%)] px-3 py-[0.9rem] text-[#003dff] border border-[#003dff] rounded-md font-medium text-sm">
+                        <button
+                            className="w-[calc(100%-72%)] px-3 py-3.5 text-blue-600 border border-blue-600 rounded-md font-medium text-sm"
+                        >
                             Change Address
                         </button>
                     </div>
@@ -211,26 +211,28 @@ const confirmation = ({
                         </div>
                     </div>
 
+                    {/* Assign Region */}
                     <div className="w-full flex items-end gap-1 mt-2">
 
-                        {/* Assign Region */}
                         <div className="w-[72%]">
                             <label
-                                htmlFor="address"
+                                htmlFor="assignRegion"
                                 className="text-sm font-medium w-full flex justify-start">
                                 Assign Region
                             </label>
                             <div className="w-full flex items-center gap-2 mt-1 rounded-sm p-3 border border-neutral-400 outline-none" >
                                 <input
+                                    id="assignRegion"
                                     value={assignRegion}
-                                    type="text" name="address"
+                                    type="text"
+                                    name="assignRegion"
                                     placeholder="John Doe, 456 Elm Street, Suite 3, Los Angeles"
                                     className="border-none outline-none w-full"
                                 />
                             </div>
                         </div>
 
-                        <button className="w-[calc(100%-72%)] px-3 py-[0.9rem] text-[#003dff] border border-[#003dff] rounded-md font-medium text-sm">
+                        <button className="min-w-44 px-3 py-[0.9rem] text-[#003dff] border border-[#003dff] rounded-md font-medium text-sm">
                             Change Address
                         </button>
                     </div>

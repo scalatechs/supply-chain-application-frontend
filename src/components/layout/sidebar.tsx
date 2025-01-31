@@ -144,7 +144,9 @@ export function Sidebar({ className }: SidebarProps) {
                                 }
                                 const isActive = location.pathname === item.href ||
                                     (item.href === "/" && location.pathname === "/") ||
-                                    (item.href === "/inventory" && location.pathname.startsWith("/inventory"));
+                                    (item.href === "/orders" && location.pathname.startsWith("/orders")) ||
+                                    (item.href === "/inventory" && location.pathname.startsWith("/inventory")) ||
+                                    (item.href === "/sales" && location.pathname.startsWith("/sales"))
                                 const Icon = item.icon;
                                 return (
                                     <Link

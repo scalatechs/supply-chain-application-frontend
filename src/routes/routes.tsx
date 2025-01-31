@@ -19,6 +19,7 @@ import UserProfile from "../components/salesPersonnel/userProfile"
 import AddEmployee from "../components/salesPersonnel/add-employee/add-employee"
 import Settings from '@/pages/Settings'
 import HelpAndSupport from '../pages/HelpAndSupport'
+import Notifications from '@/pages/Notifications'
 
 const AppLayout = () => {
     const location = useLocation();
@@ -31,7 +32,7 @@ const AppLayout = () => {
             {showSidebar && <Sidebar />}
             <div className="flex-1">
                 {showSidebar && <Header />}
-                <main className={`${showSidebar ? "p-8" : ""} lg:pl-0 bg-gray-50`}>
+                <main className={`${showSidebar ? "p-8" : ""} lg:pl-4 bg-gray-50`}>
                     <ReactRoutes>
                         {/* Auth Routes */}
                         <Route path='*' element={<Navigate to={'/login'} replace />} />
@@ -60,6 +61,7 @@ const AppLayout = () => {
                         </Route>
                         <Route path='/settings' element={<Settings />} />
                         <Route path='/help' element={<HelpAndSupport />} />
+                        <Route path='/notifications' element={<Notifications />} />
                     </ReactRoutes>
                 </main>
             </div>
