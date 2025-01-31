@@ -9,16 +9,40 @@ import {
 import { Button } from "@/components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Calendar, Filter, MoreHorizontal, Search, Upload } from 'lucide-react'
-import { useContext } from "react"
+import { useContext, useEffect, useRef, useState } from "react"
 import { InventoryContext } from "@/context/inventory-context.tsx"
 import { Link } from "react-router-dom"
 import { ScrollArea } from "@/components/ui/scroll-area"
+import CalendarComponent from "@/components/ui/calendar"
+
 
 export default function SalesPersonnelOrders() {
     const { inventory } = useContext(InventoryContext);
+    const [showCalendar, setShowCalendar] = useState(false)
+    const calendarRef = useRef<HTMLDivElement>(null);
+
+    // Hide calendar when clicking outside
+    useEffect(() => {
+        const handleClickOutside = (event: MouseEvent) => {
+            if (
+                calendarRef.current &&
+                !calendarRef.current.contains(event.target as Node)
+            ) {
+                setShowCalendar(false);
+            }
+        };
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, []);
 
     return (
         <div className="rounded-lg bg-white w-full">
+
+            {/* Overlay */}
+            <div className={`${showCalendar ? "visible" : "invisible"} bg-black inset-0 fixed bg-opacity-50 z-40`}></div>
+
             {/* Responsive search and actions */}
             <div className="flex flex-col md:flex-row items-start md:items-start justify-between gap-4 pb-4 pt-4">
                 <form className="flex items-center gap-2 border rounded-lg pl-2 w-full md:w-64">
@@ -32,10 +56,23 @@ export default function SalesPersonnelOrders() {
                 </form>
 
                 <div className="flex flex-wrap md:items-center items-start gap-2 w-full sm:w-auto">
-                    <Button variant="ghost" size="sm" className="border rounded-lg flex-1 sm:flex-none">
+                    <Button
+                        onClick={() => setShowCalendar(!showCalendar)}
+                        variant="ghost"
+                        size="sm"
+                        className="border rounded-lg flex-1 sm:flex-none">
                         <Calendar className="mr-2 h-4 w-4" />
-                        <span className="text-sm font-normal">{new Date().toLocaleDateString()}</span>
+                        < span className="text-sm font-normal">{new Date().toLocaleDateString()}</span>
                     </Button>
+                    {showCalendar && (
+                        <div ref={calendarRef} className="fixed top-[42%] right-72 z-50">
+                            <CalendarComponent
+                                mode="single"
+                                className="rounded-md border bg-white"
+                            />
+                        </div>
+                    )
+                    }
                     <Button variant="ghost" size="sm" className="border rounded-lg flex-1 sm:flex-none">
                         <Filter className="mr-2 h-4 w-4" />
                         Filter
