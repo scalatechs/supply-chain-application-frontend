@@ -146,7 +146,8 @@ export function Sidebar({ className }: SidebarProps) {
                                     (item.href === "/" && location.pathname === "/") ||
                                     (item.href === "/orders" && location.pathname.startsWith("/orders")) ||
                                     (item.href === "/inventory" && location.pathname.startsWith("/inventory")) ||
-                                    (item.href === "/sales" && location.pathname.startsWith("/sales"))
+                                    (item.href === "/sales" && location.pathname.startsWith("/sales")) ||
+                                    (item.href === "/customers" && location.pathname.startsWith("/customers"))
                                 const Icon = item.icon;
                                 return (
                                     <Link
@@ -173,7 +174,7 @@ export function Sidebar({ className }: SidebarProps) {
                             })}
                         </div>
 
-                        <div className='pl-4 flex items-center justify-center gap-2 pt-9'>
+                        <div className='pl-4 flex items-center justify-start gap-2 pt-9'>
                             <img src={photo} alt="profile photo" className="h-10 w-10 rounded-full object-cover" />
                             <div>
                                 <p className='text-sm font-medium'>Abhi Dangol</p>

@@ -21,6 +21,7 @@ import Settings from '@/pages/Settings'
 import HelpAndSupport from '../pages/HelpAndSupport'
 import Notifications from '@/pages/Notifications'
 import Subscription from '@/pages/Subscription'
+import Customers from '@/pages/Customers'
 
 const AppLayout = () => {
     const location = useLocation();
@@ -63,8 +64,9 @@ const AppLayout = () => {
                         <Route path='/settings' element={<Settings />} />
                         <Route path='/help' element={<HelpAndSupport />} />
                         <Route path='/notifications' element={<Notifications />} />
-                        <Route path='/subscription' >
-                            <Route path='' element={<Subscription />} />
+                        <Route path='/subscription' element={<Subscription />} />
+                        <Route path='/customers' >
+                            <Route path='' element={<Customers />} />
                         </Route>
                     </ReactRoutes>
                 </main>
