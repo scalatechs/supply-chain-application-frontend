@@ -68,7 +68,7 @@ export function Sidebar({ className }: SidebarProps) {
             />
             <div
                 className={cn(
-                    "fixed inset-y-0 left-0 z-40 w-64 bg-white transform transition-transform duration-200 ease-in-out",
+                    "fixed inset-y-0 left-0 z-40 w-72 bg-white transform transition-transform duration-200 ease-in-out",
                     isOpen ? "translate-x-0" : "-translate-x-full",
                     className
                 )}
@@ -129,8 +129,8 @@ export function Sidebar({ className }: SidebarProps) {
             </div>
 
             {/* Large Sidebar  */}
-            <div className={cn(`z-40 pb-12 w-64 bg-white lg:flex hidden flex-col justify-between h-full`, className)}>
-                <div className='fixed overflow-y-auto h-full pr-8'>
+            <div className={cn(`z-40 pb-12 w-72 bg-white lg:flex hidden flex-col justify-between h-full`, className)}>
+                <div className='fixed overflow-y-auto h-full w-72 pr-8'>
                     <div className="space-y-12 py-4">
                         <div className="px-4 py-2">
                             <Link to="/">

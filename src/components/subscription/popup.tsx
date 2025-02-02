@@ -8,9 +8,13 @@ import { SetStateAction, useEffect, useRef, useState } from "react";
 const Popup = ({
     showPopup,
     setShowPopup,
+    showCurrentPlan,
+    setShowCurrentPlan
 }: {
     showPopup: boolean;
     setShowPopup: React.Dispatch<SetStateAction<boolean>>;
+    showCurrentPlan: boolean;
+    setShowCurrentPlan: React.Dispatch<SetStateAction<boolean>>;
 }) => {
     const [selectedCard, setSelectedCard] = useState<string | null>("visa");
     const popupRef = useRef<HTMLDivElement>(null);
@@ -146,7 +150,14 @@ const Popup = ({
 
             <Separator />
 
-            <button className="rounded-lg w-full md:p-4 p-2 bg-[#003dff] font-medium text-white md:text-base text-sm">
+            <button
+                onClick={
+                    () => {
+                        setShowPopup(!showPopup)
+                        setShowCurrentPlan(!showCurrentPlan)
+                    }
+                }
+                className="rounded-lg w-full md:p-4 p-2 bg-[#003dff] font-medium text-white md:text-base text-sm">
                 Make Payment
             </button>
         </div>
