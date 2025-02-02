@@ -33,8 +33,8 @@ const termsPolicies = ({ termsPolicies, updateField }: { termsPolicies: boolean,
 
     return (
         <form onSubmit={handleFormSubmit}>
-            <h1 className="text-5xl font-semibold">Terms and Policies</h1>
-            <p className="text-sm text-gray-800 my-6 text-justify">
+            <h1 className="md:text-5xl text-3xl font-semibold">Terms and Policies</h1>
+            <p className="md:text-sm text-xs text-gray-800 my-6 text-justify">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod tenetur eos mollitia fuga reprehenderit quasi vero asperiores nisi nam, magnam iure excepturi ex, perferendis voluptate sint perspiciatis velit? Obcaecati, adipisci sint? Possimus animi assumenda id nihil sint suscipit eum dolor doloremque odit voluptas! Quos ad dignissimos, itaque quod labore facere voluptate quas corrupti mollitia quasi amet nemo doloremque corporis culpa laborum adipisci ratione atque omnis architecto eum ea aspernatur tempora sapiente? Recusandae eum cupiditate quis.
 
                 <br />
@@ -48,7 +48,7 @@ const termsPolicies = ({ termsPolicies, updateField }: { termsPolicies: boolean,
                 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Veniam quaerat vitae sequi aliquid illo, provident officia quam voluptate, est magni maxime iste voluptatum error! Officiis, odit adipisci cumque temporibus, aliquam cum ad nulla perferendis cupiditate quidem nostrum ratione modi veritatis, ipsa nisi deleniti ducimus quae dicta mollitia libero optio dolorem consectetur! Nulla velit quasi assumenda ratione asperiores dolores suscipit voluptatibus magni nam, perferendis hic sed nemo vitae, praesentium veniam sit minus similique at. Itaque, quas voluptate obcaecati ad perferendis quod.
             </p>
 
-            <div className="text-base flex items-center gap-4">
+            <div className="md:text-base text-sm flex items-center gap-4">
                 <Checkbox onClick={() => setIsChecked(!isChecked)} />
                 <h3>
                     I agree to the&nbsp;

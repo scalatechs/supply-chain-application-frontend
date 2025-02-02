@@ -54,14 +54,14 @@ const Signup = () => {
     }, [currentStep])
 
     return (
-        <div className="w-full h-screen flex items-center">
+        <div className="lg:-ml-4 w-full h-screen flex lg:flex-row items-center gap-12 lg:p-0 p-6">
 
-            <div className="w-1/3 h-full">
+            <div className="xl:w-1/3 lg:w-[40%] lg:flex hidden w-full h-full">
                 <SignupSidebar />
             </div>
 
-            <div className="w-2/3 flex items-center justify-center">
-                <div className="lg:w-1/2 w-full">
+            <div className="xl:w-2/3 lg:w-1/2 w-full flex items-center justify-center">
+                <div className="xl:w-1/2 w-full">
                     {
                         currentStep == 1 ? <UserInformation {...data} updateField={updateField} /> :
                             currentStep == 2 ? <BusinessDetails {...data} updateField={updateField} /> :

@@ -14,7 +14,7 @@ const signupSidebar = () => {
     ]
 
     return (
-        <div className="w-1/3 h-full fixed bg-[#003DFF] flex flex-col items-start gap-12 py-12 px-24">
+        <div className="xl:w-1/3 lg:w-[40%] w-full h-full fixed bg-[#003DFF] flex flex-col items-start gap-12 py-12 xl:px-24 px-12">
             <img src={logo} alt="" />
 
             <div className="w-full mt-12">

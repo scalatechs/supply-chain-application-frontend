@@ -20,6 +20,7 @@ import AddEmployee from "../components/salesPersonnel/add-employee/add-employee"
 import Settings from '@/pages/Settings'
 import HelpAndSupport from '../pages/HelpAndSupport'
 import Notifications from '@/pages/Notifications'
+import Subscription from '@/pages/Subscription'
 
 const AppLayout = () => {
     const location = useLocation();
@@ -62,6 +63,9 @@ const AppLayout = () => {
                         <Route path='/settings' element={<Settings />} />
                         <Route path='/help' element={<HelpAndSupport />} />
                         <Route path='/notifications' element={<Notifications />} />
+                        <Route path='/subscription' >
+                            <Route path='' element={<Subscription />} />
+                        </Route>
                     </ReactRoutes>
                 </main>
             </div>

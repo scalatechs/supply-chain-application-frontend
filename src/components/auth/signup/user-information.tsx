@@ -68,8 +68,8 @@ const UserInformation = ({
 
     return (
         <>
-            <h1 className="text-5xl font-semibold">User Information</h1>
-            <p className="text-base text-gray-600 mt-4 mb-12">
+            <h1 className="md:text-5xl text-3xl font-semibold">User Information</h1>
+            <p className="md:text-base text-sm text-gray-600 mt-4 mb-12">
                 Please fill out the user information form. Make sure all the details and information are absolutely true.
             </p>
 
@@ -77,7 +77,7 @@ const UserInformation = ({
                 {/* Phone Number */}
                 <div className="w-full flex items-end gap-2">
                     <div className="w-1/2">
-                        <label htmlFor="name" className="text-base font-medium">
+                        <label htmlFor="name" className="md:text-base text-sm font-medium">
                             Name
                         </label>
                         <input
@@ -103,7 +103,7 @@ const UserInformation = ({
 
                 {/* Phone Number w/ country code */}
                 <div className="w-full">
-                    <label htmlFor="phoneNumber" className="text-base font-medium">
+                    <label htmlFor="phoneNumber" className="md:text-base text-sm font-medium">
                         Phone Number
                     </label>
                     <div className="flex items-end gap-2">
@@ -125,7 +125,7 @@ const UserInformation = ({
 
                 {/* Email Address */}
                 <div className="w-full">
-                    <label htmlFor="email" className="text-base font-medium">
+                    <label htmlFor="email" className="md:text-base text-sm font-medium">
                         Email Address
                     </label>
                     <input
@@ -142,7 +142,7 @@ const UserInformation = ({
 
                 {/* Password */}
                 <div className="w-full">
-                    <label htmlFor="password" className="text-base font-medium">
+                    <label htmlFor="password" className="md:text-base text-sm font-medium">
                         Password
                     </label>
                     <input
@@ -159,7 +159,7 @@ const UserInformation = ({
 
                 {/* Confirm Password */}
                 <div className="w-full">
-                    <label htmlFor="confirmPassword" className="text-base font-medium">
+                    <label htmlFor="confirmPassword" className="md:text-base text-sm font-medium">
                         Confirm Password
                     </label>
                     <input

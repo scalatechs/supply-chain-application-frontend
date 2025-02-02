@@ -1,6 +1,7 @@
 import { Lock, Mail } from "lucide-react"
 import logo from "../../../assets/Nav-mainlogo.svg"
 import { useForgotContext } from "../../../hooks/useForgotContext";
+import ProgressBar from "../../auth/forgot-password/progress-bar"
 
 const resetPassword = ({ email, updateField }: { email: string, updateField: (data: any) => void }) => {
 
@@ -90,6 +91,7 @@ const resetPassword = ({ email, updateField }: { email: string, updateField: (da
                     </button>
                 </div>
             </form>
+            <ProgressBar />
         </div>
     )
 }

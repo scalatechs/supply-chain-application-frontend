@@ -2,6 +2,7 @@ import { Check } from "lucide-react";
 import logo from "../../../assets/Nav-mainlogo.svg"
 import { useForgotContext } from "../../../hooks/useForgotContext";
 import { useNavigate } from "react-router-dom";
+import ProgressBar from "./progress-bar";
 
 const resetSuccess = () => {
     const { currentStep, setIsFormSubmitted } = useForgotContext()
@@ -41,7 +42,7 @@ const resetSuccess = () => {
                     Go back to login
                 </button>
             </form>
-
+            <ProgressBar />
         </div>
     )
 }

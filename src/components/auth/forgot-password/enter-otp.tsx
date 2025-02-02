@@ -8,6 +8,7 @@ import {
     InputOTPSlot,
 } from "@/components/ui/input-otp"
 import { useState } from "react";
+import ProgressBar from "../../auth/forgot-password/progress-bar"
 
 const enterOtp = ({ otp, updateField }: { otp: string, updateField: (data: any) => void }) => {
 
@@ -82,6 +83,8 @@ const enterOtp = ({ otp, updateField }: { otp: string, updateField: (data: any) 
                     </p>
                 </div>
             </form>
+            <ProgressBar />
+
         </div>
     )
 }

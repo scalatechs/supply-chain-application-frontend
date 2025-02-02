@@ -34,8 +34,8 @@ const verification = ({ otp, updateField }: { otp: string, updateField: (data: a
 
     return (
         <form onSubmit={handleFormSubmit}>
-            <h1 className="text-5xl font-semibold">Verify Phone Number</h1>
-            <p className="text-base text-gray-600 mt-4 mb-12">
+            <h1 className="md:text-5xl text-3xl font-semibold">Verify Phone Number</h1>
+            <p className="md:text-base text-sm text-gray-600 mt-4 mb-12">
                 We've sent you a verification number in your email address. Please enter the verification
                 number.
             </p>

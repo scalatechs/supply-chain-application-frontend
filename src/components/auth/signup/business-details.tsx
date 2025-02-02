@@ -76,8 +76,8 @@ const businessDetails = ({
 
     return (
         <>
-            <h1 className="text-5xl font-semibold">Business Details</h1>
-            <p className="text-base text-gray-600 mt-4 mb-12">Please fill out the business details form. Make sure all the details and information are absolutely true.</p>
+            <h1 className="md:text-5xl text-3xl font-semibold">Business Details</h1>
+            <p className="md:text-base text-sm text-gray-600 mt-4 mb-12">Please fill out the business details form. Make sure all the details and information are absolutely true.</p>
 
             <form onSubmit={handleFormSubmit} className="w-full flex flex-col items-start gap-6">
 
@@ -85,7 +85,7 @@ const businessDetails = ({
                 <div className="w-full">
                     <label
                         htmlFor="companyName"
-                        className="text-base font-medium">
+                        className="md:text-base text-sm font-medium">
                         Company Name
                     </label>
                     <input
@@ -101,7 +101,7 @@ const businessDetails = ({
                 <div className="w-full">
                     <label
                         htmlFor="registrationNumber"
-                        className="text-base font-medium">
+                        className="md:text-base text-sm font-medium">
                         Registration Number
                     </label>
                     <input
@@ -117,7 +117,7 @@ const businessDetails = ({
                 <div className="w-full">
                     <label
                         htmlFor="location"
-                        className="text-base font-medium">
+                        className="md:text-base text-sm font-medium">
                         Location
                     </label>
                     <input
@@ -133,7 +133,7 @@ const businessDetails = ({
                 <div className="w-full">
                     <label
                         htmlFor="location"
-                        className="text-base font-medium">
+                        className="md:text-base text-sm font-medium">
                         Verification Documents
                     </label>
                     <div

@@ -1,15 +1,15 @@
-import { Checkbox } from "@radix-ui/react-checkbox"
+import { Checkbox } from "@/components/ui/checkbox"
 import { EyeOff, Mail } from "lucide-react"
 import { Link } from "react-router-dom"
 
 const LoginForm = () => {
     return (
         <form className="w-full flex flex-col items-center gap-6">
-            <h1 className="text-4xl font-semibold text-center">Login</h1>
+            <h1 className="md:text-4xl text-2xl font-semibold text-center">Login</h1>
             <div className="w-full">
                 <label
                     htmlFor="email"
-                    className="text-base">
+                    className="md:text-base text-sm">
                     Email Address
                 </label>
                 <div className="bg-[#f7fbff] w-full flex items-center gap-4 border pr-4 rounded-xl">
@@ -24,7 +24,7 @@ const LoginForm = () => {
             <div className="w-full">
                 <label
                     htmlFor="password"
-                    className="text-base">
+                    className="md:text-base text-sm">
                     Password
                 </label>
                 <div className="bg-[#f7fbff] mt-1 w-full flex items-center gap-4 border pr-4 rounded-xl">
@@ -39,10 +39,10 @@ const LoginForm = () => {
             <div className="flex items-center justify-between w-full">
                 <div className="flex items-center gap-2">
                     <Checkbox />
-                    <span className="font-medium">Remember Me</span>
+                    <span className="font-medium md:text-base text-sm">Remember Me</span>
                 </div>
 
-                <Link to={'/forgot'} className="underline text-blue-700 hover:text-blue-500">
+                <Link to={'/forgot'} className="md:text-base text-sm underline text-blue-700 hover:text-blue-500">
                     Forgot Password?
                 </Link>
             </div>

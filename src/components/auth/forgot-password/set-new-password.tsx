@@ -1,6 +1,7 @@
 import { LockIcon } from "lucide-react"
 import logo from "../../../assets/Nav-mainlogo.svg"
 import { useForgotContext } from "../../../hooks/useForgotContext";
+import ProgressBar from "./progress-bar";
 
 const setNewPassword = ({ password, confirmPassword, updateField }: { password: string, confirmPassword: string, updateField: (data: any) => void }) => {
 
@@ -102,6 +103,7 @@ const setNewPassword = ({ password, confirmPassword, updateField }: { password: 
                     Reset Password
                 </button>
             </form>
+            <ProgressBar />
         </div>
     )
 }

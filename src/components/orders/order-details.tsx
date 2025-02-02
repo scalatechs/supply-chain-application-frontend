@@ -72,10 +72,10 @@ const orderDetails = () => {
             </div>
 
             <div className="w-full rounded-lg p-4 border">
-                <h1 className="text-2xl font-medium flex items-center">
+                <div className="text-2xl font-medium flex items-center">
                     Payment Receipt&nbsp;&nbsp;
                     <h3 className="bg-[#f9ebd2] text-sm text-orange-400 py-1 px-4 rounded-lg">Payment Pending</h3>
-                </h1>
+                </div>
 
                 <div className="flex items-start justify-between w-full">
                     <ul className="mt-4 text-neutral-600 font-medium text-sm flex flex-col items-start gap-2">

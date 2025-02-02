@@ -50,6 +50,16 @@ const notificationsSettings = () => {
                 </div>
                 <Switch defaultChecked />
             </div>
+
+            {/* Submit Button */}
+            <div className="flex justify-end w-full">
+                <button
+                    type="submit"
+                    className="mt-6 px-3 py-4 rounded-lg bg-blue-600 text-white text-base font-medium hover:bg-blue-700 transition-colors"
+                >
+                    Save Changes
+                </button>
+            </div>
         </div>
     )
 }
