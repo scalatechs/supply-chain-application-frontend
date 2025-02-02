@@ -58,7 +58,7 @@ export function Sidebar({ className }: SidebarProps) {
 
     return (
         <>
-            {/* Mobile Sidebar - Always render but translate based on isOpen */}
+            {/* Mobile Sidebar */}
             <div
                 className={cn(
                     "fixed inset-0 bg-black/30 z-30 transition-opacity duration-200",
@@ -68,7 +68,7 @@ export function Sidebar({ className }: SidebarProps) {
             />
             <div
                 className={cn(
-                    "fixed inset-y-0 left-0 z-40 w-72 bg-white transform transition-transform duration-200 ease-in-out",
+                    "fixed inset-y-0 left-0 z-40 pl-4 w-72 bg-white transform transition-transform duration-200 ease-in-out",
                     isOpen ? "translate-x-0" : "-translate-x-full",
                     className
                 )}

@@ -153,7 +153,7 @@ export function InventoryOrders() {
                                         <img src={product.image} alt="" className="w-12 h-12 rounded-lg object-contain" />
                                         <div>
                                             <span className="text-lg text-neutral-700 capitalize block">{product.name}</span>
-                                            <span className="text-sm text-neutral-500">ID: {product.id}</span>
+                                            <span className="text-sm text-neutral-500">FKU: {product.id}</span>
                                         </div>
                                     </div>
                                     <div className="space-y-2 text-sm">

@@ -150,29 +150,42 @@ export default function SalesPersonnelOrders() {
                                 <Checkbox className="mt-2" />
                                 <div className="flex-1">
                                     <div className="flex items-center gap-3 mb-2">
-                                        <img src={product.image} alt="" className="w-12 h-12 rounded-lg object-contain" />
+                                        <img src="https://m.media-amazon.com/images/M/MV5BODUyNzM1NzY0NF5BMl5BanBnXkFtZTYwNjk5ODQ0._V1_FMjpg_UX1000_.jpg" alt="" className="w-12 h-12 object-cover rounded-full" />
                                         <div>
-                                            <span className="text-neutral-700 capitalize block">{product.name}</span>
-                                            <span className="text-sm text-neutral-500">ID: {product.id}</span>
+                                            <span className="text-neutral-700 capitalize block">
+                                                John Doe
+                                            </span>
+                                            <span className="text-sm text-blue-700 underline">
+                                                johndoe21@gmail.com
+                                            </span>
                                         </div>
                                     </div>
                                     <div className="space-y-2 text-sm">
                                         <div className="flex justify-between">
-                                            <span className="text-neutral-500">Category:</span>
-                                            <span className="text-neutral-700">{product.category}</span>
+                                            <span className="text-neutral-500">Contact:</span>
+                                            <span className="text-neutral-700">+977-9829100636</span>
                                         </div>
                                         <div className="flex justify-between">
-                                            <span className="text-neutral-500">Price:</span>
-                                            <span className="text-neutral-700">{product.price}</span>
+                                            <span className="text-neutral-500">Stores:</span>
+                                            <span className="text-neutral-700">24</span>
                                         </div>
                                         <div className="flex justify-between">
-                                            <span className="text-neutral-500">Stock:</span>
-                                            <span className="text-neutral-700">{product.stock}</span>
+                                            <span className="text-neutral-500">Assigned Area:</span>
+                                            <span className="text-neutral-700">Ason, Kathmandu</span>
+                                        </div>
+                                        <div className="flex justify-between">
+                                            <span className="text-neutral-500">Performance:</span>
+                                            <span
+                                                className={`inline-flex rounded-full px-2 py-1 text-xs font-medium ${product.price > 100
+                                                    ? "bg-green-100 text-green-700"
+                                                    : "bg-yellow-100 text-yellow-700"
+                                                    }`}
+                                            >
+                                                {product.price > 100 ? "Excellent" : "Average"}
+                                            </span>
                                         </div>
                                         <div className="flex justify-end mt-2">
-                                            <Link to={`/inventory/restock-product/${product.id}`} className="underline text-blue-500">
-                                                View details
-                                            </Link>
+                                            <Link to={`/sales/user/${product.id}`} className="underline text-blue-500">Manage</Link>
                                         </div>
                                     </div>
                                 </div>

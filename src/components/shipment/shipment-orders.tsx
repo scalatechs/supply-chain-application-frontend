@@ -11,7 +11,6 @@ import { Checkbox } from "@/components/ui/checkbox"
 import { Calendar, Filter, MoreHorizontal, Search, Upload } from 'lucide-react'
 import { useContext } from "react"
 import { InventoryContext } from "@/context/inventory-context.tsx"
-import { Link } from "react-router-dom"
 import { ScrollArea } from "@/components/ui/scroll-area"
 
 export default function ShipmentOrders() {
@@ -93,8 +92,8 @@ export default function ShipmentOrders() {
                                             {product.price > 100 ? "Shipping" : "In-delivery"}
                                         </span>
                                     </TableCell>
-                                    <TableCell>
-                                        <Link to={`/inventory/restock-product/${product.id}`} className="underline text-blue-500">View details</Link>
+                                    <TableCell className="underline text-blue-500">
+                                        Track Shipment
                                     </TableCell>
                                 </TableRow>
                             ))}
@@ -111,30 +110,42 @@ export default function ShipmentOrders() {
                             <div className="flex items-start gap-4">
                                 <Checkbox className="mt-2" />
                                 <div className="flex-1">
-                                    <div className="flex items-center gap-3 mb-2">
-                                        <img src={product.image} alt="" className="w-12 h-12 rounded-lg object-contain" />
-                                        <div>
-                                            <span className="text-lg text-neutral-700 capitalize block">{product.name}</span>
-                                            <span className="text-sm text-neutral-500">ID: {product.id}</span>
-                                        </div>
+                                    <div className="mb-2">
+                                        <span className="text-lg text-neutral-700 capitalize block">
+                                            Order Id: {product.id}
+                                        </span>
+                                        <span className="text-sm text-neutral-500">
+                                            Shipping Id: {product.id}
+                                        </span>
                                     </div>
                                     <div className="space-y-2 text-sm">
                                         <div className="flex justify-between">
-                                            <span className="text-neutral-500">Category:</span>
-                                            <span className="text-neutral-700">{product.category}</span>
+                                            <span className="text-neutral-500">Dispatched date:</span>
+                                            <span className="text-neutral-700">
+                                                {new Date().toLocaleDateString()}
+                                            </span>
                                         </div>
                                         <div className="flex justify-between">
-                                            <span className="text-neutral-500">Price:</span>
-                                            <span className="text-neutral-700">{product.price}</span>
+                                            <span className="text-neutral-500">Shipping Method:</span>
+                                            <span className="text-neutral-700">Road</span>
                                         </div>
                                         <div className="flex justify-between">
-                                            <span className="text-neutral-500">Stock:</span>
-                                            <span className="text-neutral-700">{product.stock}</span>
+                                            <span className="text-neutral-500">Fee:</span>
+                                            <span className="text-neutral-700">Rs. {product.price}</span>
                                         </div>
-                                        <div className="flex justify-end mt-2">
-                                            <Link to={`/inventory/restock-product/${product.id}`} className="underline text-blue-500">
-                                                View details
-                                            </Link>
+                                        <div className="flex justify-between">
+                                            <span className="text-neutral-500">Status:</span>
+                                            <span
+                                                className={`inline-flex rounded-full px-2 py-1 text-xs font-medium ${product.price > 100
+                                                    ? "bg-green-100 text-green-700"
+                                                    : "bg-yellow-100 text-yellow-700"
+                                                    }`}
+                                            >
+                                                {product.price > 100 ? "Shipping" : "In-delivery"}
+                                            </span>
+                                        </div>
+                                        <div className="flex justify-end mt-2 underline text-blue-500">
+                                            Track Shipment
                                         </div>
                                     </div>
                                 </div>
@@ -143,6 +154,6 @@ export default function ShipmentOrders() {
                     ))}
                 </div>
             </div>
-        </div>
+        </div >
     )
 }

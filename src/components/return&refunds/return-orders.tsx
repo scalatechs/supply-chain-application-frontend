@@ -169,27 +169,43 @@ export default function ReturnOrders() {
                             <div className="flex items-start gap-4">
                                 <Checkbox className="mt-2" />
                                 <div className="flex-1">
-                                    <div className="flex items-center gap-3 mb-2">
-                                        <img src={product.image} alt="" className="w-12 h-12 rounded-lg object-contain" />
-                                        <div>
-                                            <span className="text-lg text-neutral-700 capitalize block">{product.name}</span>
-                                            <span className="text-sm text-neutral-500">ID: {product.id}</span>
-                                        </div>
+                                    <div className="mb-2">
+                                        <span className="text-lg text-neutral-700 capitalize block">
+                                            Order Id: {product.id}
+                                        </span>
+                                        <span className="text-sm text-neutral-500">
+                                            Date: {new Date().toLocaleDateString()}
+                                        </span>
                                     </div>
                                     <div className="space-y-2 text-sm">
                                         <div className="flex justify-between">
-                                            <span className="text-neutral-500">Category:</span>
-                                            <span className="text-neutral-700">{product.category}</span>
+                                            <span className="text-neutral-500">Customer Id:</span>
+                                            <span className="text-neutral-700">{product.id}</span>
                                         </div>
                                         <div className="flex justify-between">
-                                            <span className="text-neutral-500">Price:</span>
-                                            <span className="text-neutral-700">{product.price}</span>
+                                            <span className="text-neutral-500">Sales Representative:</span>
+                                            <span className="text-neutral-700">Michael Jordan</span>
                                         </div>
                                         <div className="flex justify-between">
-                                            <span className="text-neutral-500">Stock:</span>
-                                            <span className="text-neutral-700">{product.stock}</span>
+                                            <span className="text-neutral-500">Reason:</span>
+                                            <span className="text-neutral-700">Damaged Goods</span>
                                         </div>
-                                        <div className="flex justify-end mt-2">
+                                        <div className="flex justify-between">
+                                            <span className="text-neutral-500">Status:</span>
+                                            <span
+                                                className={`inline-flex rounded-full px-2 py-1 text-xs font-medium ${product.price > 100
+                                                    ? "bg-green-100 text-green-700"
+                                                    : "bg-yellow-100 text-yellow-700"
+                                                    }`}
+                                            >
+                                                {product.price > 100 ? "Approved" : "Pending"}
+                                            </span>
+                                        </div>
+                                        <div className="flex justify-between items-center">
+                                            <div className="flex items-center gap-4">
+                                                <Check size={'35px'} className="p-2 bg-[#ecf7e6] text-green-700 rounded-md border border-green-700" />
+                                                <X size={'35px'} className="p-2 bg-[#ffe6e6] text-red-700 rounded-md border border-red-700" />
+                                            </div>
                                             <Link to={`/inventory/restock-product/${product.id}`} className="underline text-blue-500">
                                                 View details
                                             </Link>
