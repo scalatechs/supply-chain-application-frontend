@@ -44,7 +44,7 @@ export default function ReturnOrders() {
 
             {/* Responsive tabs */}
             <ScrollArea className="w-full">
-                <div className="flex items-center border-b border-gray-300 min-w-max">
+                <div className="flex flex-wrap md:items-center items-start md:gap-0 gap-2 border-b border-gray-300 md:min-w-max w-full">
                     <button className="text-blue-600 font-medium border-b-2 border-blue-600 px-4 py-2 whitespace-nowrap md:text-sm text-xs">
                         All
                     </button>

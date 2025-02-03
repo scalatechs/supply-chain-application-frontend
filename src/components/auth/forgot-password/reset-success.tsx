@@ -21,7 +21,7 @@ const resetSuccess = () => {
     };
 
     return (
-        <div className="w-full flex flex-col items-center gap-12 -mt-48">
+        <div className="w-full flex flex-col items-center gap-12 md:-mt-48 -mt-24">
             <img src={logo} className="w-64 mb-24" alt="" />
 
             <div className="shadow-lg p-4 rounded-lg relative">
@@ -35,7 +35,7 @@ const resetSuccess = () => {
                 </p>
             </div>
 
-            <form onSubmit={handleFormSubmit} className="w-[30rem] flex flex-col items-start gap-6">
+            <form onSubmit={handleFormSubmit} className="md:w-[30rem] w-full flex flex-col items-start gap-6">
                 <button
                     type="submit"
                     className="bg-[#003dff] text-white font-semibold py-3.5 text-base rounded-lg w-full">

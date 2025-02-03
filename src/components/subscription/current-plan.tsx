@@ -18,7 +18,7 @@ const currentPlan = ({
             </div>
 
             <h2 className="md:text-2xl text-base font-medium">Current Plan</h2>
-            <div className="flex items-start justify-between w-full">
+            <div className="flex md:flex-row flex-col items-start md:gap-0 gap-4 justify-between w-full">
                 <div className="flex items-center gap-2">
                     <Calendar size={'30px'} />
                     <h1 className="md:text-4xl text-2xl">Monthly Package</h1>

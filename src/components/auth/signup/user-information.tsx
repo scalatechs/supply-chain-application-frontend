@@ -106,8 +106,8 @@ const UserInformation = ({
                     <label htmlFor="phoneNumber" className="md:text-base text-sm font-medium">
                         Phone Number
                     </label>
-                    <div className="flex items-end gap-2">
-                        <select className="border border-neutral-400 py-[0.8rem] rounded-lg px-2">
+                    <div className="flex md:flex-row flex-col md:items-end items-start gap-2">
+                        <select className="border border-neutral-400 py-[0.8rem] rounded-lg px-2 md:w-auto w-full">
                             <option value="977">+ 977</option>
                             <option value="920">+ 920</option>
                             <option value="100">+ 100</option>

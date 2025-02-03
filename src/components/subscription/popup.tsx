@@ -35,7 +35,7 @@ const Popup = ({
     return (
         <div
             ref={popupRef}
-            className={`fixed ${showPopup ? "visible -translate-x-1/2" : "invisible translate-x-full"}  top-1/2 left-1/2 transform -translate-y-1/2 bg-white transition-all duration-500 flex flex-col items-start gap-6 border p-6 rounded-xl lg:w-[35rem] w-[90%] lg:h-auto h-full z-50`}>
+            className={`fixed ${showPopup ? "visible -translate-x-1/2" : "invisible translate-x-full"}  top-1/2 left-1/2 transform -translate-y-1/2 bg-white transition-all duration-500 flex flex-col items-start gap-6 border p-6 rounded-xl lg:w-[35rem] w-[90%] z-50`}>
 
             <div className="w-full flex items-start justify-between">
                 <h1 className="font-medium md:text-2xl text-base">Summary</h1>

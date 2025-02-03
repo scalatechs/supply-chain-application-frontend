@@ -78,10 +78,10 @@ const basicInformation = () => {
                 </div>
             </div>
 
-            <div className="w-full flex items-end gap-1 mt-2">
+            <div className="w-full flex md:flex-row flex-col md:items-end items-start gap-1 mt-2">
 
                 {/* Address */}
-                <div className="w-[72%]">
+                <div className="md:w-[72%] w-full">
                     <label
                         htmlFor="address"
                         className="text-sm font-medium w-full flex justify-start">
@@ -96,7 +96,7 @@ const basicInformation = () => {
                     </div>
                 </div>
 
-                <button className="w-[calc(100%-72%)] px-3 py-[0.9rem] text-[#003dff] border border-[#003dff] rounded-md font-medium text-sm">
+                <button className="md:w-[calc(100%-72%)] w-full px-3 py-[0.9rem] text-[#003dff] border border-[#003dff] rounded-md font-medium text-sm">
                     Change Address
                 </button>
             </div>
@@ -106,8 +106,8 @@ const basicInformation = () => {
                 <label htmlFor="phoneNumber" className="text-sm font-medium w-full flex justify-start">
                     Phone Number
                 </label>
-                <div className="flex items-start gap-2 mt-1">
-                    <select className="border border-neutral-400 py-3.5 rounded-sm px-2 w-[12%]">
+                <div className="flex md:flex-row flex-col items-start gap-2 mt-1">
+                    <select className="border border-neutral-400 py-3.5 rounded-sm px-2 md:w-[12%] w-full">
                         <option value="977">+977</option>
                         <option value="920">+920</option>
                         <option value="100">+100</option>
