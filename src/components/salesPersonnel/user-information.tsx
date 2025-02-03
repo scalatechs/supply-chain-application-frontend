@@ -60,20 +60,20 @@ const userInformation = () => {
                 </div>
             </div>
 
-            <div className="border w-full p-4 flex flex-col gap-6">
+            <div className="border w-full p-4 flex flex-col md:gap-6 gap-2">
                 <h1 className="font-medium text-base">Assigned Areas</h1>
 
                 {/* Assigned Areas */}
-                <div className="bg-zinc-200/50 w-full rounded-lg px-4 py-2.5 flex items-center gap-4">
+                <div className="bg-zinc-200/50 md:text-base text-sm w-full rounded-lg px-4 py-2.5 flex md:flex-row flex-col md:items-center items-start gap-4">
                     <MapPin size={'17px'} />
                     Civil Mall, Kathmandu, Kranti Path, 44600
                 </div>
-                <div className="w-full flex items-center gap-4">
-                    <div className="bg-zinc-200/50 w-[90%] rounded-lg px-4 py-2.5 flex items-center gap-4">
+                <div className="w-full flex md:flex-row flex-col md:items-center items-start gap-4">
+                    <div className="bg-zinc-200/50 md:w-[90%] w-full rounded-lg px-4 py-2.5 flex items-center gap-4">
                         <MapPin size={'17px'} />
                         Add Locaation
                     </div>
-                    <button className="w-[10%] bg-[#003dff] text-white px-4 py-2.5 rounded-lg">
+                    <button className="md:w-[10%] w-full bg-[#003dff] text-white px-4 py-2.5 rounded-lg">
                         Add
                     </button>
                 </div>

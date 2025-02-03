@@ -41,22 +41,22 @@ const confirmation = ({
     return (
         <div className="w-full flex flex-col items-end">
 
-            <div className="w-full flex items-start justify-between gap-4">
+            <div className="w-full flex xl:flex-row flex-col xl:items-start items-center justify-between gap-4">
                 {/* Basic Information */}
-                <div className="flex flex-col items-start gap-4 border p-6 rounded-lg w-3/5">
+                <div className="flex flex-col items-start gap-4 border p-6 rounded-lg xl:w-3/5 w-full">
 
                     <div className="relative w-full flex justify-center">
                         <img src="https://m.media-amazon.com/images/M/MV5BODUyNzM1NzY0NF5BMl5BanBnXkFtZTYwNjk5ODQ0._V1_FMjpg_UX1000_.jpg" className="w-24 h-24 object-cover rounded-full" alt="" />
                         <PencilLine color="#003dff" size={'35px'} className="bg-white rounded-full shadow-lg p-1.5 absolute bottom-0 left-[52%]" />
                     </div>
 
-                    <div className="flex items-start gap-6 mt-6 w-full">
+                    <div className="flex md:flex-row flex-col items-start gap-6 mt-6 w-full md:text-sm text-xs ">
 
                         {/* First Name */}
-                        <div className="w-1/2">
+                        <div className="md:w-1/2 w-full">
                             <label
                                 htmlFor="firstName"
-                                className="text-sm font-medium w-full flex justify-start">
+                                className="font-medium w-full flex justify-start">
                                 First Name
                             </label>
                             <div className="w-full flex items-center gap-2 mt-1 rounded-sm px-3 py-3 border border-neutral-400 outline-none" >
@@ -70,10 +70,10 @@ const confirmation = ({
                         </div>
 
                         {/* Last Name */}
-                        <div className="w-1/2">
+                        <div className="md:w-1/2 w-full">
                             <label
                                 htmlFor="lastName"
-                                className="text-sm font-medium w-full flex justify-start">
+                                className="font-medium w-full flex justify-start">
                                 Last Name
                             </label>
                             <div className="w-full flex items-center gap-2 mt-1 rounded-sm px-3 py-3 border border-neutral-400 outline-none" >
@@ -87,13 +87,13 @@ const confirmation = ({
                         </div>
                     </div>
 
-                    <div className="flex items-start gap-6 mt-2 w-full">
+                    <div className="flex md:flex-row flex-col items-start gap-6 mt-2 w-full md:text-sm text-xs ">
 
                         {/* Email */}
-                        <div className="w-1/2">
+                        <div className="md:w-1/2 w-full">
                             <label
                                 htmlFor="email"
-                                className="text-sm font-medium w-full flex justify-start">
+                                className="font-medium w-full flex justify-start">
                                 Email
                             </label>
                             <div className="w-full flex items-center gap-2 mt-1 rounded-sm px-3 py-3 border border-neutral-400 outline-none" >
@@ -107,12 +107,12 @@ const confirmation = ({
                         </div>
 
                         {/* Phone Number */}
-                        <div className="w-1/2 flex flex-col items-start">
-                            <label htmlFor="phoneNumber" className="text-sm font-medium">
+                        <div className="md:w-1/2 w-full flex flex-col items-start">
+                            <label htmlFor="phoneNumber" className="font-medium">
                                 Phone Number
                             </label>
-                            <div className="flex items-end gap-2 w-full">
-                                <select className="border border-neutral-400 py-[0.8rem] rounded-sm px-2">
+                            <div className="flex md:flex-row flex-col md:items-end items-start gap-2 w-full">
+                                <select className="md:w-auto w-full border border-neutral-400 py-[0.8rem] rounded-sm px-2">
                                     <option value="977">+ 977</option>
                                     <option value="920">+ 920</option>
                                     <option value="100">+ 100</option>
@@ -129,10 +129,10 @@ const confirmation = ({
 
                     </div>
 
-                    <div className="w-full flex items-end gap-1 mt-2">
+                    <div className="w-full flex md:flex-row flex-col md:items-end items-start gap-1 mt-2 md:text-sm text-xs ">
 
                         {/* Address */}
-                        <div className="w-[72%]">
+                        <div className="md:w-[72%] w-full">
                             <label htmlFor="address" className="text-sm font-medium w-full flex justify-start">
                                 Address
                             </label>
@@ -147,19 +147,19 @@ const confirmation = ({
                             />
                         </div>
                         <button
-                            className="w-[calc(100%-72%)] px-3 py-3.5 text-blue-600 border border-blue-600 rounded-md font-medium text-sm"
+                            className="md:w-[calc(100%-72%)] w-full px-3 py-3.5 text-blue-600 border border-blue-600 rounded-md font-medium"
                         >
                             Change Address
                         </button>
                     </div>
 
-                    <div className="flex items-start gap-6 mt-2 w-full">
+                    <div className="flex md:flex-row flex-col items-start gap-6 mt-2 w-full md:text-sm text-xs">
 
                         {/* Password */}
-                        <div className="w-1/2">
+                        <div className="md:w-1/2 w-full">
                             <label
                                 htmlFor="password"
-                                className="text-sm font-medium w-full flex justify-start">
+                                className="font-medium w-full flex justify-start">
                                 Password
                             </label>
                             <div className="w-full flex items-center gap-2 mt-1 rounded-sm px-3 py-3 border border-neutral-400 outline-none" >
@@ -173,10 +173,10 @@ const confirmation = ({
                         </div>
 
                         {/* Confirm Password */}
-                        <div className="w-1/2">
+                        <div className="md:w-1/2 w-full">
                             <label
                                 htmlFor="confirmPassword"
-                                className="text-sm font-medium w-full flex justify-start">
+                                className="font-medium w-full flex justify-start">
                                 Confirm Password
                             </label>
                             <div className="w-full flex items-center gap-2 mt-1 rounded-sm px-3 py-3 border border-neutral-400 outline-none" >
@@ -192,13 +192,13 @@ const confirmation = ({
                 </div>
 
                 {/* Roles Responsibilities */}
-                <div className="flex flex-col items-start gap-6 border p-6 rounded-lg w-2/5">
+                <div className="flex flex-col items-start gap-6 border p-6 rounded-lg xl:w-2/5 w-full">
 
                     {/* Assign Role */}
-                    <div className="w-full">
+                    <div className="w-full md:text-sm text-xs">
                         <label
                             htmlFor="assignRole"
-                            className="text-sm font-medium w-full flex justify-start">
+                            className="font-medium w-full flex justify-start">
                             Assign Role
                         </label>
                         <div className="w-full flex items-center gap-2 mt-1 rounded-sm p-3 border border-neutral-400 outline-none" >
@@ -212,12 +212,12 @@ const confirmation = ({
                     </div>
 
                     {/* Assign Region */}
-                    <div className="w-full flex items-end gap-1 mt-2">
+                    <div className="w-full flex md:flex-row flex-col md:items-end items-start gap-1 mt-2 md:text-sm text-xs">
 
-                        <div className="w-[72%]">
+                        <div className="md:w-[60%] w-full">
                             <label
                                 htmlFor="assignRegion"
-                                className="text-sm font-medium w-full flex justify-start">
+                                className="font-medium w-full flex justify-start">
                                 Assign Region
                             </label>
                             <div className="w-full flex items-center gap-2 mt-1 rounded-sm p-3 border border-neutral-400 outline-none" >
@@ -232,19 +232,19 @@ const confirmation = ({
                             </div>
                         </div>
 
-                        <button className="min-w-44 px-3 py-[0.9rem] text-[#003dff] border border-[#003dff] rounded-md font-medium text-sm">
+                        <button className="md:w-[calc(100%-60%)] w-full px-3 py-[0.9rem] text-[#003dff] border border-[#003dff] rounded-md font-medium text-sm">
                             Change Address
                         </button>
                     </div>
 
                     <div className="w-full flex flex-col items-start gap-1 mt-2">
-                        <h3 className="font-medium text-sm">Assign Permissions</h3>
+                        <h3 className="font-medium md:text-sm text-xs">Assign Permissions</h3>
                         <div className="border rounded-lg p-4 flex flex-col items-start gap-4 w-full">
 
                             {/* Take Orders */}
-                            <div className="flex items-center justify-between w-full">
+                            <div className="flex md:flex-row flex-col md:items-center items-start md:gap-0 gap-4 justify-between w-full">
                                 <div className="text-left">
-                                    <h4 className="text-base font-medium">Take Orders</h4>
+                                    <h4 className="md:text-base text-sm font-medium">Take Orders</h4>
                                     <p className="text-neutral-600 text-xs">
                                         Set permissions for employees to take orders
                                     </p>
@@ -253,9 +253,9 @@ const confirmation = ({
                             </div>
 
                             {/* Collect Payments*/}
-                            <div className="flex items-center justify-between w-full">
+                            <div className="flex md:flex-row flex-col md:items-center items-start md:gap-0 gap-4 justify-between w-full">
                                 <div className="text-left">
-                                    <h4 className="text-base font-medium">Collect Payments</h4>
+                                    <h4 className="md:text-base text-sm font-medium">Collect Payments</h4>
                                     <p className="text-neutral-600 text-xs">
                                         Allow user to collect payments
                                     </p>
@@ -264,9 +264,9 @@ const confirmation = ({
                             </div>
 
                             {/* Track Shipment Performance */}
-                            <div className="flex items-center justify-between w-full">
+                            <div className="flex md:flex-row flex-col md:items-center items-start md:gap-0 gap-4 justify-between w-full">
                                 <div className="text-left">
-                                    <h4 className="text-base font-medium">Track Shipment Performance</h4>
+                                    <h4 className="md:text-base text-sm font-medium">Track Shipment Performance</h4>
                                     <p className="text-neutral-600 text-xs">
                                         Allow user to track shipment performance
                                     </p>
@@ -275,9 +275,9 @@ const confirmation = ({
                             </div>
 
                             {/* View Inventory */}
-                            <div className="flex items-center justify-between w-full">
+                            <div className="flex md:flex-row flex-col md:items-center items-start md:gap-0 gap-4 justify-between w-full">
                                 <div className="text-left">
-                                    <h4 className="text-base font-medium">View Inventory</h4>
+                                    <h4 className="md:text-base text-sm font-medium">View Inventory</h4>
                                     <p className="text-neutral-600 text-xs">
                                         Allow user to view inventory items
                                     </p>
@@ -291,7 +291,7 @@ const confirmation = ({
 
             <button
                 onClick={() => setCurrentIndex(currentIndex + 1)}
-                className="mt-6 px-3 py-4 rounded-lg bg-[#003dff] text-white text-base font-medium">
+                className="md:w-auto w-full mt-6 px-3 py-4 rounded-lg bg-[#003dff] text-white md:text-base text-sm font-medium">
                 Create Account
             </button>
         </div>

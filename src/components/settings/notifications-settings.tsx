@@ -8,9 +8,9 @@ const notificationsSettings = () => {
 
 
             {/* Order Confirmation */}
-            <div className="flex items-center justify-between w-full">
+            <div className="flex md:flex-row flex-col md:items-center items-start md:gap-0 gap-4 justify-between w-full">
                 <div className="text-left">
-                    <h4 className="text-base font-medium">Order Confirmation</h4>
+                    <h4 className="md:text-base text-sm font-medium">Order Confirmation</h4>
                     <p className="text-neutral-600 text-xs">
                         Get notifications for order confirmation from your sales team.
                     </p>
@@ -19,9 +19,9 @@ const notificationsSettings = () => {
             </div>
 
             {/* Order Delayed*/}
-            <div className="flex items-center justify-between w-full">
+            <div className="flex md:flex-row flex-col md:items-center items-start md:gap-0 gap-4 justify-between w-full">
                 <div className="text-left">
-                    <h4 className="text-base font-medium">Order Delayed</h4>
+                    <h4 className="md:text-base text-sm font-medium">Order Delayed</h4>
                     <p className="text-neutral-600 text-xs">
                         Get notifications for order delayed from your sales team.
                     </p>
@@ -30,9 +30,9 @@ const notificationsSettings = () => {
             </div>
 
             {/* Ordered Delivered*/}
-            <div className="flex items-center justify-between w-full">
+            <div className="flex md:flex-row flex-col md:items-center items-start md:gap-0 gap-4 justify-between w-full">
                 <div className="text-left">
-                    <h4 className="text-base font-medium">Ordered Delivered</h4>
+                    <h4 className="md:text-base text-sm font-medium">Ordered Delivered</h4>
                     <p className="text-neutral-600 text-xs">
                         Get notifications for ordered delivered from your sales team.
                     </p>
@@ -41,9 +41,9 @@ const notificationsSettings = () => {
             </div>
 
             {/* Email Notifications */}
-            <div className="flex items-center justify-between w-full">
+            <div className="flex md:flex-row flex-col md:items-center items-start md:gap-0 gap-4 justify-between w-full">
                 <div className="text-left">
-                    <h4 className="text-base font-medium">Email Notifications</h4>
+                    <h4 className="md:text-base text-sm font-medium">Email Notifications</h4>
                     <p className="text-neutral-600 text-xs">
                         Get notifications for email notifications from your sales team.
                     </p>
@@ -55,7 +55,7 @@ const notificationsSettings = () => {
             <div className="flex justify-end w-full">
                 <button
                     type="submit"
-                    className="mt-6 px-3 py-4 rounded-lg bg-blue-600 text-white text-base font-medium hover:bg-blue-700 transition-colors"
+                    className="md:w-auto w-full mt-6 px-3 py-4 rounded-lg bg-blue-600 text-white md:text-base text-sm font-medium hover:bg-blue-700 transition-colors"
                 >
                     Save Changes
                 </button>

@@ -68,13 +68,13 @@ const RolesResponsibilities = ({
     };
 
     return (
-        <form onSubmit={handleFormSubmit} className="flex flex-col items-start gap-4 border p-6 rounded-lg w-[36rem]">
+        <form onSubmit={handleFormSubmit} className="flex flex-col items-start gap-4 border p-6 rounded-lg md:w-[36rem] w-full">
 
             {/* Assign Role */}
-            <div className="w-full">
+            <div className="w-full md:text-sm text-xs">
                 <label
                     htmlFor="assignRole"
-                    className="text-sm font-medium w-full flex justify-start">
+                    className="font-medium w-full flex justify-start">
                     Assign Role
                 </label>
                 <div className="w-full flex items-center gap-2 mt-1 rounded-sm p-3 border border-neutral-400 outline-none" >
@@ -90,13 +90,13 @@ const RolesResponsibilities = ({
                 </div>
             </div>
 
-            <div className="w-full flex items-end gap-1 mt-2">
+            <div className="w-full flex md:flex-row flex-col md:items-end items-start gap-1 mt-2 md:text-sm text-xs">
 
                 {/* Assign Region */}
-                <div className="w-[72%]">
+                <div className="md:w-[72%] w-full">
                     <label
                         htmlFor="assignRegion"
-                        className="text-sm font-medium w-full flex justify-start">
+                        className="font-medium w-full flex justify-start">
                         Assign Region
                     </label>
                     <div className="w-full flex items-center gap-2 mt-1 rounded-sm p-3 border border-neutral-400 outline-none" >
@@ -112,19 +112,19 @@ const RolesResponsibilities = ({
                     </div>
                 </div>
 
-                <button className="px-3 py-[0.9rem] text-[#003dff] border border-[#003dff] rounded-md font-medium text-sm">
+                <button className="px-3 py-[0.9rem] text-[#003dff] border border-[#003dff] rounded-md font-medium md:w-auto w-full">
                     Change Address
                 </button>
             </div>
 
             <div className="w-full flex flex-col items-start gap-1 mt-2">
-                <h3 className="font-medium text-sm">Assign Permissions</h3>
+                <h3 className="font-medium md:text-sm text-xs">Assign Permissions</h3>
                 <div className="border rounded-lg p-4 flex flex-col items-start gap-4 w-full">
 
                     {/* Take Orders */}
-                    <div className="flex items-center justify-between w-full">
+                    <div className="flex md:flex-row flex-col md:items-center items-start md:gap-0 gap-4 justify-between w-full">
                         <div className="text-left">
-                            <h4 className="text-base font-medium">Take Orders</h4>
+                            <h4 className="md:text-base text-sm font-medium">Take Orders</h4>
                             <p className="text-neutral-600 text-xs">
                                 Set permissions for employees to take orders
                             </p>
@@ -135,10 +135,10 @@ const RolesResponsibilities = ({
                         />
                     </div>
 
-                    {/* Take Orders */}
-                    <div className="flex items-center justify-between w-full">
+                    {/* Collect Payments */}
+                    <div className="flex md:flex-row flex-col md:items-center items-start md:gap-0 gap-4 justify-between w-full">
                         <div className="text-left">
-                            <h4 className="text-base font-medium">Collect Payments</h4>
+                            <h4 className="md:text-base text-sm font-medium">Collect Payments</h4>
                             <p className="text-neutral-600 text-xs">
                                 Allow user to collect payments
                             </p>
@@ -149,10 +149,10 @@ const RolesResponsibilities = ({
                         />
                     </div>
 
-                    {/* Take Orders */}
-                    <div className="flex items-center justify-between w-full">
+                    {/* Track Shipment Performance */}
+                    <div className="flex md:flex-row flex-col md:items-center items-start md:gap-0 gap-4 justify-between w-full">
                         <div className="text-left">
-                            <h4 className="text-base font-medium">Track Shipment Performance</h4>
+                            <h4 className="md:text-base text-sm font-medium">Track Shipment Performance</h4>
                             <p className="text-neutral-600 text-xs">
                                 Allow user to track shipment performance
                             </p>
@@ -163,10 +163,10 @@ const RolesResponsibilities = ({
                         />
                     </div>
 
-                    {/* Take Orders */}
-                    <div className="flex items-center justify-between w-full">
+                    {/* View Inventory */}
+                    <div className="flex md:flex-row flex-col md:items-center items-start md:gap-0 gap-4 justify-between w-full">
                         <div className="text-left">
-                            <h4 className="text-base font-medium">View Inventory</h4>
+                            <h4 className="md:text-base text-sm font-medium">View Inventory</h4>
                             <p className="text-neutral-600 text-xs">
                                 Allow user to view inventory items
                             </p>
@@ -181,7 +181,7 @@ const RolesResponsibilities = ({
 
             <button
                 type="submit"
-                className="mt-6 px-3 py-4 rounded-lg bg-[#003dff] text-white text-base font-medium">
+                className="md:w-auto w-full mt-6 px-3 py-4 rounded-lg bg-[#003dff] text-white md:text-base text-sm font-medium">
                 Save Information
             </button>
 

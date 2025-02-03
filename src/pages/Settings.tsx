@@ -10,7 +10,7 @@ const Settings = () => {
         <div className="flex flex-col items-start gap-6 w-full">
             <div className="w-full flex items-center justify-between">
                 <h1 className="text-3xl font-medium">Edit Profile</h1>
-                <Link to="/inventory" className="flex items-center gap-2">
+                <Link to="/help" className="flex items-center gap-2">
                     <Button variant="outline">
                         <ChevronLeft className="w-5 h-5" />
                         Back

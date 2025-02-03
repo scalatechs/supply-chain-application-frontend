@@ -10,13 +10,13 @@ const basicInformation = () => {
                 <PencilLine color="#003dff" size={'35px'} className="bg-white rounded-full shadow-lg p-1.5 absolute bottom-0 left-[52%]" />
             </div>
 
-            <div className="flex items-start gap-6 mt-6 w-full">
+            <div className="flex md:flex-row flex-col items-start gap-6 mt-6 w-full md:text-sm text-xs">
 
                 {/* First Name */}
-                <div className="w-1/2">
+                <div className="md:w-1/2 w-full">
                     <label
                         htmlFor="firstName"
-                        className="text-sm font-medium w-full flex justify-start">
+                        className="font-medium w-full flex justify-start">
                         First Name
                     </label>
                     <div className="w-full flex items-center gap-2 mt-1 rounded-sm px-3 py-3 border border-neutral-400 outline-none" >
@@ -29,10 +29,10 @@ const basicInformation = () => {
                 </div>
 
                 {/* Last Name */}
-                <div className="w-1/2">
+                <div className="md:w-1/2 w-full">
                     <label
                         htmlFor="lastName"
-                        className="text-sm font-medium w-full flex justify-start">
+                        className="font-medium w-full flex justify-start">
                         Last Name
                     </label>
                     <div className="w-full flex items-center gap-2 mt-1 rounded-sm px-3 py-3 border border-neutral-400 outline-none" >
@@ -46,10 +46,10 @@ const basicInformation = () => {
             </div>
 
             {/* Business Name */}
-            <div className="w-full">
+            <div className="w-full md:text-sm text-xs">
                 <label
                     htmlFor="businessName"
-                    className="text-sm font-medium w-full flex justify-start">
+                    className="font-medium w-full flex justify-start">
                     Business Name
                 </label>
                 <div className="w-full flex items-center gap-2 mt-1 rounded-sm px-3 py-3 border border-neutral-400 outline-none" >
@@ -63,10 +63,10 @@ const basicInformation = () => {
 
 
             {/* Email */}
-            <div className="w-full">
+            <div className="w-full md:text-sm text-xs">
                 <label
                     htmlFor="email"
-                    className="text-sm font-medium w-full flex justify-start">
+                    className="font-medium w-full flex justify-start">
                     Email Address
                 </label>
                 <div className="w-full flex items-center gap-2 mt-1 rounded-sm px-3 py-3 border border-neutral-400 outline-none" >
@@ -78,13 +78,13 @@ const basicInformation = () => {
                 </div>
             </div>
 
-            <div className="w-full flex md:flex-row flex-col md:items-end items-start gap-1 mt-2">
+            <div className="w-full flex md:flex-row flex-col md:items-end items-start gap-1 mt-2 md:text-sm text-xs">
 
                 {/* Address */}
                 <div className="md:w-[72%] w-full">
                     <label
                         htmlFor="address"
-                        className="text-sm font-medium w-full flex justify-start">
+                        className="font-medium w-full flex justify-start">
                         Address
                     </label>
                     <div className="w-full flex items-center gap-2 mt-1 rounded-sm p-3 border border-neutral-400 outline-none" >
@@ -96,13 +96,13 @@ const basicInformation = () => {
                     </div>
                 </div>
 
-                <button className="md:w-[calc(100%-72%)] w-full px-3 py-[0.9rem] text-[#003dff] border border-[#003dff] rounded-md font-medium text-sm">
+                <button className="md:w-[calc(100%-72%)] w-full px-3 py-[0.9rem] text-[#003dff] border border-[#003dff] rounded-md font-medium">
                     Change Address
                 </button>
             </div>
 
             {/* Phone Number */}
-            <div className="w-full">
+            <div className="w-full md:text-sm text-xs">
                 <label htmlFor="phoneNumber" className="text-sm font-medium w-full flex justify-start">
                     Phone Number
                 </label>
@@ -127,7 +127,7 @@ const basicInformation = () => {
             <div className="flex justify-end w-full">
                 <button
                     type="submit"
-                    className="mt-6 px-3 py-4 rounded-lg bg-blue-600 text-white text-base font-medium hover:bg-blue-700 transition-colors"
+                    className="md:w-auto w-full mt-6 px-3 py-4 rounded-lg bg-blue-600 text-white md:text-base text-sm font-medium hover:bg-blue-700 transition-colors"
                 >
                     Request Changes
                 </button>

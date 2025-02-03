@@ -79,7 +79,7 @@ const BasicInformation = ({
     };
 
     return (
-        <form onSubmit={handleFormSubmit} className="flex flex-col items-start gap-4 border p-6 rounded-lg w-full max-w-2xl">
+        <form onSubmit={handleFormSubmit} className="flex flex-col items-start gap-4 border p-6 rounded-lg md:max-w-2xl w-full">
             {/* Profile Image Section */}
             <div className="relative w-full flex justify-center">
                 <img src="https://m.media-amazon.com/images/M/MV5BODUyNzM1NzY0NF5BMl5BanBnXkFtZTYwNjk5ODQ0._V1_FMjpg_UX1000_.jpg" className="w-24 h-24 object-cover rounded-full" alt="" />
@@ -90,10 +90,10 @@ const BasicInformation = ({
             </div>
 
             {/* First Name and Last Name Section */}
-            <div className="flex items-start gap-6 mt-6 w-full">
+            <div className="flex md:flex-row flex-col items-start gap-6 mt-6 w-full md:text-sm text-xs">
                 {/* First Name */}
-                <div className="w-1/2">
-                    <label htmlFor="firstName" className="text-sm font-medium w-full flex justify-start">
+                <div className="md:w-1/2 w-full">
+                    <label htmlFor="firstName" className="font-medium w-full flex justify-start">
                         First Name
                     </label>
                     <input
@@ -109,8 +109,8 @@ const BasicInformation = ({
                 </div>
 
                 {/* Last Name */}
-                <div className="w-1/2">
-                    <label htmlFor="lastName" className="text-sm font-medium w-full flex justify-start">
+                <div className="md:w-1/2 w-full">
+                    <label htmlFor="lastName" className="font-medium w-full flex justify-start">
                         Last Name
                     </label>
                     <input
@@ -127,10 +127,10 @@ const BasicInformation = ({
             </div>
 
             {/* Email and Phone Number Section */}
-            <div className="flex items-start gap-6 w-full">
+            <div className="flex md:flex-row flex-col items-start gap-6 w-full md:text-sm text-xs">
                 {/* Email */}
-                <div className="w-1/2">
-                    <label htmlFor="email" className="text-sm font-medium w-full flex justify-start">
+                <div className="md:w-1/2 w-full">
+                    <label htmlFor="email" className="font-medium w-full flex justify-start">
                         Email
                     </label>
                     <input
@@ -146,12 +146,12 @@ const BasicInformation = ({
                 </div>
 
                 {/* Phone Number */}
-                <div className="w-1/2">
+                <div className="md:w-1/2 w-full">
                     <label htmlFor="phoneNumber" className="text-sm font-medium w-full flex justify-start">
                         Phone Number
                     </label>
-                    <div className="flex items-start gap-2 mt-1">
-                        <select className="border border-neutral-400 py-3.5 rounded-sm px-2">
+                    <div className="flex md:flex-row flex-col items-start gap-2 mt-1">
+                        <select className="border border-neutral-400 py-3.5 rounded-sm px-2 md:w-auto w-full">
                             <option value="977">+977</option>
                             <option value="920">+920</option>
                             <option value="100">+100</option>
@@ -171,10 +171,10 @@ const BasicInformation = ({
             </div>
 
             {/* Address Section */}
-            <div className="w-full flex items-end gap-1 mt-2">
+            <div className="w-full flex md:flex-row flex-col md:items-end items-start gap-1 mt-2 md:text-sm text-xs">
                 {/* Address */}
-                <div className="w-[72%]">
-                    <label htmlFor="address" className="text-sm font-medium w-full flex justify-start">
+                <div className="md:w-[72%] w-full">
+                    <label htmlFor="address" className="font-medium w-full flex justify-start">
                         Address
                     </label>
                     <input
@@ -189,17 +189,17 @@ const BasicInformation = ({
                     />
                 </div>
                 <button
-                    className="w-[calc(100%-72%)] px-3 py-3.5 text-blue-600 border border-blue-600 rounded-md font-medium text-sm"
+                    className="md:w-[calc(100%-72%)] w-full px-3 py-3.5 text-blue-600 border border-blue-600 rounded-md font-medium"
                 >
                     Change Address
                 </button>
             </div>
 
             {/* Password Section */}
-            <div className="flex items-start gap-6 w-full">
+            <div className="flex md:flex-row flex-col items-start gap-6 w-full md:text-sm text-xs">
                 {/* Password */}
-                <div className="w-1/2">
-                    <label htmlFor="password" className="text-sm font-medium w-full flex justify-start">
+                <div className="md:w-1/2 w-full">
+                    <label htmlFor="password" className="font-medium w-full flex justify-start">
                         Password
                     </label>
                     <input
@@ -216,8 +216,8 @@ const BasicInformation = ({
                 </div>
 
                 {/* Confirm Password */}
-                <div className="w-1/2">
-                    <label htmlFor="confirmPassword" className="text-sm font-medium w-full flex justify-start">
+                <div className="md:w-1/2 w-full">
+                    <label htmlFor="confirmPassword" className="font-medium w-full flex justify-start">
                         Confirm Password
                     </label>
                     <input
@@ -236,7 +236,7 @@ const BasicInformation = ({
             {/* Submit Button */}
             <button
                 type="submit"
-                className="w-full mt-6 px-3 py-4 rounded-lg bg-blue-600 text-white text-base font-medium hover:bg-blue-700 transition-colors"
+                className="w-full mt-6 px-3 py-4 rounded-lg bg-blue-600 text-white font-medium hover:bg-blue-700 transition-colors md:text-base text-sm"
             >
                 Save Information
             </button>

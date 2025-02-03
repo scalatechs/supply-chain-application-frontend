@@ -9,7 +9,7 @@ const userProfile = () => {
     return (
         <div className="flex flex-col items-start gap-6 w-full">
             <div className="w-full flex items-center justify-between">
-                <h1 className="text-3xl font-medium">User Profile</h1>
+                <h1 className="md:text-3xl text-xl font-medium">User Profile</h1>
                 <Link to="/sales" className="flex items-center gap-2">
                     <Button variant="outline">
                         <ChevronLeft className="w-5 h-5" />

@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { SetStateAction, useContext } from "react";
 import { Button } from "../ui/button";
 import { Filter, MoreHorizontal, Upload, X } from "lucide-react";
 import { TableBody, TableCell, TableHead, TableHeader, TableRow, Table } from "../ui/table";
@@ -9,8 +9,10 @@ import { Separator } from "../ui/separator";
 
 const orderHistory = ({
     showOrderHistory,
+    setShowOrderHistory
 }: {
     showOrderHistory: boolean;
+    setShowOrderHistory: React.Dispatch<SetStateAction<boolean>>;
 }) => {
 
     const { inventory } = useContext(InventoryContext)
@@ -32,7 +34,9 @@ const orderHistory = ({
                         <MoreHorizontal className="h-4 w-4" />
                     </Button>
                     <Button variant={"ghost"} size={"sm"}>
-                        <X className="w-4 h-4" />
+                        <X
+                            onClick={() => setShowOrderHistory(!showOrderHistory)}
+                            className="w-4 h-4" />
                     </Button>
                 </div>
             </div>

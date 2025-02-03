@@ -63,13 +63,13 @@ const ProductDelivery = ({ image }: { image?: string }) => {
             <div className="w-full">
                 <h2 className="text-xl mb-2">Shipping and Delivery</h2>
                 <div className="border rounded-lg p-4 w-full flex flex-col items-start gap-3">
-                    <div className="w-full flex items-start gap-3">
-                        <div className="w-1/2">
+                    <div className="w-full flex md:flex-row flex-col items-start gap-3">
+                        <div className="md:w-1/2 w-full">
                             <Label>Product Weight</Label>
                             <div className="w-full flex items-center gap-2">
                                 <input placeholder="Enter product weight" className="w-full outline-none text-sm p-2 border border-zinc-200 rounded-lg" />
                                 <Select>
-                                    <SelectTrigger className="w-1/6">
+                                    <SelectTrigger className="w-1/4">
                                         <SelectValue placeholder="kg" />
                                     </SelectTrigger>
                                     <SelectContent>
@@ -83,12 +83,12 @@ const ProductDelivery = ({ image }: { image?: string }) => {
                                 </Select>
                             </div>
                         </div>
-                        <div className="w-1/2">
+                        <div className="md:w-1/2 w-full">
                             <Label>Price</Label>
                             <div className="w-full flex items-center gap-2">
                                 <input placeholder="Enter product price" className="w-full outline-none text-sm p-2 border border-zinc-200 rounded-lg" />
                                 <Select>
-                                    <SelectTrigger className="w-1/6">
+                                    <SelectTrigger className="w-1/4">
                                         <SelectValue placeholder="Rs" />
                                     </SelectTrigger>
                                     <SelectContent>
@@ -103,13 +103,13 @@ const ProductDelivery = ({ image }: { image?: string }) => {
                             </div>
                         </div>
                     </div>
-                    <div className="w-full flex items-start justify-between gap-6">
-                        <div className="w-1/3">
+                    <div className="w-full flex xl:flex-row flex-col items-start justify-between gap-2">
+                        <div className="xl:w-1/3 w-full">
                             <Label>Length</Label>
                             <div className="w-full flex items-center gap-2">
-                                <input placeholder="e.g 5   " className="w-2/3 outline-none text-sm p-2 border border-zinc-200 rounded-lg" />
+                                <input placeholder="e.g 5" className="xl:w-2/3 w-full outline-none text-sm p-2 border border-zinc-200 rounded-lg" />
                                 <Select>
-                                    <SelectTrigger className="w-1/3">
+                                    <SelectTrigger className="xl:w-1/3 w-1/4">
                                         <SelectValue placeholder="in" />
                                     </SelectTrigger>
                                     <SelectContent>
@@ -123,12 +123,12 @@ const ProductDelivery = ({ image }: { image?: string }) => {
                                 </Select>
                             </div>
                         </div>
-                        <div className="w-1/3">
+                        <div className="xl:w-1/3 w-full">
                             <Label>Breadh</Label>
                             <div className="w-full flex items-center gap-2">
-                                <input placeholder="e.g 10" className="w-2/3 outline-none text-sm p-2 border border-zinc-200 rounded-lg" />
+                                <input placeholder="e.g 10" className="xl:w-2/3 w-full outline-none text-sm p-2 border border-zinc-200 rounded-lg" />
                                 <Select>
-                                    <SelectTrigger className="w-1/3">
+                                    <SelectTrigger className="xl:w-1/3 w-1/4">
                                         <SelectValue placeholder="in" />
                                     </SelectTrigger>
                                     <SelectContent>
@@ -142,12 +142,12 @@ const ProductDelivery = ({ image }: { image?: string }) => {
                                 </Select>
                             </div>
                         </div>
-                        <div className="w-1/3">
+                        <div className="xl:w-1/3 w-full">
                             <Label>Width</Label>
                             <div className="w-full flex items-center gap-2">
-                                <input placeholder="e.g 4" className="w-2/3 outline-none text-sm p-2 border border-zinc-200 rounded-lg" />
+                                <input placeholder="e.g 4" className="xl:w-2/3 w-full outline-none text-sm p-2 border border-zinc-200 rounded-lg" />
                                 <Select>
-                                    <SelectTrigger className="w-1/3">
+                                    <SelectTrigger className="xl:w-1/3 w-1/4">
                                         <SelectValue placeholder="in" />
                                     </SelectTrigger>
                                     <SelectContent>

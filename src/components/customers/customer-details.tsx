@@ -41,8 +41,9 @@ const customerDetails = ({
             {/* Overlay */}
             <div className={`${showOrderHistory ? "visible" : "invisible"} bg-black inset-0 fixed bg-opacity-50 z-40`}></div>
 
+            {/* Order History */}
             <div className="w-full" ref={orderHistoryRef}>
-                <OrderHistory showOrderHistory={showOrderHistory} />
+                <OrderHistory setShowOrderHistory={setShowOrderHistory} showOrderHistory={showOrderHistory} />
             </div>
 
             <div className="flex items-center justify-between w-full">

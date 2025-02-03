@@ -87,24 +87,24 @@ const addEmployee = () => {
             <div className="w-full rounded-lg p-4 flex flex-col items-center gap-6 mt-6">
 
                 {/* Form Header */}
-                <div className={`w-full ${currentIndex == 4 ? "hidden" : "flex"} justify-center gap-6`}>
+                <div className={`w-full ${currentIndex == 4 ? "hidden" : "flex md:flex-row flex-col"} md:justify-center justify-start md:text-center text-left gap-6`}>
 
                     <div
-                        className={`px-6 text-lg ${currentIndex == 1 ? "text-blue-600" : "text-zinc-400"}`}>
+                        className={`md:px-6 pl-6 md:text-lg text-sm ${currentIndex == 1 ? "text-blue-600" : "text-zinc-400"}`}>
                         1. Basic Information
-                        <div className={`w-[120%] -ml-4 ${currentIndex == 1 ? "bg-blue-600" : "bg-zinc-200"} rounded-lg h-2`}></div>
+                        <div className={`md:w-[120%] w-full -ml-4 ${currentIndex == 1 ? "bg-blue-600" : "bg-zinc-200"} rounded-lg md:h-2 h-1`}></div>
                     </div>
 
                     <div
-                        className={`${currentIndex == 2 ? "text-blue-600" : "text-zinc-400"} px-6 text-xl`}>
+                        className={`${currentIndex == 2 ? "text-blue-600" : "text-zinc-400"} md:px-6 pl-6 md:text-lg text-sm`}>
                         2. Roles & Responsibilites
-                        <div className={`w-[120%] -ml-4 ${currentIndex == 2 ? "bg-blue-600" : "bg-zinc-200"} rounded-lg h-2`}></div>
+                        <div className={`md:w-[120%] w-full -ml-4 ${currentIndex == 2 ? "bg-blue-600" : "bg-zinc-200"} rounded-lg md:h-2 h-1`}></div>
                     </div>
 
                     <div
-                        className={`${currentIndex == 3 ? "text-blue-600" : "text-zinc-400"} px-6 text-xl`}>
+                        className={`${currentIndex == 3 ? "text-blue-600" : "text-zinc-400"} md:px-6 pl-6 md:text-lg text-sm`}>
                         3. Confirmation
-                        <div className={`w-[120%] -ml-4 ${currentIndex == 3 ? "bg-blue-600" : "bg-zinc-200"} rounded-lg h-2`}></div>
+                        <div className={`md:w-[120%] w-full -ml-4 ${currentIndex == 3 ? "bg-blue-600" : "bg-zinc-200"} rounded-lg md:h-2 h-1`}></div>
                     </div>
                 </div>
 

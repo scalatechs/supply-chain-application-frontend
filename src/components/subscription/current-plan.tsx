@@ -11,7 +11,7 @@ const currentPlan = ({
 }) => {
     return (
         <div className="flex flex-col items-start gap-6 w-full">
-            <div className="flex items-center gap-2 font-medium rounded-lg p-3 bg-red-100 text-red-600">
+            <div className="flex md:flex-row flex-col md:items-center items-start gap-2 font-medium rounded-lg p-3 bg-red-100 text-red-600">
                 <MessageSquareWarning />
                 <span className="font-semibold">Attention: </span>
                 Your current subscription will expire in 12 days. Renew your subscription.
