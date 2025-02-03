@@ -1,16 +1,41 @@
 import { StatsCard } from "@/components/dashboard/stats-cards"
 import { Button } from "@/components/ui/button"
-import { Link } from "react-router-dom"
 import CustomerOrders from "../components/customers/customers-orders"
+import AddCustomer from "../components/customers/add-customer"
+import { useEffect, useRef, useState } from "react"
 
 const Customers = () => {
+
+    const [showAddCustomerPopup, setShowAddCustomerPopup] = useState(false);
+    const popupRef = useRef<HTMLDivElement>(null);
+
+    // Close popup when clicking outside
+    useEffect(() => {
+        const handleClickOutside = (event: MouseEvent) => {
+            if (popupRef.current && !popupRef.current.contains(event.target as Node)) {
+                setShowAddCustomerPopup(false);
+            }
+        };
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, [setShowAddCustomerPopup]);
+
     return (
         <div className='w-full space-y-8'>
+
+            {/* Overlay */}
+            <div className={`${showAddCustomerPopup ? "visible" : "invisible"} bg-black inset-0 fixed bg-opacity-50 z-40`}></div>
+
             <div className='flex items-center justify-end'>
-                <Button variant="outline" className='flex items-center gap-2'>
-                    <Link to="/sales/add-employee">+&nbsp; New Customer</Link>
+                <Button
+                    onClick={() => setShowAddCustomerPopup(!showAddCustomerPopup)}
+                    variant="outline" className='flex items-center gap-2'>
+                    +&nbsp; New Customer
                 </Button>
             </div>
+
 
             <div className="grid gap-4 xl:grid-cols-4 lg:grid-cols-3">
                 <StatsCard
@@ -43,6 +68,10 @@ const Customers = () => {
             </div>
 
             <CustomerOrders />
+
+            <div className="w-full" ref={popupRef}>
+                <AddCustomer showAddCustomerPopup={showAddCustomerPopup} setShowAddCustomerPopup={setShowAddCustomerPopup} />
+            </div>
         </div>
     )
 }
