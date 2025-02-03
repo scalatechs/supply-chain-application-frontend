@@ -150,7 +150,7 @@ export default function ReturnOrders() {
                                         <X size={'35px'} className="p-2 bg-[#ffe6e6] text-red-700 rounded-md border border-red-700" />
                                     </TableCell>
                                     <TableCell>
-                                        <Link to={`/inventory/restock-product/${product.id}`} className="underline text-blue-500">
+                                        <Link to={`/return/${product.id}`}>
                                             <ChevronRight />
                                         </Link>
                                     </TableCell>
@@ -206,9 +206,11 @@ export default function ReturnOrders() {
                                                 <Check size={'35px'} className="p-2 bg-[#ecf7e6] text-green-700 rounded-md border border-green-700" />
                                                 <X size={'35px'} className="p-2 bg-[#ffe6e6] text-red-700 rounded-md border border-red-700" />
                                             </div>
-                                            <Link to={`/inventory/restock-product/${product.id}`} className="underline text-blue-500">
-                                                View details
-                                            </Link>
+                                            <TableCell>
+                                                <Link to={`/return/${product.id}`}>
+                                                    <ChevronRight />
+                                                </Link>
+                                            </TableCell>
                                         </div>
                                     </div>
                                 </div>
@@ -217,6 +219,6 @@ export default function ReturnOrders() {
                     ))}
                 </div>
             </div>
-        </div>
+        </div >
     )
 }

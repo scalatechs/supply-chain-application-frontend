@@ -89,7 +89,11 @@ export function Sidebar({ className }: SidebarProps) {
                                 }
                                 const isActive = location.pathname === item.href ||
                                     (item.href === "/" && location.pathname === "/") ||
-                                    (item.href === "/inventory" && location.pathname.startsWith("/inventory"));
+                                    (item.href === "/orders" && location.pathname.startsWith("/orders")) ||
+                                    (item.href === "/inventory" && location.pathname.startsWith("/inventory")) ||
+                                    (item.href === "/sales" && location.pathname.startsWith("/sales")) ||
+                                    (item.href === "/customers" && location.pathname.startsWith("/customers")) ||
+                                    (item.href === "/return" && location.pathname.startsWith("/return"))
                                 const Icon = item.icon;
                                 return (
                                     <Link
@@ -147,7 +151,8 @@ export function Sidebar({ className }: SidebarProps) {
                                     (item.href === "/orders" && location.pathname.startsWith("/orders")) ||
                                     (item.href === "/inventory" && location.pathname.startsWith("/inventory")) ||
                                     (item.href === "/sales" && location.pathname.startsWith("/sales")) ||
-                                    (item.href === "/customers" && location.pathname.startsWith("/customers"))
+                                    (item.href === "/customers" && location.pathname.startsWith("/customers")) ||
+                                    (item.href === "/return" && location.pathname.startsWith("/return"))
                                 const Icon = item.icon;
                                 return (
                                     <Link

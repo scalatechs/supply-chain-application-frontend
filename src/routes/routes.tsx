@@ -22,6 +22,7 @@ import HelpAndSupport from '../pages/HelpAndSupport'
 import Notifications from '@/pages/Notifications'
 import Subscription from '@/pages/Subscription'
 import Customers from '@/pages/Customers'
+import RefundRequest from "../components/return&refunds/refund-request"
 
 const AppLayout = () => {
     const location = useLocation();
@@ -51,7 +52,10 @@ const AppLayout = () => {
                             <Route path="edit-product/:id" element={<EditProduct />} />
                         </Route>
                         <Route path='/shipment' element={<Shipment active={active} setActive={setActive} />} />
-                        <Route path='/return' element={<ReturnAndRefunds />} />
+                        <Route path='/return'>
+                            <Route path='' element={<ReturnAndRefunds />} />
+                            <Route path=':id' element={<RefundRequest />} />
+                        </Route>
                         <Route path='/orders'>
                             <Route path='' element={<Orders />} />
                             <Route path='order/:id' element={<Order />} />
