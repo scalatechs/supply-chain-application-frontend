@@ -1,22 +1,22 @@
-import {
-    Table,
-    TableBody,
-    TableCell,
-    TableHead,
-    TableHeader,
-    TableRow,
-} from "@/components/ui/table"
+// import {
+//     Table,
+//     TableBody,
+//     TableCell,
+//     TableHead,
+//     TableHeader,
+//     TableRow,
+// } from "@/components/ui/table"
 import { Button } from "@/components/ui/button"
-import { Checkbox } from "@/components/ui/checkbox"
+// import { Checkbox } from "@/components/ui/checkbox"
 import { Calendar, Filter, MoreHorizontal, Search, Upload } from 'lucide-react'
-import { useContext, useEffect, useRef, useState } from "react"
-import { InventoryContext } from "@/context/inventory-context.tsx"
-import { Link } from "react-router-dom"
+import { useEffect, useRef, useState } from "react"
+// import { Link } from "react-router-dom"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import CalendarComponent from "@/components/ui/calendar"
+// import { OrdersContext } from "@/context/orders-context"
 
 export default function Orders() {
-    const { inventory } = useContext(InventoryContext);
+    // const { orders } = useContext(OrdersContext);
     const [showCalendar, setShowCalendar] = useState(false)
     const calendarRef = useRef<HTMLDivElement>(null);
 
@@ -112,7 +112,7 @@ export default function Orders() {
             </div>
 
             {/* Desktop view */}
-            <div className="hidden md:block">
+            {/* <div className="hidden md:block">
                 <ScrollArea className="w-full">
                     <Table>
                         <TableHeader>
@@ -127,10 +127,10 @@ export default function Orders() {
                             </TableRow>
                         </TableHeader>
                         <TableBody>
-                            {inventory.map((product) => (
-                                <TableRow key={product.id}>
+                            {orders.map((order) => (
+                                <TableRow key={order._id}>
                                     <TableCell className="flex items-center gap-2 h-16">
-                                        <Checkbox /><span className="mt-1">{product.id}</span>
+                                        <Checkbox /><span className="mt-1">{order._id}</span>
                                     </TableCell>
                                     <TableCell className="text-lg text-neutral-700">
                                         {new Date().toLocaleDateString()}
@@ -142,39 +142,36 @@ export default function Orders() {
                                         Kathmandu, Nepal
                                     </TableCell>
                                     <TableCell className="text-lg text-neutral-700">
-                                        Rs. {product.price}
+                                        Rs. {order.price}
                                     </TableCell>
                                     <TableCell className="text-lg text-neutral-700">
                                         <span
-                                            className={`inline-flex rounded-full px-2 py-1 text-xs font-medium ${product.price > 100
-                                                ? "bg-green-100 text-green-700"
-                                                : "bg-yellow-100 text-yellow-700"
-                                                }`}
+                                            className={`inline-flex rounded-full px-2 py-1 text-xs font-medium bg-yellow-100 text-yellow-700`}
                                         >
-                                            {product.price > 100 ? "Shipping" : "In-delivery"}
+                                            In-delivery
                                         </span>
                                     </TableCell>
                                     <TableCell className="underline text-blue-500">
-                                        <Link to={`/orders/order/${product.id}`}>View details</Link>
+                                        <Link to={`/orders/order/${order._id}`}>View details</Link>
                                     </TableCell>
                                 </TableRow>
                             ))}
                         </TableBody>
                     </Table>
                 </ScrollArea>
-            </div>
+            </div> */}
 
             {/* Mobile view */}
-            <div className="md:hidden px-4">
+            {/* <div className="md:hidden px-4">
                 <div className="divide-y">
-                    {inventory.map((product) => (
-                        <div key={product.id} className="py-4">
+                    {orders.map((order) => (
+                        <div key={order._id} className="py-4">
                             <div className="flex items-start gap-4">
                                 <Checkbox className="mt-2" />
                                 <div className="flex-1">
                                     <div className="mb-2">
                                         <span className="text-lg text-neutral-700 capitalize block">
-                                            Order Id: {product.id}
+                                            Order Id: {order._id}
                                         </span>
                                         <span className="text-sm text-neutral-500">
                                             Order Created: {new Date().toLocaleDateString()}
@@ -191,21 +188,18 @@ export default function Orders() {
                                         </div>
                                         <div className="flex justify-between">
                                             <span className="text-neutral-500">Total:</span>
-                                            <span className="text-neutral-700">Rs. {product.price}</span>
+                                            <span className="text-neutral-700">Rs. {order.price}</span>
                                         </div>
                                         <div className="flex justify-between">
                                             <span className="text-neutral-500">Status:</span>
                                             <span
-                                                className={`inline-flex rounded-full px-2 py-1 text-xs font-medium ${product.price > 100
-                                                    ? "bg-green-100 text-green-700"
-                                                    : "bg-yellow-100 text-yellow-700"
-                                                    }`}
+                                                className={`inline-flex rounded-full px-2 py-1 text-xs font-medium bg-yellow-100 text-yellow-700`}
                                             >
-                                                {product.price > 100 ? "Shipping" : "In-delivery"}
+                                                In-delivery
                                             </span>
                                         </div>
                                         <div className="flex justify-end mt-2 underline text-blue-500">
-                                            <Link to={`/orders/order/${product.id}`}>View details</Link>
+                                            <Link to={`/orders/order/${order._id}`}>View details</Link>
                                         </div>
                                     </div>
                                 </div>
@@ -213,7 +207,9 @@ export default function Orders() {
                         </div>
                     ))}
                 </div>
-            </div>
+            </div> */}
+
+            <h3 className="w-full text-center">No orders yet</h3>
         </div>
     )
 }

@@ -1,8 +1,7 @@
 import { Link } from "react-router-dom"
 import { Button } from "../ui/button"
-import ProductDelivery from "./product-delivery"
-import ProductDescription from "./product-description"
 import { ChevronLeft } from "lucide-react"
+import ProductForm from "./product-form"
 
 const AddProduct = () => {
     return (
@@ -16,14 +15,10 @@ const AddProduct = () => {
                     </Button>
                 </Link>
             </div>
-            <div className="w-full flex flex-col xl:flex-row items-start justify-between gap-4">
 
-                {/* Product Details  */}
-                <ProductDescription />
 
-                {/* Product Images  */}
-                <ProductDelivery />
-            </div>
+            {/* Product Form */}
+            <ProductForm />
         </div>
     )
 }

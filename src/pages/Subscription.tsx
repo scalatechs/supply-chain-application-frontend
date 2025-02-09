@@ -1,14 +1,48 @@
 import { ArrowUpRight, CircleHelp } from "lucide-react"
-import SubscriptionCard from "../components/subscription/subscription-card"
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Features from "../components/subscription/features"
 import Popup from "@/components/subscription/popup";
 import CurrentPlan from "@/components/subscription/current-plan";
+import axios from "axios";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Separator } from "@/components/ui/separator";
 
 const Subscription = () => {
-    const [activeCard, setActiveCard] = useState<string | null>(null);
     const [showPopup, setShowPopup] = useState(false);
     const [showCurrentPlan, setShowCurrentPlan] = useState(false);
+
+    type SubscriptionType = 'monthly' | 'quaterly' | 'anually';
+
+    const [selectedPlan, setSelectedPlan] = useState<SubscriptionType>('monthly');
+
+    // Add type for the cardType parameter
+    const handlePlanSelect = (plan: SubscriptionType) => {
+        setSelectedPlan(plan);
+    };
+
+
+    const [data, setData] = useState<any | []>([]);
+    const token = localStorage.getItem("token");
+
+    //fetch data
+    const fetchSubscription = async () => {
+        try {
+            const response = await axios.get("https://supply-chain-application-backend-1.onrender.com/api/v1/subscriptionplan/", {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    "Content-Type": "application/json",
+                },
+            })
+            setData(response.data.data)
+            console.log(response.data.data)
+        } catch (error: any) {
+            console.log(`Error: ${error.message}`)
+        }
+    }
+
+    useEffect(() => {
+        fetchSubscription()
+    }, [])
 
     return (
         <div className="flex flex-col items-start gap-12 w-full">
@@ -23,7 +57,8 @@ const Subscription = () => {
                     </>
                     :
 
-                    <>
+                    <div
+                        className="flex flex-col items-start gap-12 w-full">
                         <h3 className="flex items-center gap-2 font-medium md:text-2xl text-base">
                             Supply chain Pro
                             <CircleHelp color="gray" />
@@ -34,27 +69,72 @@ const Subscription = () => {
 
                         {/* Subscription Cards */}
                         <div className="w-full flex md:flex-row flex-col items-start gap-4">
-                            <SubscriptionCard
-                                subscriptionType="monthly"
-                                price={4000}
-                                discountType="free 15-day trial"
-                                isActive={activeCard === "monthly"}
-                                onClick={() => setActiveCard(activeCard === "monthly" ? null : "monthly")}
-                            />
-                            <SubscriptionCard
-                                subscriptionType="quarterly"
-                                price={14000}
-                                discountType="save 12 %"
-                                isActive={activeCard === "quarterly"}
-                                onClick={() => setActiveCard(activeCard === "quarterly" ? null : "quarterly")}
-                            />
-                            <SubscriptionCard
-                                subscriptionType="annual"
-                                price={34000}
-                                discountType="save 35 %"
-                                isActive={activeCard === "annual"}
-                                onClick={() => setActiveCard(activeCard === "annual" ? null : "annual")}
-                            />
+
+                            {/* Monthly */}
+                            <div
+                                onClick={() => handlePlanSelect('monthly')}
+                                className={`md:w-1/3 w-full border ${selectedPlan === 'monthly' ? "border-blue-600 bg-blue-50" : ""} p-4 rounded-xl flex flex-col items-start gap-4 cursor-pointer`}
+                            >
+                                <div className="flex items-center gap-2">
+                                    <Checkbox
+                                        checked={selectedPlan === 'monthly'}
+                                        className="rounded-full"
+                                    />
+                                    <h3 className="md:text-xl text-base font-medium capitalize">{data[0]?.type}</h3>
+                                </div>
+                                <Separator />
+                                <h4 className="md:text-base text-sm font-medium">Rs {data[0]?.price} / mo</h4>
+                                <h5 className="md:text-sm text-xs text-neutral-600 -mt-4">
+                                    {data[0]?.billingCycle}
+                                </h5>
+                                <div className="py-1 px-2 first-letter:capitalize rounded-sm bg-blue-200 text-blue-700 text-xs font-medium">
+                                    Free {data[0]?.trialdays} days trial
+                                </div>
+                            </div>
+
+                            {/* Quaterly */}
+                            <div
+                                onClick={() => handlePlanSelect('quaterly')}
+                                className={`md:w-1/3 w-full border ${selectedPlan === 'quaterly' ? "border-blue-600 bg-blue-50" : ""} p-4 rounded-xl flex flex-col items-start gap-4 cursor-pointer`}
+                            >
+                                <div className="flex items-center gap-2">
+                                    <Checkbox
+                                        checked={selectedPlan === 'quaterly'}
+                                        className="rounded-full"
+                                    />
+                                    <h3 className="md:text-xl text-base font-medium capitalize">{data[1]?.type}</h3>
+                                </div>
+                                <Separator />
+                                <h4 className="md:text-base text-sm font-medium">Rs {data[1]?.price} / mo</h4>
+                                <h5 className="md:text-sm text-xs text-neutral-600 -mt-4">
+                                    {data[1]?.billingCycle}
+                                </h5>
+                                <div className="py-1 px-2 first-letter:capitalize rounded-sm bg-blue-200 text-blue-700 text-xs font-medium">
+                                    Free {data[1]?.trialdays} days trial
+                                </div>
+                            </div>
+
+                            {/* Anually */}
+                            <div
+                                onClick={() => handlePlanSelect('anually')}
+                                className={`md:w-1/3 w-full border ${selectedPlan === 'anually' ? "border-blue-600 bg-blue-50" : ""} p-4 rounded-xl flex flex-col items-start gap-4 cursor-pointer`}
+                            >
+                                <div className="flex items-center gap-2">
+                                    <Checkbox
+                                        checked={selectedPlan === 'anually'}
+                                        className="rounded-full"
+                                    />
+                                    <h3 className="md:text-xl text-base font-medium capitalize">{data[2]?.type}</h3>
+                                </div>
+                                <Separator />
+                                <h4 className="md:text-base text-sm font-medium">Rs {data[2]?.price} / mo</h4>
+                                <h5 className="md:text-sm text-xs text-neutral-600 -mt-4">
+                                    {data[2]?.billingCycle}
+                                </h5>
+                                <div className="py-1 px-2 first-letter:capitalize rounded-sm bg-blue-200 text-blue-700 text-xs font-medium">
+                                    Free {data[2]?.trialdays} days trial
+                                </div>
+                            </div>
                         </div>
 
                         {/* Overview */}
@@ -80,11 +160,19 @@ const Subscription = () => {
                             </button>
                         </div>
 
-                    </>
+                    </div>
             }
 
             {/* Popup */}
-            {showPopup && <Popup showCurrentPlan={showCurrentPlan} setShowCurrentPlan={setShowCurrentPlan} showPopup={showPopup} setShowPopup={setShowPopup} />}
+            {showPopup &&
+                <Popup
+                    selectedPlan={selectedPlan}
+                    showCurrentPlan={showCurrentPlan}
+                    setShowCurrentPlan={setShowCurrentPlan}
+                    showPopup={showPopup}
+                    setShowPopup={setShowPopup}
+                />
+            }
         </div >
     )
 }

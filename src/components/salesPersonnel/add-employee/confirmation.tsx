@@ -1,4 +1,5 @@
 import { Switch } from "@/components/ui/switch"
+import axios from "axios";
 import { PencilLine } from "lucide-react"
 
 // Interface for the component props
@@ -38,8 +39,45 @@ const confirmation = ({
     setCurrentIndex,
 }: ConfirmationProps) => {
 
+    const token = localStorage.getItem("token")
+
+    const handleFormSubmit = async (e: any) => {
+        e.preventDefault();
+        try {
+            const response = await axios.post("https://supply-chain-application-backend-1.onrender.com/api/v1/sales/add", {
+                firstname: firstName,
+                lastname: lastName,
+                phone: phoneNumber,
+                email: email,
+                password: password,
+                address: address,
+                assign_region: assignRegion,
+                role: assignRole,
+                take_orders: takeOrders,
+                collect_payments: collectPayments,
+                track_shipment: trackShipmentPerformance,
+                view_inventory: viewInventory
+            }, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    "Content-Type": "application/json",
+                },
+            }
+            );
+            console.log(response.data);
+            if (response.status === 200) {
+                setCurrentIndex(currentIndex + 1); // move to success page
+            }
+        } catch (error: any) {
+            console.log(`Error: ${error.message}`)
+        }
+
+    };
+
     return (
-        <div className="w-full flex flex-col items-end">
+        <form
+            onSubmit={handleFormSubmit}
+            className="w-full flex flex-col items-end">
 
             <div className="w-full flex xl:flex-row flex-col xl:items-start items-center justify-between gap-4">
                 {/* Basic Information */}
@@ -61,6 +99,7 @@ const confirmation = ({
                             </label>
                             <div className="w-full flex items-center gap-2 mt-1 rounded-sm px-3 py-3 border border-neutral-400 outline-none" >
                                 <input
+                                    readOnly
                                     value={firstName}
                                     type="text" name="firstName"
                                     placeholder="Suresh"
@@ -78,6 +117,7 @@ const confirmation = ({
                             </label>
                             <div className="w-full flex items-center gap-2 mt-1 rounded-sm px-3 py-3 border border-neutral-400 outline-none" >
                                 <input
+                                    readOnly
                                     value={lastName}
                                     type="text" name="lastName"
                                     placeholder="Shrestha"
@@ -98,6 +138,7 @@ const confirmation = ({
                             </label>
                             <div className="w-full flex items-center gap-2 mt-1 rounded-sm px-3 py-3 border border-neutral-400 outline-none" >
                                 <input
+                                    readOnly
                                     value={email}
                                     type="email" name="email"
                                     placeholder="sureshhr@gmail.com"
@@ -118,6 +159,7 @@ const confirmation = ({
                                     <option value="100">+ 100</option>
                                 </select>
                                 <input
+                                    readOnly
                                     value={phoneNumber}
                                     type="text"
                                     name="phoneNumber"
@@ -137,6 +179,7 @@ const confirmation = ({
                                 Address
                             </label>
                             <input
+                                readOnly
                                 id="address"
                                 name="address"
                                 value={address}
@@ -164,6 +207,7 @@ const confirmation = ({
                             </label>
                             <div className="w-full flex items-center gap-2 mt-1 rounded-sm px-3 py-3 border border-neutral-400 outline-none" >
                                 <input
+                                    readOnly
                                     value={password}
                                     type="password" name="password"
                                     placeholder="***********"
@@ -181,6 +225,7 @@ const confirmation = ({
                             </label>
                             <div className="w-full flex items-center gap-2 mt-1 rounded-sm px-3 py-3 border border-neutral-400 outline-none" >
                                 <input
+                                    readOnly
                                     value={confirmPassword}
                                     type="password" name="confirmPassword"
                                     placeholder="***********"
@@ -203,6 +248,7 @@ const confirmation = ({
                         </label>
                         <div className="w-full flex items-center gap-2 mt-1 rounded-sm p-3 border border-neutral-400 outline-none" >
                             <input
+                                readOnly
                                 value={assignRole}
                                 type="text" name="assignRole"
                                 placeholder="Assign Role"
@@ -222,6 +268,7 @@ const confirmation = ({
                             </label>
                             <div className="w-full flex items-center gap-2 mt-1 rounded-sm p-3 border border-neutral-400 outline-none" >
                                 <input
+                                    readOnly
                                     id="assignRegion"
                                     value={assignRegion}
                                     type="text"
@@ -290,11 +337,11 @@ const confirmation = ({
             </div>
 
             <button
-                onClick={() => setCurrentIndex(currentIndex + 1)}
+                type="submit"
                 className="md:w-auto w-full mt-6 px-3 py-4 rounded-lg bg-[#003dff] text-white md:text-base text-sm font-medium">
                 Create Account
             </button>
-        </div>
+        </form>
     )
 }
 

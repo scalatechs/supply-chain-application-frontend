@@ -36,7 +36,6 @@ const Customers = () => {
                 </Button>
             </div>
 
-
             <div className="grid gap-4 xl:grid-cols-4 lg:grid-cols-3">
                 <StatsCard
                     title="Total Customers"

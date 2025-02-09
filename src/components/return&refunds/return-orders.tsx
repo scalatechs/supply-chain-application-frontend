@@ -10,15 +10,65 @@ import { Button } from "@/components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Calendar, Check, ChevronRight, Filter, MoreHorizontal, Search, Upload, X } from 'lucide-react'
 import { useContext, useEffect, useRef, useState } from "react"
-import { InventoryContext } from "@/context/inventory-context.tsx"
 import { Link } from "react-router-dom"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import CalendarComponent from "@/components/ui/calendar"
+import { ReturnContext } from "@/context/return-context"
+import axios from "axios"
 
 export default function ReturnOrders() {
-    const { inventory } = useContext(InventoryContext);
+    const { returnItems } = useContext(ReturnContext);
     const [showCalendar, setShowCalendar] = useState(false)
     const calendarRef = useRef<HTMLDivElement>(null);
+
+    //approve product status
+    const approveProduct = async (id: string) => {
+        try {
+            const token = localStorage.getItem("token");
+            const response = await axios.patch(
+                `https://supply-chain-application-backend-1.onrender.com/api/v1/refund/${id}`,
+                {
+                    "status": "APPROVED"
+                },
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                        "Content-Type": "application/json",
+                    },
+                }
+            );
+            if (response.status == 200) {
+                alert(`Product ${id} approved!`)
+            }
+        } catch (error: any) {
+            alert(`Error: ${error.message}`,);
+        }
+    };
+
+    //approve product status
+    const rejectProduct = async (id: string) => {
+        try {
+            const token = localStorage.getItem("token");
+            const response = await axios.patch(
+                `https://supply-chain-application-backend-1.onrender.com/api/v1/refund/${id}`,
+                {
+                    "status": "REJECTED"
+                },
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                        "Content-Type": "application/json",
+                    },
+                }
+            );
+            if (response.status == 200) {
+                alert(`Product ${id} rejected!`)
+            }
+        } catch (error: any) {
+            alert(`Error: ${error.message}`,);
+        }
+    };
+
 
     // Hide calendar when clicking outside
     useEffect(() => {
@@ -120,37 +170,37 @@ export default function ReturnOrders() {
                             </TableRow>
                         </TableHeader>
                         <TableBody>
-                            {inventory.map((product) => (
-                                <TableRow key={product.id}>
+                            {returnItems.map((product, idx) => (
+                                <TableRow key={idx}>
                                     <TableCell className="flex items-center gap-2 h-16">
-                                        <Checkbox /><span className="mt-1">{product.id}</span>
+                                        <Checkbox /><span className="mt-1">{product._id}</span>
                                     </TableCell>
                                     <TableCell>
-                                        {new Date().toLocaleDateString()}
+                                        {product.createdAt}
                                     </TableCell>
-                                    <TableCell className="text-lg text-neutral-700">
-                                        # {product.id}
+                                    <TableCell className="text-sm text-neutral-700">
+                                        # {product.customerId}
                                     </TableCell>
-                                    <TableCell className="text-lg text-neutral-700">
+                                    <TableCell className="text-sm text-neutral-700">
                                         Michael Jordan
                                     </TableCell>
-                                    <TableCell>Damaged Goods</TableCell>
-                                    <TableCell className="text-lg text-neutral-700">
+                                    <TableCell className="capitalize">{product.reason}</TableCell>
+                                    <TableCell className="text-sm text-neutral-700">
                                         <span
-                                            className={`inline-flex rounded-full px-2 py-1 text-xs font-medium ${product.price > 100
-                                                ? "bg-green-100 text-green-700"
-                                                : "bg-yellow-100 text-yellow-700"
-                                                }`}
-                                        >
-                                            {product.price > 100 ? "Approved" : "Pending"}
+                                            className={`inline-flex rounded-full px-2 py-1 text-xs font-medium bg-green-100 text-green-700`}
+                                        > {product.status}
                                         </span>
                                     </TableCell>
                                     <TableCell className="flex items-center gap-2">
-                                        <Check size={'35px'} className="p-2 bg-[#ecf7e6] text-green-700 rounded-md border border-green-700" />
-                                        <X size={'35px'} className="p-2 bg-[#ffe6e6] text-red-700 rounded-md border border-red-700" />
+                                        <Check
+                                            onClick={() => approveProduct(product._id)}
+                                            size={'35px'} className="p-2 bg-[#ecf7e6] text-green-700 rounded-md border border-green-700" />
+                                        <X
+                                            onClick={() => rejectProduct(product._id)}
+                                            size={'35px'} className="p-2 bg-[#ffe6e6] text-red-700 rounded-md border border-red-700" />
                                     </TableCell>
                                     <TableCell>
-                                        <Link to={`/return/${product.id}`}>
+                                        <Link to={`/return/${product._id}`}>
                                             <ChevronRight />
                                         </Link>
                                     </TableCell>
@@ -164,17 +214,17 @@ export default function ReturnOrders() {
             {/* Mobile view */}
             <div className="md:hidden px-4">
                 <div className="divide-y">
-                    {inventory.map((product) => (
-                        <div key={product.id} className="py-4">
+                    {returnItems.map((product, idx) => (
+                        <div key={idx} className="py-4">
                             <div className="flex items-start gap-4">
                                 <Checkbox className="mt-2" />
                                 <div className="flex-1">
                                     <div className="mb-2">
-                                        <span className="text-lg text-neutral-700 capitalize block">
-                                            Order Id: {product.id}
+                                        <span className="text-sm text-neutral-700 capitalize block">
+                                            Order Id: {product._id}
                                         </span>
                                         <span className="text-sm text-neutral-500">
-                                            Date: {new Date().toLocaleDateString()}
+                                            Date: {product.createdAt}
                                         </span>
                                     </div>
                                     <div className="space-y-2 text-sm">
@@ -188,26 +238,26 @@ export default function ReturnOrders() {
                                         </div>
                                         <div className="flex justify-between">
                                             <span className="text-neutral-500">Reason:</span>
-                                            <span className="text-neutral-700">Damaged Goods</span>
+                                            <span className="text-neutral-700">{product.reason}</span>
                                         </div>
                                         <div className="flex justify-between">
                                             <span className="text-neutral-500">Status:</span>
                                             <span
-                                                className={`inline-flex rounded-full px-2 py-1 text-xs font-medium ${product.price > 100
-                                                    ? "bg-green-100 text-green-700"
-                                                    : "bg-yellow-100 text-yellow-700"
-                                                    }`}
-                                            >
-                                                {product.price > 100 ? "Approved" : "Pending"}
+                                                className={`inline-flex rounded-full px-2 py-1 text-xs font-medium bg-green-100 text-green-700`}
+                                            > {product.status}
                                             </span>
                                         </div>
                                         <div className="flex justify-between items-center">
                                             <div className="flex items-center gap-4">
-                                                <Check size={'35px'} className="p-2 bg-[#ecf7e6] text-green-700 rounded-md border border-green-700" />
-                                                <X size={'35px'} className="p-2 bg-[#ffe6e6] text-red-700 rounded-md border border-red-700" />
+                                                <Check
+                                                    onClick={() => approveProduct(product._id)}
+                                                    size={'35px'} className="p-2 bg-[#ecf7e6] text-green-700 rounded-md border border-green-700" />
+                                                <X
+                                                    onClick={() => rejectProduct(product._id)}
+                                                    size={'35px'} className="p-2 bg-[#ffe6e6] text-red-700 rounded-md border border-red-700" />
                                             </div>
                                             <TableCell>
-                                                <Link to={`/return/${product.id}`}>
+                                                <Link to={`/return/${product._id}`}>
                                                     <ChevronRight />
                                                 </Link>
                                             </TableCell>

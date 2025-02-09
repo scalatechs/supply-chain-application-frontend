@@ -6,11 +6,9 @@ import {
 } from "@/components/ui/input-otp"
 import { useSignupContext } from "../../../hooks/useSignupContext";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom"
+import axios from "axios"
 
 const verification = ({ otp, updateField }: { otp: string, updateField: (data: any) => void }) => {
-
-    const navigate = useNavigate();
     const { currentStep, setCurrentStep, setIsFormSubmitted } = useSignupContext()
     const [otpValue, setOtpValue] = useState(otp || "");
 
@@ -18,7 +16,7 @@ const verification = ({ otp, updateField }: { otp: string, updateField: (data: a
         setOtpValue(value)
     }
 
-    const handleFormSubmit = (e: React.FormEvent) => {
+    const handleFormSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         updateField({ otp: otpValue })
         setIsFormSubmitted(prevState => {
@@ -28,8 +26,9 @@ const verification = ({ otp, updateField }: { otp: string, updateField: (data: a
             }
             return newState;
         })
+        const response = await axios.post("https://supply-chain-application-backend-1.onrender.com/api/v1/distributor/signup/")
+        console.log(response)
         setCurrentStep(1);
-        navigate('/dashboard')
     }
 
     return (

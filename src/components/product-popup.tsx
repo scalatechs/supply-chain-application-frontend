@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 import { Button } from './ui/button';
 
 const ProductPopup = ({ show }: { show: boolean }) => {
-    const { inventory } = useContext(InventoryContext);
+    const { inventory }: any = useContext(InventoryContext);
 
     return (
         <div className={`fixed inset-0 flex items-center justify-center p-4 z-40 ${show ? 'block' : 'hidden'}`}>
@@ -26,25 +26,25 @@ const ProductPopup = ({ show }: { show: boolean }) => {
                                 </TableRow>
                             </TableHeader>
                             <TableBody>
-                                {inventory.map((product) => (
-                                    <TableRow key={product.id}>
-                                        <TableCell className="flex items-center h-12 md:h-16">
-                                            <Checkbox /><span className="ml-2">{product.id}</span>
-                                        </TableCell>
-                                        <TableCell className="min-w-[200px]">
-                                            <div className="flex items-center gap-2 md:gap-4">
-                                                <img src={product.image} alt="" className="w-8 h-8 md:w-12 md:h-12 rounded-lg object-contain" />
-                                                <span className="text-sm md:text-lg text-neutral-700 capitalize">{product.name}</span>
-                                            </div>
-                                        </TableCell>
-                                        <TableCell className="text-sm md:text-lg text-neutral-700 whitespace-nowrap">{product.category}</TableCell>
-                                        <TableCell className="text-sm md:text-lg text-neutral-700 whitespace-nowrap">{product.price}</TableCell>
-                                        <TableCell className="text-sm md:text-lg text-neutral-700 whitespace-nowrap">{product.stock}</TableCell>
-                                        <TableCell className="whitespace-nowrap">
-                                            <Link to={`/inventory/restock-product/${product.id}`} className="text-sm md:text-base underline text-blue-500">View details</Link>
-                                        </TableCell>
-                                    </TableRow>
-                                ))}
+                                {/* {inventory.map((product) => ( */}
+                                <TableRow key={inventory._id}>
+                                    <TableCell className="flex items-center h-12 md:h-16">
+                                        <Checkbox /><span className="ml-2">{inventory._id}</span>
+                                    </TableCell>
+                                    <TableCell className="min-w-[200px]">
+                                        <div className="flex items-center gap-2 md:gap-4">
+                                            <img src={inventory.image} alt="" className="w-8 h-8 md:w-12 md:h-12 rounded-lg object-contain" />
+                                            <span className="text-sm md:text-lg text-neutral-700 capitalize">{inventory.name}</span>
+                                        </div>
+                                    </TableCell>
+                                    <TableCell className="text-sm md:text-lg text-neutral-700 whitespace-nowrap">{inventory.category}</TableCell>
+                                    <TableCell className="text-sm md:text-lg text-neutral-700 whitespace-nowrap">{inventory.price}</TableCell>
+                                    <TableCell className="text-sm md:text-lg text-neutral-700 whitespace-nowrap">{inventory.stock}</TableCell>
+                                    <TableCell className="whitespace-nowrap">
+                                        <Link to={`/inventory/restock-product/${inventory._id}`} className="text-sm md:text-base underline text-blue-500">View details</Link>
+                                    </TableCell>
+                                </TableRow>
+                                {/* ))} */}
                             </TableBody>
                         </Table>
                     </div>

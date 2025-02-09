@@ -8,17 +8,10 @@ const addEmployee = () => {
 
     //managing indexes
     const [currentIndex, setCurrentIndex] = useState(1);
-    const [changeStyles, setChangeStyles] = useState(false);
 
     useEffect(() => {
         setCurrentIndex(1) //set current index to 1 initially
     }, [])
-
-    useEffect(() => {
-        if (currentIndex == 3) {
-            setChangeStyles(changeStyles)
-        }
-    }, [currentIndex])
 
     //managing data across forms
     type FormData = {

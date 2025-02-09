@@ -9,8 +9,31 @@ import {
     SelectValue,
 } from "@/components/ui/select"
 import { Button } from "../ui/button"
+import { useEffect, useState } from "react"
+import { useParams } from "react-router-dom"
+import axios from "axios"
 
 const ProductDelivery = ({ image }: { image?: string }) => {
+    const { id } = useParams();
+    const [product, setProduct] = useState<any | []>([])
+
+    const fetchProduct = async () => {
+        try {
+            const response = await axios.get(`https://supply-chain-application-backend-1.onrender.com/api/v1/product/${id}`)
+            setProduct(response.data.data[0])
+            console.log(response.data.data[0])
+        } catch (error) {
+
+        }
+    }
+
+    useEffect(() => {
+        fetchProduct()
+    }, [])
+
+    if (!product) {
+        return <div>Product not found</div>
+    }
 
     return (
         <div className="w-full xl:w-1/2 flex flex-col gap-6">
@@ -67,7 +90,9 @@ const ProductDelivery = ({ image }: { image?: string }) => {
                         <div className="md:w-1/2 w-full">
                             <Label>Product Weight</Label>
                             <div className="w-full flex items-center gap-2">
-                                <input placeholder="Enter product weight" className="w-full outline-none text-sm p-2 border border-zinc-200 rounded-lg" />
+                                <input
+                                    value={product.product_weight}
+                                    placeholder="Enter product weight" className="w-full outline-none text-sm p-2 border border-zinc-200 rounded-lg" />
                                 <Select>
                                     <SelectTrigger className="w-1/4">
                                         <SelectValue placeholder="kg" />
@@ -86,7 +111,9 @@ const ProductDelivery = ({ image }: { image?: string }) => {
                         <div className="md:w-1/2 w-full">
                             <Label>Price</Label>
                             <div className="w-full flex items-center gap-2">
-                                <input placeholder="Enter product price" className="w-full outline-none text-sm p-2 border border-zinc-200 rounded-lg" />
+                                <input
+                                    value={product.price}
+                                    placeholder="Enter product price" className="w-full outline-none text-sm p-2 border border-zinc-200 rounded-lg" />
                                 <Select>
                                     <SelectTrigger className="w-1/4">
                                         <SelectValue placeholder="Rs" />
@@ -107,7 +134,9 @@ const ProductDelivery = ({ image }: { image?: string }) => {
                         <div className="xl:w-1/3 w-full">
                             <Label>Length</Label>
                             <div className="w-full flex items-center gap-2">
-                                <input placeholder="e.g 5" className="xl:w-2/3 w-full outline-none text-sm p-2 border border-zinc-200 rounded-lg" />
+                                <input
+                                    value={product.length}
+                                    placeholder="e.g 5" className="xl:w-2/3 w-full outline-none text-sm p-2 border border-zinc-200 rounded-lg" />
                                 <Select>
                                     <SelectTrigger className="xl:w-1/3 w-1/4">
                                         <SelectValue placeholder="in" />
@@ -126,7 +155,9 @@ const ProductDelivery = ({ image }: { image?: string }) => {
                         <div className="xl:w-1/3 w-full">
                             <Label>Breadh</Label>
                             <div className="w-full flex items-center gap-2">
-                                <input placeholder="e.g 10" className="xl:w-2/3 w-full outline-none text-sm p-2 border border-zinc-200 rounded-lg" />
+                                <input
+                                    value={product.breadth}
+                                    placeholder="e.g 10" className="xl:w-2/3 w-full outline-none text-sm p-2 border border-zinc-200 rounded-lg" />
                                 <Select>
                                     <SelectTrigger className="xl:w-1/3 w-1/4">
                                         <SelectValue placeholder="in" />
@@ -145,7 +176,9 @@ const ProductDelivery = ({ image }: { image?: string }) => {
                         <div className="xl:w-1/3 w-full">
                             <Label>Width</Label>
                             <div className="w-full flex items-center gap-2">
-                                <input placeholder="e.g 4" className="xl:w-2/3 w-full outline-none text-sm p-2 border border-zinc-200 rounded-lg" />
+                                <input
+                                    value={product.width}
+                                    placeholder="e.g 4" className="xl:w-2/3 w-full outline-none text-sm p-2 border border-zinc-200 rounded-lg" />
                                 <Select>
                                     <SelectTrigger className="xl:w-1/3 w-1/4">
                                         <SelectValue placeholder="in" />

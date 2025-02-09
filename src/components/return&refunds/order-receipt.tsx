@@ -1,12 +1,33 @@
-import { InventoryContext } from "@/context/inventory-context"
-import { useContext } from "react"
 import { useParams } from "react-router-dom";
 import { Separator } from "../ui/separator";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 const orderReceipt = () => {
+
     const { id } = useParams();
-    const { inventory } = useContext(InventoryContext);
-    const product = inventory.find(item => item.id === id);
+    const [product, setProduct] = useState<any | []>([]);
+
+    const token = localStorage.getItem("token");
+    const fetchProduct = async () => {
+        try {
+            const response = await axios.get(`https://supply-chain-application-backend-1.onrender.com/api/v1/refund/${id}`,
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                        "Content-Type": "application/json",
+                    },
+                }
+            )
+            setProduct(response.data.data)
+        } catch (error: any) {
+            console.log(`Error: ${error.message}`)
+        }
+    }
+
+    useEffect(() => {
+        fetchProduct();
+    }, [])
 
     if (!product) {
         return <div>Product not found</div>
@@ -25,19 +46,19 @@ const orderReceipt = () => {
 
                 <div className="mt-4 flex flex-col items-start gap-2 md:text-base text-sm">
                     <h3 className="text-neutral-600">Order ID:&nbsp;
-                        <span className="text-black">#{product.id}</span>
+                        <span className="text-black">#{product[0]?._id}</span>
                     </h3>
                     <h3 className="text-neutral-600">Date:&nbsp;
-                        <span className="text-black">{new Date().toLocaleDateString()}</span>
+                        <span className="text-black">{product[0]?.createdAt}</span>
                     </h3>
                     <h3 className="text-neutral-600">Customer ID:&nbsp;
-                        <span className="text-black">#{product.id}</span>
+                        <span className="text-black">#{product[0]?.customerId}</span>
                     </h3>
                     <h3 className="text-neutral-600">Sales Representative:&nbsp;
-                        <span className="text-black">John Doe</span>
+                        <span className="text-black capitalize">{product[0]?.salesRepresentative}</span>
                     </h3>
                     <h3 className="text-neutral-600">Billing Address:&nbsp;
-                        <span className="text-black">123 Main Street, Kathmandu Nepal</span>
+                        <span className="text-black capitalize">{product[0]?.billingAddress}</span>
                     </h3>
                 </div>
 
@@ -46,27 +67,27 @@ const orderReceipt = () => {
                 <div className="mt-4 flex flex-wrap gap-6 items-start md:justify-between w-full">
                     <ul className="flex flex-col items-start gap-2 md:text-base text-sm">
                         <li className="text-neutral-600">Product</li>
-                        <li>Sunscreen</li>
-                        <li>Wai Wai Noodles</li>
-                        <li>Packaged Beans</li>
+                        {product[0]?.orderItems?.map((item: any, idx: number) => (
+                            <li key={idx}>{item._id}</li>
+                        ))}
                     </ul>
                     <ul className="flex flex-col items-start gap-2 md:text-base text-sm">
                         <li className="text-neutral-600">Price</li>
-                        <li>Rs 4.00</li>
-                        <li>Rs 35.00</li>
-                        <li>Rs 25.00</li>
+                        {product[0]?.orderItems?.map((item: any, idx: number) => (
+                            <li key={idx}>{item.price}</li>
+                        ))}
                     </ul>
                     <ul className="flex flex-col items-start gap-2 md:text-base text-sm">
                         <li className="text-neutral-600">Quantity</li>
-                        <li>x 12</li>
-                        <li>x 15</li>
-                        <li>x 15</li>
+                        {product[0]?.orderItems?.map((item: any, idx: number) => (
+                            <li key={idx}>{item.quantity}</li>
+                        ))}
                     </ul>
                     <ul className="flex flex-col items-start gap-2 md:text-base text-sm">
                         <li className="text-neutral-600">Total</li>
-                        <li>Rs 48.00</li>
-                        <li>Rs 498.75</li>
-                        <li>Rs 375.00</li>
+                        {product[0]?.orderItems?.map((item: any, idx: number) => (
+                            <li key={idx}>Rs {item.total.toLocaleString()}</li>
+                        ))}
                     </ul>
                 </div>
             </div>
@@ -90,13 +111,21 @@ const orderReceipt = () => {
                     </ul>
 
                     <ul className="mt-4 text-sm font-medium flex flex-col items-start gap-2">
-                        <li>Rs 13,200.00</li>
-                        <li>Rs 35.00</li>
-                        <li className="text-green-600">5%</li>
-                        <li className="text-red-600">12%</li>
-                        <li className="text-base font-medium">Rs 13,000.00</li>
+                        <li>Rs {product[0]?.paymentDetails?.subtotal?.toFixed(2).toLocaleString()}</li>
+                        <li>
+                            Rs {product[0]?.paymentDetails?.shippingCharge?.toFixed(2).toLocaleString()}
+                        </li>
+                        <li className="text-green-600">
+                            {product[0]?.paymentDetails?.discount?.toFixed(2).toLocaleString()}%
+                        </li>
+                        <li className="text-red-600">
+                            {product[0]?.paymentDetails?.tax?.toFixed(2).toLocaleString()}%
+                        </li>
+                        <li className="text-base font-medium">
+                            Rs {product[0]?.paymentDetails?.total?.toFixed(2).toLocaleString()}
+                        </li>
                         <li className="mt-4 text-green-600 text-lg">
-                            Rs 13,000.00
+                            Rs {product[0]?.paymentDetails?.total?.toFixed(2).toLocaleString()}
                         </li>
                     </ul>
 

@@ -1,5 +1,4 @@
-import { InventoryContext } from "@/context/inventory-context";
-import { useContext, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom"
 import { Button } from "../ui/button";
 import { Calendar, ChevronLeft, Printer } from "lucide-react";
@@ -7,11 +6,25 @@ import OrderDetails from "../orders/order-details"
 import CustomerDetails from "../orders/customer-details"
 import logo from "../../assets/Nav-mainlogo.svg"
 import { Separator } from "../ui/separator";
+import axios from "axios";
 
 const order = () => {
     const { id } = useParams();
-    const { inventory } = useContext(InventoryContext);
-    const product = inventory.find(item => item.id === id);
+    const [product, setProduct] = useState<any | []>([])
+
+    const fetchProduct = async () => {
+        try {
+            const response = await axios.get(`https://supply-chain-application-backend-1.onrender.com/api/v1/product/${id}`)
+            setProduct(response.data)
+            console.log(response.data)
+        } catch (error) {
+
+        }
+    }
+
+    useEffect(() => {
+        fetchProduct()
+    }, [])
 
     if (!product) {
         return <div>Product not found</div>
@@ -33,7 +46,7 @@ const order = () => {
                         </Button>
                     </Link>
                     <div className="flex flex-col items-start gap-2">
-                        <h1 className="text-3xl font-medium">Order ID: {product.id}</h1>
+                        <h1 className="text-3xl font-medium">Order ID: {product._id}</h1>
                         <div className="flex lg:flex-row flex-col xl:items-center items-start gap-2 text-sm">
                             <h3 className="bg-[#f9ebd2] text-orange-400 py-1 px-4 rounded-lg">Payment Pending</h3>
                             <h3 className="bg-[#fadbdb] mr-2 text-red-600 py-1 px-4 rounded-lg">Unfulfilled</h3>

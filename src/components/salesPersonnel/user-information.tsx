@@ -1,13 +1,19 @@
 import { MapPin, PencilLine } from "lucide-react";
 import { useParams } from "react-router-dom";
 import { Separator } from "../ui/separator";
+import { useContext } from "react";
+import { SalespersonContext } from "@/context/salesperson-context";
 
 const userInformation = () => {
     const { id } = useParams();
+    const { salesperson } = useContext(SalespersonContext)
+
+    const person = salesperson.find((sp) => sp._id === id);
+
     const personalInformation = [
-        { title: "full name", value: "john doe" },
-        { title: "email", value: "johndoe21@gmail.com" },
-        { title: "contact", value: "+977 9820199922" }
+        { title: "full name", value: `${person?.firstname} ${person?.lastname}` },
+        { title: "email", value: `${person?.email}` },
+        { title: "contact", value: `+ ${person?.phone}` }
     ]
 
     const professionalInformation = [
@@ -25,8 +31,10 @@ const userInformation = () => {
                     <div className="flex items-center gap-6">
                         <img src="https://m.media-amazon.com/images/M/MV5BODUyNzM1NzY0NF5BMl5BanBnXkFtZTYwNjk5ODQ0._V1_FMjpg_UX1000_.jpg" className="w-16 h-16 rounded-full object-cover" alt="" />
                         <div>
-                            <h1 className="font-medium text-2xl">John Doe</h1>
-                            <p className="text-neutral-600 text-base"># {id}</p>
+                            <h1 className="font-medium text-2xl capitalize">
+                                {person?.firstname} {person?.lastname}
+                            </h1>
+                            <p className="text-neutral-600 text-base"># {person?._id}</p>
                         </div>
                     </div>
                     <div className="border border-blue-600 text-blue-600 px-2 py-1.5 rounded-md">

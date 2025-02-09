@@ -17,7 +17,8 @@ import {
 import { Tabs, TabsList, TabsTrigger } from "../components/ui/tabs"
 import { Link, useNavigate } from "react-router-dom"
 import ProductPopup from "@/components/product-popup"
-import { Dispatch, SetStateAction, useState } from "react"
+import { Dispatch, SetStateAction, useEffect, useState } from "react"
+import axios from "axios"
 
 function Dashboard({ setActive }: { setActive: Dispatch<SetStateAction<string>> }) {
     const [showPopup, setShowPopup] = useState(false)
@@ -25,8 +26,29 @@ function Dashboard({ setActive }: { setActive: Dispatch<SetStateAction<string>> 
     const handleBackdropClick = () => {
         setShowPopup(false)
     }
-
     const navigate = useNavigate();
+
+    const [data, setData] = useState<any | []>([]);
+    const token = localStorage.getItem("token")
+
+    const fetchSummary = async () => {
+        try {
+            const response = await axios.get("https://supply-chain-application-backend-1.onrender.com/api/v1/dashboard/orders", {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    "Content-Type": "application/json",
+                },
+            })
+            setData(response.data.data)
+            console.log(response.data.data)
+        } catch (error: any) {
+            console.log(`Error: ${error.message}`)
+        }
+    }
+
+    useEffect(() => {
+        fetchSummary()
+    }, [])
 
     return (
         <div className="space-y-8" onClick={handleBackdropClick}>
@@ -63,28 +85,28 @@ function Dashboard({ setActive }: { setActive: Dispatch<SetStateAction<string>> 
             <div className="grid gap-4 xl:grid-cols-4 lg:grid-cols-3">
                 <StatsCard
                     title="Total Shipments"
-                    value="71.21"
+                    value={`${data?.totalShipments}`}
                     icon={Shoppingcart}
                     trend={{ value: 3.2, isPositive: false }}
                     comparison="Last week"
                 />
                 <StatsCard
                     title="Total Orders"
-                    value="92"
+                    value={`${data?.totalOrder}`}
                     icon={box}
                     trend={{ value: 3.3, isPositive: true }}
                     comparison="Last week"
                 />
                 <StatsCard
                     title="Revenue"
-                    value="Rs 13.71K"
+                    value={`Rs. ${data?.totalRevenue?.toFixed(2)}`}
                     icon={revenue}
                     trend={{ value: 1.7, isPositive: false }}
                     comparison="Last week"
                 />
                 <StatsCard
                     title="Delivered"
-                    value="140"
+                    value={`Rs. ${data?.totalDelivered}`}
                     icon={check}
                     trend={{ value: 4.7, isPositive: true }}
                     comparison="Last week"

@@ -4,17 +4,20 @@ import { Checkbox } from "../ui/checkbox";
 import visa from "../../assets/visa.png";
 import mastercard from "../../assets/mastercard.png";
 import { SetStateAction, useEffect, useRef, useState } from "react";
+import axios from "axios";
 
 const Popup = ({
     showPopup,
     setShowPopup,
     showCurrentPlan,
-    setShowCurrentPlan
+    setShowCurrentPlan,
+    selectedPlan
 }: {
     showPopup: boolean;
     setShowPopup: React.Dispatch<SetStateAction<boolean>>;
     showCurrentPlan: boolean;
     setShowCurrentPlan: React.Dispatch<SetStateAction<boolean>>;
+    selectedPlan: string;
 }) => {
     const [selectedCard, setSelectedCard] = useState<string | null>("visa");
     const popupRef = useRef<HTMLDivElement>(null);
@@ -32,6 +35,30 @@ const Popup = ({
         };
     }, [setShowPopup]);
 
+
+    const [data, setData] = useState<any | []>([]);
+    const token = localStorage.getItem("token");
+
+    //fetch data
+    const fetchSubscription = async () => {
+        try {
+            const response = await axios.get("https://supply-chain-application-backend-1.onrender.com/api/v1/subscriptionplan/", {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    "Content-Type": "application/json",
+                },
+            })
+            setData(response.data.data)
+            console.log(response.data.data)
+        } catch (error: any) {
+            console.log(`Error: ${error.message}`)
+        }
+    }
+
+    useEffect(() => {
+        fetchSubscription()
+    }, [])
+
     return (
         <div
             ref={popupRef}
@@ -39,7 +66,7 @@ const Popup = ({
 
             <div className="w-full flex items-start justify-between">
                 <h1 className="font-medium md:text-2xl text-base">Summary</h1>
-                <p className="text-xs text-neutral-600">Starts on Feb 1, 2025</p>
+                <p className="text-xs text-neutral-600">Starts on {new Date().toLocaleDateString()}</p>
             </div>
 
             <div className="flex items-start justify-between w-full">
@@ -48,8 +75,18 @@ const Popup = ({
                     <h3 className="mt-2">Tax</h3>
                 </div>
                 <div className="md:text-sm text-xs font-medium text-right">
-                    <h3>Rs 4,000.00</h3>
-                    <h3 className="mt-2">Rs 0.00</h3>
+                    <h3>
+                        Rs&nbsp;
+                        {selectedPlan == "monthly" && data[0]?.price}
+                        {selectedPlan == "quaterly" && data[1]?.price}
+                        {selectedPlan == "anually" && data[2]?.price}
+                    </h3>
+                    <h3 className="mt-2">
+                        Rs&nbsp;
+                        {selectedPlan == "monthly" && data[0]?.tax}
+                        {selectedPlan == "quaterly" && data[1]?.tax}
+                        {selectedPlan == "anually" && data[2]?.tax}
+                    </h3>
                 </div>
             </div>
 
@@ -57,7 +94,12 @@ const Popup = ({
 
             <div className="flex items-start justify-between w-full md:text-base text-xs">
                 <p className="text-neutral-600">Total after trial</p>
-                <p className="font-medium">Rs 4,000.00</p>
+                <p className="font-medium">
+                    Rs&nbsp;
+                    {selectedPlan == "monthly" && parseInt(data[0]?.price) + data[0]?.tax}
+                    {selectedPlan == "quaterly" && parseInt(data[1]?.price) + data[1]?.tax}
+                    {selectedPlan == "anually" && parseInt(data[2]?.price) + data[2]?.tax}
+                </p>
             </div>
 
             <Separator />

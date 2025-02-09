@@ -13,7 +13,7 @@ const Shipment = ({ active, setActive }: { active: string, setActive: Dispatch<S
                     <TabsList>
                         <TabsTrigger
                             onClick={() => setActive("overview")}
-                            value="overviews">Overviews</TabsTrigger>
+                            value="overview">Overviews</TabsTrigger>
                         <TabsTrigger
                             onClick={() => setActive("tracking")}
                             value="tracking">Tracking</TabsTrigger>
@@ -30,7 +30,7 @@ const Shipment = ({ active, setActive }: { active: string, setActive: Dispatch<S
                 <ShipmentTracking />
             }
 
-            {active == "overview" && <ShipmentOrders />}
+            {active == "overview" && <ShipmentOrders setActive={setActive} />}
 
         </div>
     )

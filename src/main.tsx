@@ -7,6 +7,10 @@ import { InventoryProvider } from './context/inventory-context.tsx'
 import { SidebarProvider } from './context/sidebar-context.tsx'
 import SignupProvider from './context/signup-context.tsx'
 import ForgotProvider from './context/forgot-context.tsx'
+import { SalespersonProvider } from './context/salesperson-context.tsx'
+import { OrdersProvider } from './context/orders-context.tsx'
+import { ShipmentProvider } from './context/shipment-context.tsx'
+import { ReturnProvider } from './context/return-context.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -15,7 +19,15 @@ createRoot(document.getElementById('root')!).render(
         <ForgotProvider>
           <SidebarProvider>
             <InventoryProvider>
-              <App />
+              <SalespersonProvider>
+                <OrdersProvider>
+                  <ShipmentProvider>
+                    <ReturnProvider>
+                      <App />
+                    </ReturnProvider>
+                  </ShipmentProvider>
+                </OrdersProvider>
+              </SalespersonProvider>
             </InventoryProvider>
           </SidebarProvider>
         </ForgotProvider>

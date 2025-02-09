@@ -7,29 +7,29 @@ const Orders = () => {
             <div className="grid gap-4 xl:grid-cols-4 lg:grid-cols-3">
                 <StatsCard
                     title="Total Orders"
-                    value="512" icon={''}
-                    trend={{ value: 2.11, isPositive: true }}
+                    value="0" icon={''}
+                    trend={{ value: 0, isPositive: true }}
                     comparison="Last week"
                 />
                 <StatsCard
                     title="Orders Fulfilled"
-                    value="92%"
+                    value="0%"
                     icon={''}
-                    trend={{ value: 1.7, isPositive: false }}
+                    trend={{ value: 0, isPositive: true }}
                     comparison="Last week"
                 />
                 <StatsCard
                     title="Orders Delivered"
-                    value="98%"
+                    value="0%"
                     icon={''}
-                    trend={{ value: 1.12, isPositive: true }}
+                    trend={{ value: 0, isPositive: true }}
                     comparison="Last week"
                 />
                 <StatsCard
                     title="Orders Cancelled "
-                    value="12"
+                    value="0"
                     icon={''}
-                    trend={{ value: 0.27, isPositive: false }}
+                    trend={{ value: 0, isPositive: true }}
                     comparison="Last week"
                 />
             </div>

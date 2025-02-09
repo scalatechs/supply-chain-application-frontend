@@ -11,7 +11,7 @@ import RestockVariants from './restock-variants.tsx'
 const RestockProduct = () => {
     const { id } = useParams();
     const { inventory } = useContext(InventoryContext);
-    const product = inventory.find(item => item.id === id);
+    const product = inventory.find(item => item._id === id);
 
     if (!product) {
         return <div>Product not found</div>
@@ -28,7 +28,7 @@ const RestockProduct = () => {
                             Back
                         </Button>
                     </Link>
-                    <Link to={`/inventory/edit-product/${product.id}`} className="flex items-center gap-2">
+                    <Link to={`/inventory/edit-product/${product._id}`} className="flex items-center gap-2">
                         <Button variant="default">
                             Edit Product
                         </Button>
@@ -40,10 +40,10 @@ const RestockProduct = () => {
                 <div className='w-full xl:w-1/2 flex flex-col items-start gap-6'>
                     <div className='border rounded-lg flex flex-col md:flex-row items-start gap-6 p-4 w-full'>
                         <div className='border rounded-lg w-1/5 p-2'>
-                            <img src={product.image} alt="" />
+                            <img src="https://imgs.search.brave.com/a1DEPzWpLNS3iL88WJpYSslTjxthyhl5_oqEp0WmCRo/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/cGhvbmVwbGFjZWtl/bnlhLmNvbS93cC1j/b250ZW50L3VwbG9h/ZHMvMjAyNS8wMS9S/ZWRtaS1Ob3RlLTE0/LVByby00Ry0xLmpw/Zw" alt="" />
                         </div>
                         <div className='flex flex-col gap-2 w-full'>
-                            <h1 className='text-xl md:text-3xl capitalize mb-4'>{product.name}</h1>
+                            <h1 className='text-xl md:text-3xl capitalize mb-4'>{product.product_name}</h1>
                             <div className='w-full flex items-center gap-12'>
                                 <div className='flex flex-col items-start gap-2'>
                                     <p className='font-medium text-base text-neutral-500'>FKU</p>
@@ -52,10 +52,10 @@ const RestockProduct = () => {
                                     <p className='font-medium text-base text-neutral-500'>Stock</p>
                                 </div>
                                 <div className='flex flex-col items-start gap-2'>
-                                    <p className='text-base'>{product.id}</p>
-                                    <p className='text-base'>{product.category}</p>
-                                    <p className='text-base'>{product.price}</p>
-                                    <p className='text-base'>{product.stock}</p>
+                                    <p className='text-base'>{product.FKU}</p>
+                                    <p className='text-base capitalize'>{product.categoryName}</p>
+                                    <p className='text-base'>Rs 400</p>
+                                    <p className='text-base'>{product.total_stock}</p>
                                 </div>
                             </div>
                         </div>

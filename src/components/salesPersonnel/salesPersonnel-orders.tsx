@@ -10,19 +10,19 @@ import { Button } from "@/components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Calendar, Filter, MoreHorizontal, Search, Upload } from 'lucide-react'
 import { useContext, useEffect, useRef, useState } from "react"
-import { InventoryContext } from "@/context/inventory-context.tsx"
 import { Link } from "react-router-dom"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import CalendarComponent from "@/components/ui/calendar"
-
+import { SalespersonContext } from "@/context/salesperson-context"
 
 export default function SalesPersonnelOrders() {
-    const { inventory } = useContext(InventoryContext);
+    const { salesperson } = useContext(SalespersonContext);
     const [showCalendar, setShowCalendar] = useState(false)
     const calendarRef = useRef<HTMLDivElement>(null);
 
-    // Hide calendar when clicking outside
     useEffect(() => {
+
+        // Hide calendar when clicking outside
         const handleClickOutside = (event: MouseEvent) => {
             if (
                 calendarRef.current &&
@@ -103,17 +103,17 @@ export default function SalesPersonnelOrders() {
                             </TableRow>
                         </TableHeader>
                         <TableBody>
-                            {inventory.map((product) => (
-                                <TableRow key={product.id}>
-                                    <TableCell className="flex items-center gap-4">
+                            {salesperson.map((person) => (
+                                <TableRow key={person._id}>
+                                    <TableCell className="flex items-center gap-4 capitalize">
                                         <img src="https://m.media-amazon.com/images/M/MV5BODUyNzM1NzY0NF5BMl5BanBnXkFtZTYwNjk5ODQ0._V1_FMjpg_UX1000_.jpg" className="w-12 h-12 rounded-full object-cover" alt="" />
-                                        <span>John Doe</span>
+                                        <span>{person.firstname} {person.lastname}</span>
                                     </TableCell>
                                     <TableCell className="underline text-blue-600">
-                                        johndoe21@gmail.com
+                                        {person.email}
                                     </TableCell>
                                     <TableCell>
-                                        +977-9829100636
+                                        {person.phone}
                                     </TableCell>
                                     <TableCell className="text-neutral-700">
                                         24
@@ -123,16 +123,12 @@ export default function SalesPersonnelOrders() {
                                     </TableCell>
                                     <TableCell className="text-neutral-700">
                                         <span
-                                            className={`inline-flex rounded-full px-2 py-1 text-xs font-medium ${product.price > 100
-                                                ? "bg-green-100 text-green-700"
-                                                : "bg-yellow-100 text-yellow-700"
-                                                }`}
-                                        >
-                                            {product.price > 100 ? "Excellent" : "Average"}
+                                            className="inline-flex rounded-full px-2 py-1 text-xs font-medium bg-yellow-100 text-yellow-700">
+                                            Average
                                         </span>
                                     </TableCell>
                                     <TableCell>
-                                        <Link to={`/sales/user/${product.id}`} className="underline text-blue-500">Manage</Link>
+                                        <Link to={`/sales/user/${person._id}`} className="underline text-blue-500">Manage</Link>
                                     </TableCell>
                                 </TableRow>
                             ))}
@@ -144,8 +140,8 @@ export default function SalesPersonnelOrders() {
             {/* Mobile view */}
             <div className="md:hidden px-4">
                 <div className="divide-y">
-                    {inventory.map((product) => (
-                        <div key={product.id} className="py-4">
+                    {salesperson.map((person) => (
+                        <div key={person._id} className="py-4">
                             <div className="flex items-start gap-4">
                                 <Checkbox className="mt-2" />
                                 <div className="flex-1">
@@ -153,17 +149,17 @@ export default function SalesPersonnelOrders() {
                                         <img src="https://m.media-amazon.com/images/M/MV5BODUyNzM1NzY0NF5BMl5BanBnXkFtZTYwNjk5ODQ0._V1_FMjpg_UX1000_.jpg" alt="" className="w-12 h-12 object-cover rounded-full" />
                                         <div>
                                             <span className="text-neutral-700 capitalize block">
-                                                John Doe
+                                                {person.firstname} {person.lastname}
                                             </span>
                                             <span className="text-sm text-blue-700 underline">
-                                                johndoe21@gmail.com
+                                                {person.email}
                                             </span>
                                         </div>
                                     </div>
                                     <div className="space-y-2 text-sm">
                                         <div className="flex justify-between">
                                             <span className="text-neutral-500">Contact:</span>
-                                            <span className="text-neutral-700">+977-9829100636</span>
+                                            <span className="text-neutral-700">{person.phone}</span>
                                         </div>
                                         <div className="flex justify-between">
                                             <span className="text-neutral-500">Stores:</span>
@@ -176,16 +172,12 @@ export default function SalesPersonnelOrders() {
                                         <div className="flex justify-between">
                                             <span className="text-neutral-500">Performance:</span>
                                             <span
-                                                className={`inline-flex rounded-full px-2 py-1 text-xs font-medium ${product.price > 100
-                                                    ? "bg-green-100 text-green-700"
-                                                    : "bg-yellow-100 text-yellow-700"
-                                                    }`}
-                                            >
-                                                {product.price > 100 ? "Excellent" : "Average"}
+                                                className="inline-flex rounded-full px-2 py-1 text-xs font-medium bg-yellow-100 text-yellow-700">
+                                                Average
                                             </span>
                                         </div>
                                         <div className="flex justify-end mt-2">
-                                            <Link to={`/sales/user/${product.id}`} className="underline text-blue-500">Manage</Link>
+                                            <Link to={`/sales/user/${person._id}`} className="underline text-blue-500">Manage</Link>
                                         </div>
                                     </div>
                                 </div>
@@ -194,6 +186,6 @@ export default function SalesPersonnelOrders() {
                     ))}
                 </div>
             </div>
-        </div>
+        </div >
     )
 }

@@ -2,20 +2,44 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Progress } from "@/components/ui/progress"
 import { Button } from "@/components/ui/button"
 import { MoreHorizontal } from 'lucide-react'
-
-const stockData = {
-    total: 2400,
-    inStock: 1800,
-    lowStock: 1000,
-    outOfStock: 200,
-    lowStockItems: [
-        { name: "Canned Foods", count: 22, company: "Apple, Inc", color: "#00c8ff" },
-        { name: "Toilet Papers", count: 12, company: "Dell, Inc", color: "#0000e3" },
-        { name: "Wai Wai Instant Noodles", count: 19, company: "Hp, Inc", color: "#31356e" },
-    ],
-}
+import axios from "axios"
+import { useEffect, useState } from "react"
 
 export function StockAvailability() {
+
+    const [data, setData] = useState<any | []>([])
+
+    const stockData = {
+        total: data?.totalStock,
+        inStock: data?.totalStock,
+        lowStock: 0,
+        outOfStock: 200,
+        lowStockItems: [
+            { name: "Canned Foods", count: 22, company: "Apple, Inc", color: "#00c8ff" },
+            { name: "Toilet Papers", count: 12, company: "Dell, Inc", color: "#0000e3" },
+            { name: "Wai Wai Instant Noodles", count: 19, company: "Hp, Inc", color: "#31356e" },
+        ],
+    }
+
+    const token = localStorage.getItem('token')
+    const fetchStockData = async () => {
+        try {
+            const response = await axios.get("https://supply-chain-application-backend-1.onrender.com/api/v1/dashboard/stock", {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    "Content-Type": "application/json",
+                },
+            })
+            console.log(response.data.data)
+            setData(response.data.data)
+        } catch (error: any) {
+            console.log(`Error: ${error.message}`)
+        }
+    }
+
+    useEffect(() => {
+        fetchStockData()
+    }, [])
     return (
         <Card>
             <CardHeader className="flex flex-row items-center justify-between">
@@ -29,7 +53,9 @@ export function StockAvailability() {
                     <div>
                         <div className="flex items-center justify-between">
                             <span className="text-sm font-medium">In Stock</span>
-                            <span className="text-sm text-muted-foreground">{stockData.inStock} Units</span>
+                            <span className="text-sm text-muted-foreground">
+                                {stockData.inStock} Units
+                            </span>
                         </div>
                         <Progress value={(stockData.inStock / stockData.total) * 100} className="mt-2" color={stockData.lowStockItems[0].color} />
                     </div>

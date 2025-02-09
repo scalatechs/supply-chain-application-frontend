@@ -1,7 +1,12 @@
+import { ShipmentContext } from "@/context/shipment-context"
 import { Check, Circle, CircleCheck, Ellipsis, MapPin, Triangle, Truck } from "lucide-react"
+import { useContext } from "react"
 
 
 const shipmentTracking = () => {
+
+    const { shipment }: any = useContext(ShipmentContext)
+
     return (
         <div className="flex xl:flex-row flex-col items-start gap-4">
 
@@ -19,7 +24,7 @@ const shipmentTracking = () => {
                             <li>Email</li>
                         </ul>
                         <ul className="flex flex-col text-right gap-3 md:text-sm text-xs">
-                            <li>12345678</li>
+                            <li>{shipment.orderId}</li>
                             <li>John Doe</li>
                             <li>+122-9293292922</li>
                             <li>johndoe@gmail.com</li>
@@ -35,7 +40,7 @@ const shipmentTracking = () => {
                             <CircleCheck />
                             <h3>Estimated Order Delivery</h3>
                         </div>
-                        <h3>September 24th, 2024</h3>
+                        <h3>{shipment.estimatedDelivery}</h3>
                     </div>
 
                     <div className="w-full mt-6 flex items-center justify-between">

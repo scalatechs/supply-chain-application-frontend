@@ -9,12 +9,12 @@ import {
 import { Button } from "@/components/ui/button"
 import { Calendar, Filter, MoreHorizontal, Search, Upload } from 'lucide-react'
 import { useContext } from "react"
-import { InventoryContext } from "@/context/inventory-context.tsx"
 import { Link } from "react-router-dom"
 import { ScrollArea } from "@/components/ui/scroll-area"
+import { SalespersonContext } from "@/context/salesperson-context"
 
 export default function SalesOrders() {
-    const { inventory } = useContext(InventoryContext);
+    const { salesperson } = useContext(SalespersonContext);
 
     return (
         <div className="rounded-lg bg-white w-full">
@@ -65,10 +65,10 @@ export default function SalesOrders() {
                             </TableRow>
                         </TableHeader>
                         <TableBody>
-                            {inventory.map((product) => (
+                            {salesperson.map((product) => (
                                 <TableRow key={product.id}>
                                     <TableCell className="flex items-center gap-2">
-                                        {product.id}
+                                        {product._id}
                                     </TableCell>
                                     <TableCell className="text-lg text-neutral-700">
                                         {new Date().toLocaleDateString()}
@@ -90,7 +90,7 @@ export default function SalesOrders() {
                                         </span>
                                     </TableCell>
                                     <TableCell className="underline text-blue-500">
-                                        <Link to={`/orders/order/${product.id}`}>View details</Link>
+                                        <Link to={`/orders/order/${product._id}`}>View details</Link>
                                     </TableCell>
                                 </TableRow>
                             ))}
@@ -102,7 +102,7 @@ export default function SalesOrders() {
             {/* Mobile view */}
             <div className="md:hidden px-4">
                 <div className="divide-y">
-                    {inventory.map((product) => (
+                    {salesperson.map((product) => (
                         <div key={product.id} className="py-4">
                             <div className="flex items-start gap-4">
                                 <div className="flex-1">

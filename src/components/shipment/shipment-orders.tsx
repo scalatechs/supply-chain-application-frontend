@@ -9,12 +9,12 @@ import {
 import { Button } from "@/components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Calendar, Filter, MoreHorizontal, Search, Upload } from 'lucide-react'
-import { useContext } from "react"
-import { InventoryContext } from "@/context/inventory-context.tsx"
+import { SetStateAction, useContext } from "react"
 import { ScrollArea } from "@/components/ui/scroll-area"
+import { ShipmentContext } from "@/context/shipment-context"
 
-export default function ShipmentOrders() {
-    const { inventory } = useContext(InventoryContext);
+export default function ShipmentOrders({ setActive }: { setActive: React.Dispatch<SetStateAction<string>> }) {
+    const { shipment }: any = useContext(ShipmentContext);
 
     return (
         <div className="rounded-lg bg-white w-full">
@@ -65,38 +65,40 @@ export default function ShipmentOrders() {
                             </TableRow>
                         </TableHeader>
                         <TableBody>
-                            {inventory.map((product) => (
-                                <TableRow key={product.id}>
-                                    <TableCell className="flex items-center gap-2 h-16">
-                                        <Checkbox /><span className="mt-1">{product.id}</span>
-                                    </TableCell>
-                                    <TableCell className="text-lg text-neutral-700">
-                                        {product.id}
-                                    </TableCell>
-                                    <TableCell>
-                                        {new Date().toLocaleDateString()}
-                                    </TableCell>
-                                    <TableCell className="text-lg text-neutral-700">
-                                        Road
-                                    </TableCell>
-                                    <TableCell className="text-lg text-neutral-700">
-                                        Rs. {product.price}
-                                    </TableCell>
-                                    <TableCell className="text-lg text-neutral-700">
-                                        <span
-                                            className={`inline-flex rounded-full px-2 py-1 text-xs font-medium ${product.price > 100
-                                                ? "bg-green-100 text-green-700"
-                                                : "bg-yellow-100 text-yellow-700"
-                                                }`}
-                                        >
-                                            {product.price > 100 ? "Shipping" : "In-delivery"}
-                                        </span>
-                                    </TableCell>
-                                    <TableCell className="underline text-blue-500">
-                                        Track Shipment
-                                    </TableCell>
-                                </TableRow>
-                            ))}
+                            {/* {shipment.map((product) => ( add mapping here */}
+                            <TableRow key={shipment.id}>
+                                <TableCell className="flex items-center gap-2 h-16">
+                                    <Checkbox /><span className="mt-1 text-sm">{shipment.orderId}</span>
+                                </TableCell>
+                                <TableCell className="text-sm text-neutral-700">
+                                    {shipment.distributorId}
+                                </TableCell>
+                                <TableCell>
+                                    {new Date().toLocaleDateString()}
+                                </TableCell>
+                                <TableCell className="text-sm text-neutral-700">
+                                    {shipment.shippingMethod}
+                                </TableCell>
+                                <TableCell className="text-sm text-neutral-700">
+                                    Rs. {shipment.shippingcost}
+                                </TableCell>
+                                <TableCell className="text-sm text-neutral-700">
+                                    <span
+                                        className={`inline-flex rounded-full px-2 py-1 text-xs font-medium ${shipment.shippingcost > 100
+                                            ? "bg-green-100 text-green-700"
+                                            : "bg-yellow-100 text-yellow-700"
+                                            }`}
+                                    >
+                                        {shipment.price > 100 ? "Shipping" : "In-delivery"}
+                                    </span>
+                                </TableCell>
+                                <TableCell
+                                    onClick={() => setActive("tracking")}
+                                    className="underline text-blue-500">
+                                    Track Shipment
+                                </TableCell>
+                            </TableRow>
+                            {/* ))} end mapping here  */}
                         </TableBody>
                     </Table>
                 </ScrollArea>
@@ -105,53 +107,55 @@ export default function ShipmentOrders() {
             {/* Mobile view */}
             <div className="md:hidden px-4">
                 <div className="divide-y">
-                    {inventory.map((product) => (
-                        <div key={product.id} className="py-4">
-                            <div className="flex items-start gap-4">
-                                <Checkbox className="mt-2" />
-                                <div className="flex-1">
-                                    <div className="mb-2">
-                                        <span className="text-lg text-neutral-700 capitalize block">
-                                            Order Id: {product.id}
-                                        </span>
-                                        <span className="text-sm text-neutral-500">
-                                            Shipping Id: {product.id}
+                    {/* add mapping here */}
+                    <div key={shipment.id} className="py-4">
+                        <div className="flex items-start gap-4">
+                            <Checkbox className="mt-2" />
+                            <div className="flex-1">
+                                <div className="mb-2">
+                                    <span className="text-sm text-neutral-700 capitalize block">
+                                        Order Id: {shipment.orderId}
+                                    </span>
+                                    <span className="text-sm text-neutral-500">
+                                        Shipping Id: {shipment.orderId}
+                                    </span>
+                                </div>
+                                <div className="space-y-2 text-sm">
+                                    <div className="flex justify-between">
+                                        <span className="text-neutral-500">Dispatched date:</span>
+                                        <span className="text-neutral-700">
+                                            {new Date().toLocaleDateString()}
                                         </span>
                                     </div>
-                                    <div className="space-y-2 text-sm">
-                                        <div className="flex justify-between">
-                                            <span className="text-neutral-500">Dispatched date:</span>
-                                            <span className="text-neutral-700">
-                                                {new Date().toLocaleDateString()}
-                                            </span>
-                                        </div>
-                                        <div className="flex justify-between">
-                                            <span className="text-neutral-500">Shipping Method:</span>
-                                            <span className="text-neutral-700">Road</span>
-                                        </div>
-                                        <div className="flex justify-between">
-                                            <span className="text-neutral-500">Fee:</span>
-                                            <span className="text-neutral-700">Rs. {product.price}</span>
-                                        </div>
-                                        <div className="flex justify-between">
-                                            <span className="text-neutral-500">Status:</span>
-                                            <span
-                                                className={`inline-flex rounded-full px-2 py-1 text-xs font-medium ${product.price > 100
-                                                    ? "bg-green-100 text-green-700"
-                                                    : "bg-yellow-100 text-yellow-700"
-                                                    }`}
-                                            >
-                                                {product.price > 100 ? "Shipping" : "In-delivery"}
-                                            </span>
-                                        </div>
-                                        <div className="flex justify-end mt-2 underline text-blue-500">
-                                            Track Shipment
-                                        </div>
+                                    <div className="flex justify-between">
+                                        <span className="text-neutral-500">Shipping Method:</span>
+                                        <span className="text-neutral-700">{shipment.shippingMethod}</span>
+                                    </div>
+                                    <div className="flex justify-between">
+                                        <span className="text-neutral-500">Fee:</span>
+                                        <span className="text-neutral-700">Rs. {shipment.shippingcost}</span>
+                                    </div>
+                                    <div className="flex justify-between">
+                                        <span className="text-neutral-500">Status:</span>
+                                        <span
+                                            className={`inline-flex rounded-full px-2 py-1 text-xs font-medium ${shipment.shippingcost > 100
+                                                ? "bg-green-100 text-green-700"
+                                                : "bg-yellow-100 text-yellow-700"
+                                                }`}
+                                        >
+                                            {shipment.shippingcost > 100 ? "Shipping" : "In-delivery"}
+                                        </span>
+                                    </div>
+                                    <div
+                                        onClick={() => setActive("tracking")}
+                                        className="flex justify-end mt-2 underline text-blue-500">
+                                        Track Shipment
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    ))}
+                    </div>
+                    {/* ))} end mapping here  */}
                 </div>
             </div>
         </div >
