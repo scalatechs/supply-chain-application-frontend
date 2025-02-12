@@ -119,25 +119,25 @@ export function InventoryOrders() {
                             </TableRow>
                         </TableHeader>
                         <TableBody>
-                            {/* {inventory.map((product) => ( map here */}
-                            <TableRow key={inventory._id}>
-                                <TableCell className="flex items-center gap-2 h-16">
-                                    <Checkbox /><span className="mt-1">{inventory[0]?.FKU}</span>
-                                </TableCell>
-                                <TableCell>
-                                    <img
-                                        src="https://imgs.search.brave.com/a1DEPzWpLNS3iL88WJpYSslTjxthyhl5_oqEp0WmCRo/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/cGhvbmVwbGFjZWtl/bnlhLmNvbS93cC1j/b250ZW50L3VwbG9h/ZHMvMjAyNS8wMS9S/ZWRtaS1Ob3RlLTE0/LVByby00Ry0xLmpw/Zw"
-                                        alt="" className="w-12 h-12 rounded-lg inline-flex mr-4 object-contain" />
-                                    <span className="md:text-lg text-sm text-neutral-700 capitalize">{inventory[0]?.product_name}</span>
-                                </TableCell>
-                                <TableCell className="text-lg text-neutral-700 capitalize">{inventory[0]?.categoryName}</TableCell>
-                                <TableCell className="text-lg text-neutral-700">Rs 400</TableCell>
-                                <TableCell className="text-lg text-neutral-700">{inventory[0]?.total_stock}</TableCell>
-                                <TableCell>
-                                    <Link to={`/inventory/restock-product/${inventory[0]?._id}`} className="underline text-blue-500">View details</Link>
-                                </TableCell>
-                            </TableRow>
-                            {/* ))} end map here  */}
+                            {inventory.map((product: any) => (
+                                <TableRow key={product._id}>
+                                    <TableCell className="flex items-center gap-2 h-16">
+                                        <Checkbox /><span className="mt-1">{product?.FKU}</span>
+                                    </TableCell>
+                                    <TableCell>
+                                        <img
+                                            src="https://imgs.search.brave.com/a1DEPzWpLNS3iL88WJpYSslTjxthyhl5_oqEp0WmCRo/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/cGhvbmVwbGFjZWtl/bnlhLmNvbS93cC1j/b250ZW50L3VwbG9h/ZHMvMjAyNS8wMS9S/ZWRtaS1Ob3RlLTE0/LVByby00Ry0xLmpw/Zw"
+                                            alt="" className="w-12 h-12 rounded-lg inline-flex mr-4 object-contain" />
+                                        <span className="md:text-lg text-sm text-neutral-700 capitalize">{product?.product_name}</span>
+                                    </TableCell>
+                                    <TableCell className="text-lg text-neutral-700 capitalize">{product?.categoryName}</TableCell>
+                                    <TableCell className="text-lg text-neutral-700">Rs 400</TableCell>
+                                    <TableCell className="text-lg text-neutral-700">{product?.total_stock}</TableCell>
+                                    <TableCell>
+                                        <Link to={`/inventory/restock-product/${product?._id}`} className="underline text-blue-500">View details</Link>
+                                    </TableCell>
+                                </TableRow>
+                            ))}
                         </TableBody>
                     </Table>
                 </ScrollArea>
@@ -146,45 +146,48 @@ export function InventoryOrders() {
             {/* Mobile view */}
             <div className="md:hidden px-4">
                 <div className="divide-y">
-                    {/* {inventory.map((product) => ( map here */}
-                    <div key={inventory._id} className="py-4">
-                        <div className="flex items-start gap-4">
-                            <Checkbox className="mt-2" />
-                            <div className="flex-1">
-                                <div className="flex items-center gap-3 mb-2">
-                                    <img
-                                        src="https://imgs.search.brave.com/a1DEPzWpLNS3iL88WJpYSslTjxthyhl5_oqEp0WmCRo/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/cGhvbmVwbGFjZWtl/bnlhLmNvbS93cC1j/b250ZW50L3VwbG9h/ZHMvMjAyNS8wMS9S/ZWRtaS1Ob3RlLTE0/LVByby00Ry0xLmpw/Zw"
-                                        alt="" className="w-12 h-12 rounded-lg object-contain" />
-                                    <div>
-                                        <span className="text-lg text-neutral-700 capitalize block">{inventory[0]?.product_name}</span>
-                                        <span className="text-sm text-neutral-500">FKU: {inventory[0]?.FKU}</span>
+                    {inventory.map((product: any) => (
+                        <div key={inventory._id} className="py-4">
+                            <div className="flex items-start gap-4">
+                                <Checkbox className="mt-2" />
+                                <div className="flex-1">
+                                    <div className="flex items-center gap-3 mb-2">
+                                        <img
+                                            src="https://imgs.search.brave.com/a1DEPzWpLNS3iL88WJpYSslTjxthyhl5_oqEp0WmCRo/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/cGhvbmVwbGFjZWtl/bnlhLmNvbS93cC1j/b250ZW50L3VwbG9h/ZHMvMjAyNS8wMS9S/ZWRtaS1Ob3RlLTE0/LVByby00Ry0xLmpw/Zw"
+                                            alt="" className="w-12 h-12 rounded-lg object-contain" />
+                                        <div>
+                                            <span className="text-lg text-neutral-700 capitalize block">{product?.product_name}</span>
+                                            <span className="text-sm text-neutral-500">FKU: {product?.FKU}</span>
+                                        </div>
                                     </div>
-                                </div>
-                                <div className="space-y-2 text-sm">
-                                    <div className="flex justify-between">
-                                        <span className="text-neutral-500">Category:</span>
-                                        <span className="text-neutral-700 capitalize">{inventory[0]?.categoryName}</span>
-                                    </div>
-                                    <div className="flex justify-between">
-                                        <span className="text-neutral-500">Price:</span>
-                                        <span className="text-neutral-700">Rs 400</span>
-                                    </div>
-                                    <div className="flex justify-between">
-                                        <span className="text-neutral-500">Stock:</span>
-                                        <span className="text-neutral-700">{inventory[0]?.total_stock}</span>
-                                    </div>
-                                    <div className="flex justify-end mt-2">
-                                        <Link to={`/inventory/restock-product/${inventory[0]?._id}`} className="underline text-blue-500">
-                                            View details
-                                        </Link>
+                                    <div className="space-y-2 text-sm">
+                                        <div className="flex justify-between">
+                                            <span className="text-neutral-500">Category:</span>
+                                            <span className="text-neutral-700 capitalize">{product?.categoryName}</span>
+                                        </div>
+                                        <div className="flex justify-between">
+                                            <span className="text-neutral-500">Price:</span>
+                                            <span className="text-neutral-700">Rs 400</span>
+                                        </div>
+                                        <div className="flex justify-between">
+                                            <span className="text-neutral-500">Stock:</span>
+                                            <span className="text-neutral-700">{product?.total_stock}</span>
+                                        </div>
+                                        <div className="flex justify-end mt-2">
+                                            <Link to={`/inventory/restock-product/${product?._id}`} className="underline text-blue-500">
+                                                View details
+                                            </Link>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    {/* ))} end map here  */}
+                    ))}
                 </div>
             </div>
+
+
+            {inventory.length == 0 && <h3 className="pt-4 pl-2 text-sm">No orders yet</h3>}
         </div >
     )
 }

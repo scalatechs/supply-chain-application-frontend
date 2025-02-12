@@ -11,14 +11,20 @@ import axios from "axios";
 const order = () => {
     const { id } = useParams();
     const [product, setProduct] = useState<any | []>([])
-
+    const token = localStorage.getItem("token")
     const fetchProduct = async () => {
         try {
-            const response = await axios.get(`https://supply-chain-application-backend-1.onrender.com/api/v1/product/${id}`)
+            const response = await axios.get(`https://supply-chain-application-backend-1.onrender.com/api/v1/order/${id}`,
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                        "Content-Type": "application/json",
+                    },
+                }
+            )
             setProduct(response.data)
-            console.log(response.data)
-        } catch (error) {
-
+        } catch (error: any) {
+            console.log(`Error: ${error.message}`)
         }
     }
 
@@ -46,13 +52,14 @@ const order = () => {
                         </Button>
                     </Link>
                     <div className="flex flex-col items-start gap-2">
-                        <h1 className="text-3xl font-medium">Order ID: {product._id}</h1>
+                        <h1 className="text-3xl font-medium">Order ID: {product[0]?._id}</h1>
                         <div className="flex lg:flex-row flex-col xl:items-center items-start gap-2 text-sm">
-                            <h3 className="bg-[#f9ebd2] text-orange-400 py-1 px-4 rounded-lg">Payment Pending</h3>
-                            <h3 className="bg-[#fadbdb] mr-2 text-red-600 py-1 px-4 rounded-lg">Unfulfilled</h3>
+                            <h3 className="bg-[#f9ebd2] text-orange-400 py-1 px-4 rounded-lg">
+                                {product[0]?.order_status}
+                            </h3>
                             <p className="lg:inline hidden">|</p>
                             <Calendar size={'24px'} className="ml-2 lg:inline hidden" />
-                            <p>December 12, 2024 at 10:14 am</p>
+                            <p>{product[0]?.createdAt}</p>
                         </div>
                     </div>
                 </div>
@@ -87,10 +94,20 @@ const order = () => {
 
                 <h1 className="text-3xl mt-12">Order Receipt</h1>
                 <ul className="text-xs mt-6 flex flex-col gap-2">
-                    <li><span className="text-neutral-700">Order ID</span>:&nbsp;&nbsp; #{product.id}</li>
-                    <li><span className="text-neutral-700">Date</span>:&nbsp;&nbsp; {new Date().toLocaleString()}</li>
-                    <li><span className="text-neutral-700">Customer ID</span>:&nbsp;&nbsp; #{product.id}</li>
-                    <li><span className="text-neutral-700">Billing Address</span>:&nbsp;&nbsp; 123 Main Street, Kathmandu, Nepal</li>
+                    <li><span className="text-neutral-700">
+                        Order ID</span>:&nbsp;&nbsp;
+                        #{product[0]?._id}
+                    </li>
+                    <li><span className="text-neutral-700">Date</span>:&nbsp;&nbsp;
+                        {product[0]?.createdAt}
+                    </li>
+                    <li><span className="text-neutral-700">
+                        Customer ID</span>:&nbsp;&nbsp; {product[0]?.customerDetails?.customerId}
+                    </li>
+                    <li className="capitalize">
+                        <span className="text-neutral-700">Billing Address</span>
+                        :&nbsp;&nbsp; {product[0]?.shippingDetails?.Address}
+                    </li>
                 </ul>
 
                 <Separator className="my-6" />
@@ -98,27 +115,27 @@ const order = () => {
                 <div className="flex items-start gap-20 w-full">
                     <ul className="text-xs flex flex-col gap-3">
                         <li className="text-neutral-600">Product</li>
-                        <li>Sunscreen</li>
-                        <li>Wai wai noodles</li>
-                        <li>Packaged beans</li>
+                        {product[0]?.orderItems?.map((item: any, idx: number) => (
+                            <li key={idx} className="capitalize">{item?.productdetails?.product_name}</li>
+                        ))}
                     </ul>
                     <ul className="text-xs flex flex-col gap-3">
                         <li className="text-neutral-600">Price</li>
-                        <li>$ 4.00</li>
-                        <li>$ 35.00</li>
-                        <li>$ 25.00</li>
+                        {product[0]?.orderItems?.map((item: any, idx: number) => (
+                            <li key={idx} className="capitalize">{item?.discount}%</li>
+                        ))}
                     </ul>
                     <ul className="text-xs flex flex-col gap-3">
                         <li className="text-neutral-600">Quantity</li>
-                        <li>x 12</li>
-                        <li>x 15</li>
-                        <li>x 15</li>
+                        {product[0]?.orderItems?.map((item: any, idx: number) => (
+                            <li key={idx} className="capitalize">{item?.quantity}</li>
+                        ))}
                     </ul>
                     <ul className="text-xs flex flex-col gap-3">
                         <li className="text-neutral-600">Total</li>
-                        <li>$ 48.00</li>
-                        <li>$ 498.75</li>
-                        <li>$ 375.00</li>
+                        {product[0]?.orderItems?.map((item: any, idx: number) => (
+                            <li key={idx} className="capitalize">Rs. {item?.total_price?.toFixed(2)}</li>
+                        ))}
                     </ul>
                 </div>
 
@@ -126,11 +143,24 @@ const order = () => {
 
                 <div className="w-full flex flex-col items-end">
                     <ul className="text-xs text-right flex flex-col gap-2">
-                        <li><span className="text-neutral-700">Subtotal</span>:&nbsp;&nbsp; $ 13,200.00</li>
-                        <li><span className="text-neutral-700">Shipping Charge</span>:&nbsp;&nbsp; $ 35.00</li>
-                        <li><span className="text-neutral-700">Discount</span>:&nbsp;&nbsp; 5%</li>
-                        <li><span className="text-neutral-700">Tax</span>:&nbsp;&nbsp; 15%</li>
-                        <li className="font-medium"><span className="text-neutral-900">Total</span>:&nbsp;&nbsp; $ 13,000.00</li>
+                        <li><span className="text-neutral-700">
+                            Subtotal</span>:&nbsp;&nbsp;
+                            Rs. {product[0]?.total_amount?.toFixed(2)}
+                        </li>
+                        <li><span className="text-neutral-700 capitalize">
+                            Shipping Charge</span>:&nbsp;&nbsp;
+                            {product[0]?.customerDetails?.preferredShippingMethod}
+                        </li>
+                        <li><span className="text-neutral-700">
+                            Discount</span>:&nbsp;&nbsp;
+                            {
+                                product[0]?.orderItems?.reduce((total: number, current: any) => total + current?.discount, 0)
+                            } %
+                        </li>
+                        <li><span className="text-neutral-700">Tax</span>:&nbsp;&nbsp; 0%</li>
+                        <li className="font-medium"><span className="text-neutral-900">Total</span>:&nbsp;&nbsp;
+                            Rs. {product[0]?.total_amount?.toFixed(2)}
+                        </li>
                     </ul>
                 </div>
 

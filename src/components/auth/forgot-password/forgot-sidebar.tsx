@@ -52,6 +52,35 @@ const forgotSidebar = () => {
                     <div className="flex flex-col items-center gap-2">
                         {/* Circle Icon */}
                         <div
+                            className={`rounded-full ${currentStep == 3 || isFormSubmitted[3] == true ? "bg-white" : "border border-white"} w-[32px] h-[32px] flex items-center justify-center`}>
+
+                            {
+                                isFormSubmitted[2] == true ?
+                                    <Check color="#003DFF" size={'20px'} />
+                                    :
+                                    <div className={`rounded-full ${currentStep == 2 ? "bg-[#003DFF]" : "bg-white"} w-[12px] h-[12px]`}></div>
+                            }
+                        </div>
+
+                        {/* White Line */}
+                        <div className="h-36 bg-white w-[1px]"></div>
+
+                    </div>
+                    <div className="text-white">
+                        <h1 className="uppercase text-2xl font-semibold">
+                            {forgotSteps[2].title}
+                        </h1>
+                        <p className="text-base mt-2 first-letter:capitalize">
+                            {forgotSteps[2].description}
+                        </p>
+                    </div>
+                </div>
+
+                {/* For step 3 */}
+                <div className="flex items-start gap-4 mb-2">
+                    <div className="flex flex-col items-center gap-2">
+                        {/* Circle Icon */}
+                        <div
                             className={`rounded-full ${currentStep == 2 || isFormSubmitted[2] == true ? "bg-white" : "border border-white"} w-[32px] h-[32px] flex items-center justify-center`}>
 
                             {
@@ -72,35 +101,6 @@ const forgotSidebar = () => {
                         </h1>
                         <p className="text-base mt-2 first-letter:capitalize">
                             {forgotSteps[1].description}
-                        </p>
-                    </div>
-                </div>
-
-                {/* For step 3 */}
-                <div className="flex items-start gap-4 mb-2">
-                    <div className="flex flex-col items-center gap-2">
-                        {/* Circle Icon */}
-                        <div
-                            className={`rounded-full ${currentStep == 3 || isFormSubmitted[3] == true ? "bg-white" : "border border-white"} w-[32px] h-[32px] flex items-center justify-center`}>
-
-                            {
-                                isFormSubmitted[3] == true ?
-                                    <Check color="#003DFF" size={'20px'} />
-                                    :
-                                    <div className={`rounded-full ${currentStep == 3 ? "bg-[#003DFF]" : "bg-white"} w-[12px] h-[12px]`}></div>
-                            }
-                        </div>
-
-                        {/* White Line */}
-                        <div className="h-36 bg-white w-[1px]"></div>
-
-                    </div>
-                    <div className="text-white">
-                        <h1 className="uppercase text-2xl font-semibold">
-                            {forgotSteps[2].title}
-                        </h1>
-                        <p className="text-base mt-2 first-letter:capitalize">
-                            {forgotSteps[2].description}
                         </p>
                     </div>
                 </div>

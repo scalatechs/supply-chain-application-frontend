@@ -269,6 +269,8 @@ export default function ReturnOrders() {
                     ))}
                 </div>
             </div>
+
+            {returnItems.length == 0 && <h3 className="pt-4 pl-2 text-sm">No return items yet</h3>}
         </div >
     )
 }

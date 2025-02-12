@@ -2,43 +2,68 @@ import { LockIcon } from "lucide-react"
 import logo from "../../../assets/Nav-mainlogo.svg"
 import { useForgotContext } from "../../../hooks/useForgotContext";
 import ProgressBar from "./progress-bar";
+import axios from "axios";
 
-const setNewPassword = ({ password, confirmPassword, updateField }: { password: string, confirmPassword: string, updateField: (data: any) => void }) => {
+const setNewPassword = ({ data, password, confirmPassword, updateField }:
+    {
+        data: { email: string },
+        password: string,
+        confirmPassword: string,
+        updateField: (data: any) => void
+    }) => {
 
     const { currentStep, setCurrentStep, setIsFormSubmitted } = useForgotContext()
 
-    const handleFormSubmit = (e: React.FormEvent) => {
+    const handleFormSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
-        // Get all the form elements
-        const form = e.target as HTMLFormElement;
-        const formData = new FormData(form);
+        // Check if all required fields are present
+        if (!data.email || !password || !confirmPassword) {
+            alert("Please fill out all required fields.");
+            return;
+        }
 
-        // Check if any of the required fields are empty
-        const requiredFields = [
-            formData.get("password"),
-            formData.get("confirmPassword"),
-        ];
+        const token = localStorage.getItem("token");
 
-        // Check if any field is empty
-        const isFormValid = requiredFields.every(field => field && field !== "");
+        // Create request payload
+        const requestData = {
+            email: data.email,
+            password: password,
+            confirmPassword: confirmPassword
+        };
 
-        if (isFormValid) {
-            // Update the submission state
-            setIsFormSubmitted(prevState => {
-                const newState = {
+        console.log("Sending data:", requestData);
+
+        try {
+            const response = await axios.post(
+                "https://supply-chain-application-backend-1.onrender.com/api/v1/distributor/resetPassword",
+                requestData,
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                        "Content-Type": "application/json"
+                    }
+                }
+            );
+
+            console.log("Response:", response.data);
+
+            if (response.data) {
+                // Update the submission state
+                setIsFormSubmitted(prevState => ({
                     ...prevState,
                     [currentStep]: true
-                };
-                return newState;
-            });
+                }));
 
-            // Move to next step
-            setCurrentStep(currentStep + 1);
-        } else {
-            alert("Please fill out all required fields.");
+                // Move to next step
+                setCurrentStep(currentStep + 1);
+            }
+        } catch (error: any) {
+            console.error("Error resetting password:", error);
+            alert("Failed to reset password. Please try again.");
         }
     };
+
     return (
         <div className="w-full flex flex-col items-center gap-12 md:-mt-48 -mt-24">
             <img src={logo} className="w-64 mb-24" alt="" />
@@ -55,7 +80,6 @@ const setNewPassword = ({ password, confirmPassword, updateField }: { password: 
             </div>
 
             <form onSubmit={handleFormSubmit} className="md:w-[30rem] w-full flex flex-col items-start gap-6">
-
                 {/* Password  */}
                 <div className="w-full">
                     <label
@@ -68,11 +92,12 @@ const setNewPassword = ({ password, confirmPassword, updateField }: { password: 
                         <input
                             onChange={(e) => updateField({ password: e.target.value })}
                             value={password}
-                            type="password" name="password"
+                            type="password"
+                            name="password"
                             placeholder="Enter new password"
                             className="border-none outline-none w-full"
+                            required
                         />
-
                     </div>
                 </div>
 
@@ -88,11 +113,12 @@ const setNewPassword = ({ password, confirmPassword, updateField }: { password: 
                         <input
                             onChange={(e) => updateField({ confirmPassword: e.target.value })}
                             value={confirmPassword}
-                            type="password" name="confirmPassword"
+                            type="password"
+                            name="confirmPassword"
                             placeholder="Confirm password"
                             className="border-none outline-none w-full"
+                            required
                         />
-
                     </div>
                 </div>
 

@@ -2,11 +2,31 @@ import { Checkbox } from "@/components/ui/checkbox"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 import { useSignupContext } from "../../../hooks/useSignupContext";
 import { useState } from "react";
+import axios from "axios"
+import diddy from "../../../assets/diddy.jpg"
 
-const termsPolicies = ({ termsPolicies, updateField }: { termsPolicies: boolean, updateField: (data: any) => void }) => {
+const termsPolicies = ({
+    data, termsPolicies, updateField
+}: {
+    data: {
+        email: string;
+        firstName: string;
+        lastName: string;
+        phoneNumber: string;
+        password: string;
+        confirmPassword: string;
+        companyName: string;
+        registrationNumber: string;
+        location: string;
+        termsPolicies: boolean;
+    },
+    termsPolicies: boolean, updateField: (data: any) => void
+}) => {
     const { currentStep, setCurrentStep, setIsFormSubmitted } = useSignupContext()
     const [isChecked, setIsChecked] = useState(termsPolicies || false);
-    const handleFormSubmit = (e: React.FormEvent) => {
+    const token = localStorage.getItem("token");
+
+    const handleFormSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
         // Checks if checkbox is checked or not
@@ -14,7 +34,6 @@ const termsPolicies = ({ termsPolicies, updateField }: { termsPolicies: boolean,
         updateField({ termsPolicies: isChecked })
 
         if (isFormValid) {
-            // Update the submission state
             setIsFormSubmitted(prevState => {
                 const newState = {
                     ...prevState,
@@ -23,13 +42,53 @@ const termsPolicies = ({ termsPolicies, updateField }: { termsPolicies: boolean,
                 console.log('Updated form state:', newState);
                 return newState;
             });
-
-            // Move to next step
-            setCurrentStep(currentStep + 1);
         } else {
             alert("Please fill out all required fields.");
         }
-    };
+
+        try {
+
+            const fileResponse = await fetch(diddy);
+            const blob = await fileResponse.blob();
+            const file = new File([blob], 'diddy.png', { type: blob.type })
+
+            const formData = new FormData();
+            formData.append('firstname', data.firstName);
+            formData.append('lastname', data.lastName);
+            formData.append('phone', data.phoneNumber);
+            formData.append('email', data.email);
+            formData.append('password', data.password);
+            formData.append('companyName', data.companyName);
+            formData.append('regNo', data.registrationNumber);
+            formData.append('location', data.location);
+            formData.append('image', file);
+
+            for (let pair of formData.entries()) {
+                console.log(pair[0] + ': ' + pair[1]);
+            }
+
+            const response = await axios.post(
+                "https://supply-chain-application-backend-1.onrender.com/api/v1/distributor/signup/",
+                formData,
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                        "Content-Type": "multipart/form-data"
+                    }
+                }
+            );
+            if (response.status == 200 || response.status == 201) {
+                alert("Sent Otp")
+                setCurrentStep(currentStep + 1);
+            }
+
+        } catch (error: any) {
+            console.log(`Error: ${error.message}`)
+            if (error.response) {
+                console.log('Error response:', error.response.data);
+            }
+        };
+    }
 
     return (
         <form onSubmit={handleFormSubmit}>

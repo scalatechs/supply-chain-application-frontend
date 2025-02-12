@@ -2,40 +2,56 @@ import { Lock, Mail } from "lucide-react"
 import logo from "../../../assets/Nav-mainlogo.svg"
 import { useForgotContext } from "../../../hooks/useForgotContext";
 import ProgressBar from "../../auth/forgot-password/progress-bar"
+import axios from "axios";
 
 const resetPassword = ({ email, updateField }: { email: string, updateField: (data: any) => void }) => {
 
     const { currentStep, setCurrentStep, setIsFormSubmitted } = useForgotContext()
 
-    const handleFormSubmit = (e: React.FormEvent) => {
+    const handleFormSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
-        // Get all the form elements
-        const form = e.target as HTMLFormElement;
-        const formData = new FormData(form);
+        if (!email) {
+            alert("Please enter your email address.");
+            return;
+        }
 
-        // Check if any of the required fields are empty
-        const requiredFields = [
-            formData.get("email"),
-        ];
+        const token = localStorage.getItem("token");
 
-        // Check if any field is empty
-        const isFormValid = requiredFields.every(field => field && field !== "");
+        // Create request payload with email
+        const requestData = {
+            email: email
+        };
 
-        if (isFormValid) {
-            // Update the submission state
-            setIsFormSubmitted(prevState => {
-                const newState = {
+        console.log("Sending data:", requestData);
+
+        try {
+            const response = await axios.post(
+                "https://supply-chain-application-backend-1.onrender.com/api/v1/distributor/forgot-password",
+                requestData,
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                        "Content-Type": "application/json"
+                    }
+                }
+            );
+
+            console.log("Response:", response.data);
+
+            if (response.data) {
+                // Update the submission state
+                setIsFormSubmitted(prevState => ({
                     ...prevState,
                     [currentStep]: true
-                };
-                return newState;
-            });
+                }));
 
-            // Move to next step
-            setCurrentStep(currentStep + 1);
-        } else {
-            alert("Please fill out all required fields.");
+                // Move to next step
+                setCurrentStep(currentStep + 1);
+            }
+        } catch (error: any) {
+            console.error("Error sending reset email:", error);
+            alert("Failed to send reset email. Please try again.");
         }
     };
 
@@ -55,7 +71,6 @@ const resetPassword = ({ email, updateField }: { email: string, updateField: (da
             </div>
 
             <form onSubmit={handleFormSubmit} className="md:w-[30rem] w-full flex flex-col items-start gap-6">
-
                 {/* Email Address */}
                 <div className="w-full">
                     <label
@@ -68,11 +83,12 @@ const resetPassword = ({ email, updateField }: { email: string, updateField: (da
                         <input
                             value={email}
                             onChange={(e) => updateField({ email: e.target.value })}
-                            type="email" name="email"
+                            type="email"
+                            name="email"
                             placeholder="Enter email address"
                             className="border-none outline-none w-full"
+                            required
                         />
-
                     </div>
                 </div>
 

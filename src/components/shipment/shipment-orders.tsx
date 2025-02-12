@@ -158,6 +158,9 @@ export default function ShipmentOrders({ setActive }: { setActive: React.Dispatc
                     {/* ))} end mapping here  */}
                 </div>
             </div>
+
+            {shipment.length == 0 && <h3 className="pt-4 pl-2 text-sm">No orders yet</h3>}
+
         </div >
     )
 }

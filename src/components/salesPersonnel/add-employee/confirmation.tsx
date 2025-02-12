@@ -65,7 +65,7 @@ const confirmation = ({
             }
             );
             console.log(response.data);
-            if (response.status === 200) {
+            if (response.status === 200 || response.status == 201) {
                 setCurrentIndex(currentIndex + 1); // move to success page
             }
         } catch (error: any) {

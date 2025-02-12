@@ -50,8 +50,8 @@ const forgotPassword = () => {
                 <div className="xl:w-1/2 w-full">
                     {
                         currentStep == 1 ? <ResetPassword {...data} updateField={updateField} /> :
-                            currentStep == 2 ? <EnterOTP {...data} updateField={updateField} /> :
-                                currentStep == 3 ? <SetNewPassword {...data} updateField={updateField} /> :
+                            currentStep == 3 ? <EnterOTP data={data} {...data} updateField={updateField} /> :
+                                currentStep == 2 ? <SetNewPassword data={data} {...data} updateField={updateField} /> :
                                     currentStep == 4 ? <ResetSuccess /> : <ResetPassword {...data} updateField={updateField} />
                     }
                 </div>

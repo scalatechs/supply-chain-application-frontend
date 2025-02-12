@@ -17,8 +17,8 @@ export function SalesChart() {
                 <div>
                     <CardTitle className="font-medium text-xl">Total Sales</CardTitle>
                     <div className="flex md:flex-row flex-col items-baseline gap-2 mt-6">
-                        <span className="md:text-4xl text-2xl font-medium">Rs 8,290.00</span>
-                        <span className="text-xs text-green-600">+95% vs Last year</span>
+                        <span className="md:text-4xl text-2xl font-medium">Rs 0.00</span>
+                        <span className="text-xs text-green-600">+0% vs Last year</span>
                     </div>
                 </div>
                 <div className="flex items-center gap-2">

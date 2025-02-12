@@ -2,11 +2,14 @@ import { Ellipsis, PenLine, Store, X } from "lucide-react"
 import { Separator } from "../ui/separator"
 import OrderHistory from "./order-history"
 import { useEffect, useRef, useState } from "react"
+import axios from "axios"
 
 const customerDetails = ({
     showPopup,
+    _id,
 }: {
     showPopup: boolean,
+    _id: string
 }) => {
 
     const orderHistoryRef = useRef<HTMLDivElement>(null);
@@ -29,9 +32,33 @@ const customerDetails = ({
     }, []);
 
     const customerData = [
-        { col1: ["phone number", "email id", "store type", "location", "operating hours", "sales representative", "point of contact", "referred shipping method", "registration date", "registration date", "last interaction date"] },
-        { col2: ["+122-12345678", "mikejk@gmail.com", "convenience store", "kathmandu, nepal", "everyday", "ram bahadur", "store manager", "free shipping", "12 oct, 2023", "16 oct, 2024"] }
+        "customer name", "phone number", "email id", "location", "sales representative", "referred shipping method", "registration date",
     ]
+
+    const [customerDetails, setCustomerDetails] = useState<any | []>([]);
+    const token = localStorage.getItem("token");
+
+    const fetchCustomerDetails = async () => {
+        try {
+            const response = await axios.get(
+                `https://supply-chain-application-backend-1.onrender.com/api/v1/customer/${_id}`,
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                        "Content-Type": "application/json",
+                    },
+                }
+            );
+            setCustomerDetails(response.data.data)
+        } catch (error: any) {
+            console.log(`Error: ${error.message}`,);
+        }
+    };
+
+    useEffect(() => {
+        fetchCustomerDetails()
+    }, [showPopup])
+
 
     return (
         <div
@@ -56,7 +83,9 @@ const customerDetails = ({
             <div className="flex md:flex-row flex-col md:items-center items-start md:gap-0 gap-4 justify-between">
                 <div className="flex items-center gap-4">
                     <Store size={'25px'} />
-                    <h3 className="md:text-xl text-base font-medium">John Doe's Retail Store</h3>
+                    <h3 className="md:text-xl text-base font-medium capitalize">
+                        {customerDetails[0]?.storeName}
+                    </h3>
                 </div>
                 <div className="flex items-center gap-4">
                     <div className="flex items-center gap-2 bg-black text-white rounded-lg px-2 py-1 text-sm">
@@ -70,15 +99,33 @@ const customerDetails = ({
             {/* Details */}
             <div className="flex items-start justify-between w-full">
                 <ul className="md:text-sm text-xs text-neutral-600 mt-6">
-                    {customerData[0].col1?.map((item, idx) => (
+                    {customerData.map((item, idx) => (
                         <li key={idx} className="mt-2 capitalize">{item}</li>
                     ))}
                 </ul>
 
                 <ul className="md:text-sm text-xs mt-4 text-right">
-                    {customerData[1].col2?.map((item, idx) => (
-                        <li key={idx} className="mt-2 first-letter:capitalize">{item}</li>
-                    ))}
+                    <li className="mt-2 capitalize">
+                        {customerDetails[0]?.customerName}
+                    </li>
+                    <li className="mt-2 capitalize">
+                        {customerDetails[0]?.phone}
+                    </li>
+                    <li className="mt-2">
+                        {customerDetails[0]?.email}
+                    </li>
+                    <li className="mt-2 capitalize">
+                        {customerDetails[0]?.address}
+                    </li>
+                    <li className="mt-2 capitalize">
+                        {customerDetails[0]?.salespersonName}
+                    </li>
+                    <li className="mt-2 capitalize">
+                        {customerDetails[0]?.preferredShippingMethod}
+                    </li>
+                    <li className="mt-2">
+                        {customerDetails[0]?.createdAt}
+                    </li>
                 </ul>
             </div>
 

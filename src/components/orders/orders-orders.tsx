@@ -1,22 +1,22 @@
-// import {
-//     Table,
-//     TableBody,
-//     TableCell,
-//     TableHead,
-//     TableHeader,
-//     TableRow,
-// } from "@/components/ui/table"
+import {
+    Table,
+    TableBody,
+    TableCell,
+    TableHead,
+    TableHeader,
+    TableRow,
+} from "@/components/ui/table"
 import { Button } from "@/components/ui/button"
-// import { Checkbox } from "@/components/ui/checkbox"
+import { Checkbox } from "@/components/ui/checkbox"
 import { Calendar, Filter, MoreHorizontal, Search, Upload } from 'lucide-react'
-import { useEffect, useRef, useState } from "react"
-// import { Link } from "react-router-dom"
+import { useContext, useEffect, useRef, useState } from "react"
+import { Link } from "react-router-dom"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import CalendarComponent from "@/components/ui/calendar"
-// import { OrdersContext } from "@/context/orders-context"
+import { OrdersContext } from "@/context/orders-context"
 
 export default function Orders() {
-    // const { orders } = useContext(OrdersContext);
+    const { orders } = useContext(OrdersContext);
     const [showCalendar, setShowCalendar] = useState(false)
     const calendarRef = useRef<HTMLDivElement>(null);
 
@@ -112,7 +112,7 @@ export default function Orders() {
             </div>
 
             {/* Desktop view */}
-            {/* <div className="hidden md:block">
+            <div className="hidden md:block">
                 <ScrollArea className="w-full">
                     <Table>
                         <TableHeader>
@@ -128,27 +128,27 @@ export default function Orders() {
                         </TableHeader>
                         <TableBody>
                             {orders.map((order) => (
-                                <TableRow key={order._id}>
+                                <TableRow key={order?._id} className="text-sm">
                                     <TableCell className="flex items-center gap-2 h-16">
-                                        <Checkbox /><span className="mt-1">{order._id}</span>
+                                        <Checkbox /><span className="mt-1">{order?._id}</span>
                                     </TableCell>
-                                    <TableCell className="text-lg text-neutral-700">
-                                        {new Date().toLocaleDateString()}
+                                    <TableCell className="text-sm text-neutral-700">
+                                        {order?.createdAt}
                                     </TableCell>
-                                    <TableCell>
-                                        John Doe
+                                    <TableCell className="capitalize">
+                                        {order?.customer}
                                     </TableCell>
-                                    <TableCell className="text-lg text-neutral-700">
+                                    <TableCell className="text-neutral-700">
                                         Kathmandu, Nepal
                                     </TableCell>
-                                    <TableCell className="text-lg text-neutral-700">
-                                        Rs. {order.price}
+                                    <TableCell className="text-neutral-700">
+                                        Rs. {order?.total_amount?.toFixed(2)}
                                     </TableCell>
-                                    <TableCell className="text-lg text-neutral-700">
+                                    <TableCell className="text-neutral-700">
                                         <span
                                             className={`inline-flex rounded-full px-2 py-1 text-xs font-medium bg-yellow-100 text-yellow-700`}
                                         >
-                                            In-delivery
+                                            {order?.order_status}
                                         </span>
                                     </TableCell>
                                     <TableCell className="underline text-blue-500">
@@ -159,10 +159,10 @@ export default function Orders() {
                         </TableBody>
                     </Table>
                 </ScrollArea>
-            </div> */}
+            </div>
 
             {/* Mobile view */}
-            {/* <div className="md:hidden px-4">
+            <div className="md:hidden px-4">
                 <div className="divide-y">
                     {orders.map((order) => (
                         <div key={order._id} className="py-4">
@@ -207,9 +207,9 @@ export default function Orders() {
                         </div>
                     ))}
                 </div>
-            </div> */}
+            </div>
 
-            <h3 className="w-full text-center">No orders yet</h3>
+            {orders.length == 0 && <h3 className="pt-4 pl-2 text-sm">No orders yet</h3>}
         </div>
     )
 }

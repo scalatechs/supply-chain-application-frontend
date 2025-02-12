@@ -19,7 +19,7 @@ const Signup = () => {
         firstName: string;
         lastName: string;
         phoneNumber: string;
-        otp: string;
+        otp: number;
         password: string;
         confirmPassword: string;
         companyName: string;
@@ -33,7 +33,7 @@ const Signup = () => {
         firstName: "",
         lastName: "",
         phoneNumber: "",
-        otp: "",
+        otp: 0,
         password: "",
         confirmPassword: "",
         companyName: "",
@@ -43,15 +43,12 @@ const Signup = () => {
     }
 
     const [data, setData] = useState(INITIAL_DATA);
+
     const updateField = (fields: Partial<FormData>) => {
         setData(prev => {
             return { ...prev, ...fields }
         })
     }
-
-    useEffect(() => {
-        console.log(data)
-    }, [currentStep])
 
     return (
         <div className="lg:-ml-4 w-full h-screen flex lg:flex-row items-center gap-12 lg:p-0 p-6">
@@ -65,8 +62,8 @@ const Signup = () => {
                     {
                         currentStep == 1 ? <UserInformation {...data} updateField={updateField} /> :
                             currentStep == 2 ? <BusinessDetails {...data} updateField={updateField} /> :
-                                currentStep == 3 ? <TermsPolicies {...data} updateField={updateField} /> :
-                                    currentStep == 4 ? <Verification {...data} updateField={updateField} /> : <UserInformation {...data} updateField={updateField} />
+                                currentStep == 3 ? <TermsPolicies data={data} {...data} updateField={updateField} /> :
+                                    currentStep == 4 ? <Verification data={data} updateField={updateField} /> : <UserInformation {...data} updateField={updateField} />
                     }
                 </div>
             </div>

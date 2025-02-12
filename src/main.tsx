@@ -11,26 +11,29 @@ import { SalespersonProvider } from './context/salesperson-context.tsx'
 import { OrdersProvider } from './context/orders-context.tsx'
 import { ShipmentProvider } from './context/shipment-context.tsx'
 import { ReturnProvider } from './context/return-context.tsx'
+import { UserProvider } from './context/user-context.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <ThemeProvider defaultTheme="light" storageKey="vite-ui-theme">
       <SignupProvider>
-        <ForgotProvider>
-          <SidebarProvider>
-            <InventoryProvider>
-              <SalespersonProvider>
-                <OrdersProvider>
-                  <ShipmentProvider>
-                    <ReturnProvider>
-                      <App />
-                    </ReturnProvider>
-                  </ShipmentProvider>
-                </OrdersProvider>
-              </SalespersonProvider>
-            </InventoryProvider>
-          </SidebarProvider>
-        </ForgotProvider>
+        <UserProvider>
+          <ForgotProvider>
+            <SidebarProvider>
+              <InventoryProvider>
+                <SalespersonProvider>
+                  <OrdersProvider>
+                    <ShipmentProvider>
+                      <ReturnProvider>
+                        <App />
+                      </ReturnProvider>
+                    </ShipmentProvider>
+                  </OrdersProvider>
+                </SalespersonProvider>
+              </InventoryProvider>
+            </SidebarProvider>
+          </ForgotProvider>
+        </UserProvider>
       </SignupProvider>
     </ThemeProvider>
   </StrictMode>,

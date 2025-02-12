@@ -9,27 +9,75 @@ import {
 } from "@/components/ui/input-otp"
 import { useState } from "react";
 import ProgressBar from "../../auth/forgot-password/progress-bar"
+import axios from "axios";
 
-const enterOtp = ({ otp, updateField }: { otp: string, updateField: (data: any) => void }) => {
+const enterOtp = ({ otp, updateField, data }:
+    {
+        data: {
+            email: string
+        },
+        otp: string,
+        updateField: (data: any) => void
+    }) => {
 
     const { currentStep, setCurrentStep, setIsFormSubmitted } = useForgotContext()
     const [otpValue, setOtpValue] = useState(otp || "");
 
     const handleOtpChange = (value: string) => {
-        setOtpValue(value);
+        // Only allow numeric values
+        if (/^\d*$/.test(value)) {
+            setOtpValue(value);
+            updateField({ otp: value });
+        }
     };
 
     const handleFormSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        updateField({ otp: otpValue })
-        setIsFormSubmitted(prevState => {
-            const newState = {
-                ...prevState,
-                [currentStep]: true
-            };
-            return newState;
-        });
-        setCurrentStep(currentStep + 1);
+
+        // Validate OTP
+        if (!otpValue || otpValue.length !== 4) {
+            alert("Please enter a valid 4-digit OTP");
+            return;
+        }
+
+        const token = localStorage.getItem("token");
+
+        // Create request payload
+        const requestData = {
+            email: data.email,
+            otp: parseInt(otpValue, 10) // Convert string to number with base 10
+        };
+
+        console.log("Sending data:", requestData);
+
+        try {
+            const response = await axios.post(
+                "https://supply-chain-application-backend-1.onrender.com/api/v1/distributor/reset-link",
+                requestData,
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                        "Content-Type": "application/json"  // Changed from multipart/form-data
+                    }
+                }
+            );
+
+            console.log("Response:", response.data);
+
+            if (response.data) {
+                // Update the submission state
+                setIsFormSubmitted(prevState => ({
+                    ...prevState,
+                    [currentStep]: true
+                }));
+
+                // Move to next step
+                setCurrentStep(currentStep + 1);
+            }
+        } catch (error: any) {
+            console.error("Error verifying OTP:", error);
+            alert("Failed to verify OTP. Please try again.");
+        }
     };
 
     return (
@@ -44,15 +92,19 @@ const enterOtp = ({ otp, updateField }: { otp: string, updateField: (data: any) 
                 <h1 className="text-4xl text-neutral-700 font-semibold">Password Reset</h1>
                 <p className="text-sm text-gray-400 text-center mt-1">
                     Enter the otp sent to
-                    <span className="text-[#003dff] font-medium">johndoe21@gmail.com</span>
+                    <span className="text-[#003dff] font-medium"> {data.email}</span>
                 </p>
             </div>
 
             <form onSubmit={handleFormSubmit} className="md:w-[30rem] w-full flex flex-col items-start gap-6">
-
                 {/* OTP */}
                 <div className="w-full flex justify-center">
-                    <InputOTP maxLength={4} onChange={handleOtpChange}>
+                    <InputOTP
+                        maxLength={4}
+                        value={otpValue}
+                        onChange={handleOtpChange}
+                        pattern="\d*"  // Only allow numbers
+                    >
                         <InputOTPGroup>
                             <InputOTPSlot index={0} />
                         </InputOTPGroup>
@@ -69,7 +121,7 @@ const enterOtp = ({ otp, updateField }: { otp: string, updateField: (data: any) 
                             <InputOTPSlot index={3} />
                         </InputOTPGroup>
                     </InputOTP>
-                </ div>
+                </div>
 
                 {/* Continue / Resend code */}
                 <div className="w-full">
@@ -84,7 +136,6 @@ const enterOtp = ({ otp, updateField }: { otp: string, updateField: (data: any) 
                 </div>
             </form>
             <ProgressBar />
-
         </div>
     )
 }

@@ -79,7 +79,7 @@ const userInformation = () => {
                 <div className="w-full flex md:flex-row flex-col md:items-center items-start gap-4">
                     <div className="bg-zinc-200/50 md:w-[90%] w-full rounded-lg px-4 py-2.5 flex items-center gap-4">
                         <MapPin size={'17px'} />
-                        Add Locaation
+                        Add Location
                     </div>
                     <button className="md:w-[10%] w-full bg-[#003dff] text-white px-4 py-2.5 rounded-lg">
                         Add

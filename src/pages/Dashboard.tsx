@@ -85,30 +85,30 @@ function Dashboard({ setActive }: { setActive: Dispatch<SetStateAction<string>> 
             <div className="grid gap-4 xl:grid-cols-4 lg:grid-cols-3">
                 <StatsCard
                     title="Total Shipments"
-                    value={`${data?.totalShipments}`}
+                    value={`${data?.totalShipments == undefined ? "0.00" : data?.totalShipments}`}
                     icon={Shoppingcart}
-                    trend={{ value: 3.2, isPositive: false }}
+                    trend={{ value: 0, isPositive: false }}
                     comparison="Last week"
                 />
                 <StatsCard
                     title="Total Orders"
-                    value={`${data?.totalOrder}`}
+                    value={`${data?.totalOrder == undefined ? "0.00" : data?.totalOrder}`}
                     icon={box}
-                    trend={{ value: 3.3, isPositive: true }}
+                    trend={{ value: 0, isPositive: true }}
                     comparison="Last week"
                 />
                 <StatsCard
                     title="Revenue"
-                    value={`Rs. ${data?.totalRevenue?.toFixed(2)}`}
+                    value={`Rs. ${data?.totalRevenue?.toFixed(2) == undefined ? "0.00" : data?.totalRevenue?.toFixed(2)}`}
                     icon={revenue}
-                    trend={{ value: 1.7, isPositive: false }}
+                    trend={{ value: 0, isPositive: false }}
                     comparison="Last week"
                 />
                 <StatsCard
                     title="Delivered"
-                    value={`Rs. ${data?.totalDelivered}`}
+                    value={`Rs. ${data?.totalDelivered == undefined ? "0.00" : data?.totalDelivered}`}
                     icon={check}
-                    trend={{ value: 4.7, isPositive: true }}
+                    trend={{ value: 0, isPositive: true }}
                     comparison="Last week"
                 />
             </div>

@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button"
 import CustomerOrders from "../components/customers/customers-orders"
 import AddCustomer from "../components/customers/add-customer"
 import { useEffect, useRef, useState } from "react"
+import axios from "axios"
 
 const Customers = () => {
 
@@ -22,8 +23,51 @@ const Customers = () => {
         };
     }, [setShowAddCustomerPopup]);
 
+
+    const [customerSummary, setCustomerSummary] = useState<any | []>([]);
+    const token = localStorage.getItem("token")
+
+    const fetchSummary = async () => {
+        try {
+            const response = await axios.get("https://supply-chain-application-backend-1.onrender.com/api/v1/customer-summary",
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                        "Content-Type": "application/json"
+                    }
+                });
+            setCustomerSummary(response.data)
+        } catch (error: any) {
+            console.log(`Error: ${error.message}`)
+        }
+    }
+
+    const [customers, setCustomers] = useState<any | []>([]);
+    const fetchCustomers = async () => {
+        try {
+            const response = await axios.get(
+                "https://supply-chain-application-backend-1.onrender.com/api/v1/customer",
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                        "Content-Type": "application/json",
+                    },
+                }
+            );
+            setCustomers(response.data.data)
+        } catch (error: any) {
+            console.log(`Error: ${error.message}`,);
+        }
+    };
+
+    useEffect(() => {
+        fetchSummary();
+        fetchCustomers()
+    }, [])
+
+
     return (
-        <div className='w-full space-y-8'>
+        <div className='w-full space-y-8 -mt-9'>
 
             {/* Overlay */}
             <div className={`${showAddCustomerPopup ? "visible" : "invisible"} bg-black inset-0 fixed bg-opacity-50 z-40`}></div>
@@ -39,29 +83,30 @@ const Customers = () => {
             <div className="grid gap-4 xl:grid-cols-4 lg:grid-cols-3">
                 <StatsCard
                     title="Total Customers"
-                    value="239" icon={''}
-                    trend={{ value: 1.30, isPositive: true }}
+                    value={`${customers?.length}`}
+                    icon={''}
+                    trend={{ value: 0, isPositive: true }}
                     comparison="Last week"
                 />
                 <StatsCard
                     title="Active Customers"
-                    value="94%"
+                    value={`${customerSummary?.activeCustomerPercentage == undefined ? "0" : customerSummary?.activeCustomerPercentage}%`}
                     icon={''}
-                    trend={{ value: 0.82, isPositive: true }}
+                    trend={{ value: 0, isPositive: true }}
                     comparison="Last week"
                 />
                 <StatsCard
                     title="Average Retention"
-                    value="89%"
+                    value="0%"
                     icon={''}
-                    trend={{ value: 1.79, isPositive: false }}
+                    trend={{ value: 0, isPositive: false }}
                     comparison="Last week"
                 />
                 <StatsCard
                     title="Return and Refunds"
-                    value="12"
+                    value="0"
                     icon={''}
-                    trend={{ value: 0.27, isPositive: false }}
+                    trend={{ value: 0, isPositive: false }}
                     comparison="Last week"
                 />
             </div>

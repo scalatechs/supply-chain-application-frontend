@@ -15,7 +15,7 @@ const LoginForm = () => {
         try {
             const response = await axios.post("https://supply-chain-application-backend-1.onrender.com/api/v1/distributor/signin", { email: email, password: password }, { withCredentials: true })
             localStorage.setItem("token", response.data.accessToken)
-            if (response.status == 200) {
+            if (response.status == 200 || response.status == 201) {
                 alert("Logged in successfully!")
                 navigate("/dashboard");
             }
